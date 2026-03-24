@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FileRed // Secure Terminal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/png" href="../resources/img/fileredLogo.png">
+</head>
+
+<body>
+
+    <canvas id="matrix"></canvas>
+
+    <div class="wrapper">
+
+        <div class="main-title">
+            FileRed • Secure Intelligence Interface
+        </div>
+
+        <div class="grid">
+
+            <!-- ================= UPLOAD ================= -->
+            <div class="terminal">
+
+                <div class="header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <div class="title">FileRed - Agregar Archivo</div>
+                </div>
+
+                <div class="body">
+
+                    <div class="file-box" id="fileBox">
+                        <input type="file" id="fileInput" hidden>
+
+                        <div class="file-content">
+                            <div class="file-icon">📂</div>
+                            <div class="file-text">
+                                <strong>Drop file or click to upload</strong>
+                                <small>Secure transfer • FileRed Protocol</small>
+                            </div>
+                        </div>
+
+                        <div class="file-info" id="fileInfo"></div>
+                        <div class="file-preview" id="filePreview"></div>
+                    </div>
+
+                    <button onclick="upload()">
+                        EXECUTE UPLOAD
+                    </button>
+
+                    <div class="log" id="uploadLog"></div>
+
+                </div>
+            </div>
+
+            <!-- ================= GET ================= -->
+            <div class="terminal">
+
+                <div class="header">
+                    <div class="dot red"></div>
+                    <div class="dot yellow"></div>
+                    <div class="dot green"></div>
+                    <div class="title">FileRed - Obtener Archivo</div>
+                </div>
+
+                <div class="body">
+
+                    <div class="prompt">
+                        <span>ID:</span>
+                        <input id="fileId">
+                    </div>
+
+                    <div class="prompt">
+                        <span>EXT:</span>
+                        <input id="fileExt">
+                    </div>
+
+                    <div class="prompt">
+                        <span>TOKEN:</span>
+                        <input id="fileToken">
+                    </div>
+
+                    <button onclick="getFile()">
+                        EXECUTE FETCH
+                    </button>
+
+                    <div class="log" id="getLog"></div>
+                    <div class="preview" id="preview"></div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT -->
+    <script src="./script.js"></script>
+
+</body>
+</html>
