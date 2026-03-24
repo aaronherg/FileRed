@@ -21,7 +21,7 @@
 
 <div align="center">
   <p><strong>👑 CONTRIBUCIÓN</strong></p>
-  ¡Agradecemos cualquier contribución para mejorar KMPAccess!<br>
+  ¡Agradecemos cualquier contribución para mejorar!<br>
   Haz un fork, realiza tus cambios y envía un pull request.
 </div>
 
