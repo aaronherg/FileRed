@@ -90,7 +90,7 @@ function addDirectory($almacen, $categoria)
         return;
     }
 
-    if (mkdir($ruta, 0777, true)) {
+    if (mkdir($ruta, 0777, false)) {
         echo json_encode([
             'Validacion' => 'Exitoso',
             'Respuesta' => [
@@ -221,8 +221,18 @@ function addFile($almacen, $categoria, $file)
     $ruta = getRutaFisica($almacen, $categoria);
 
     // Si la carpeta no existe la crea automáticamente
+    // Crea el almacén si no existe, pero la categoría debe existir (se crea con addDirectory)
+    $rutaAlmacen = BASE_PATH . $almacen . '/';
+    if (!file_exists($rutaAlmacen)) {
+        mkdir($rutaAlmacen, 0777, true);
+    }
+
     if (!file_exists($ruta)) {
-        mkdir($ruta, 0777, true);
+        echo json_encode([
+            'Validacion' => 'Error',
+            'Respuesta' => ['mensaje' => 'La carpeta no existe, créela primero con addDirectory']
+        ]);
+        return;
     }
 
     $identificador = bin2hex(random_bytes(16));
@@ -238,6 +248,14 @@ function addFile($almacen, $categoria, $file)
 
     $url = getUrlArchivo($almacen, $categoria, $identificador, $ext);
 
+    // Convertir a base64 solo si es imagen
+    $base64 = null;
+    $mime = getMime($ext);
+    if (strpos($mime, 'image/') === 0) {
+        $contenido = file_get_contents($path);
+        $base64 = 'data:' . $mime . ';base64,' . base64_encode($contenido);
+    }
+
     echo json_encode([
         'Validacion' => 'Exitoso',
         'Respuesta' => [
@@ -245,6 +263,7 @@ function addFile($almacen, $categoria, $file)
             'extension' => $ext,
             'size' => $file['size'],
             'url' => $url,
+            'base64' => $base64,
         ]
     ]);
 }

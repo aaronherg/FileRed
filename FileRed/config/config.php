@@ -7,7 +7,7 @@ define('BASE_PATH', dirname(__DIR__) . '/files/');
 define('MAX_SIZE', 100 * 1024 * 1024); // 100MB
 
 // Dominio base para armar la URL pública del archivo
-define('BASE_URL', '/eduversord/');
+define('BASE_URL', '/');
 
 $EXTENSIONES_PERMITIDAS = [
     'jpg',
