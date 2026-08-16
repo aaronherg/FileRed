@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . "/../../controllers/FilesControllers.php");
+require_once(__DIR__ . "/../../controllers/UpdateFilesControllers.php");
 require_once(__DIR__ . "/../../controllers/VerificadoresControllers.php");
 
 header('Content-Type: application/json; charset=utf-8');
@@ -27,9 +28,7 @@ function ejecutador()
     // MANEJADOR DE CARPETAS
     // ====================================
 
-    // AddDirectory(almacen, categoria)
     if ($metodo === 'addDirectory' && $permiso === 'agregar_carpeta') {
-
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
 
@@ -43,9 +42,7 @@ function ejecutador()
         }
     }
 
-    // DeleteDirectory(almacen, categoria)
     else if ($metodo === 'deleteDirectory' && $permiso === 'eliminar_carpeta') {
-
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
 
@@ -59,9 +56,7 @@ function ejecutador()
         }
     }
 
-    // GetAllDirectory(almacen)
     else if ($metodo === 'getAllDirectory' && $permiso === 'obtener_carpetas') {
-
         $almacen = trim($_POST['almacen'] ?? '');
 
         if ($almacen) {
@@ -78,9 +73,7 @@ function ejecutador()
     // MANEJADOR DE ARCHIVOS
     // ====================================
 
-    // AddFile(almacen, categoria, archivo)
     else if ($metodo === 'addFile' && $permiso === 'agregar_archivo') {
-
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
 
@@ -102,9 +95,39 @@ function ejecutador()
         }
     }
 
-    // DeleteFileById(almacen, categoria, identificador, extension)
-    else if ($metodo === 'deleteFileById' && $permiso === 'eliminar_archivo') {
+    else if ($metodo === 'updateFile' && $permiso === 'actualizar_archivo') {
+        $almacen = trim($_POST['almacen'] ?? '');
+        $categoria = trim($_POST['categoria'] ?? '');
+        $identificador = trim($_POST['identificador'] ?? '');
+        $extension = trim($_POST['extension'] ?? '');
 
+        if (!isset($_FILES['file'])) {
+            echo json_encode([
+                'Validacion' => 'Error',
+                'Respuesta' => ['mensaje' => 'SE REQUIERE: file']
+            ]);
+            return;
+        }
+
+        if ($almacen && $categoria && $identificador && $extension) {
+            updateFile(
+                $almacen,
+                $categoria,
+                $identificador,
+                $extension,
+                $_FILES['file']
+            );
+        } else {
+            echo json_encode([
+                'Validacion' => 'Error',
+                'Respuesta' => [
+                    'mensaje' => 'SE REQUIERE: almacen, categoria, identificador, extension, file'
+                ]
+            ]);
+        }
+    }
+
+    else if ($metodo === 'deleteFileById' && $permiso === 'eliminar_archivo') {
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
         $identificador = trim($_POST['identificador'] ?? '');
@@ -120,9 +143,7 @@ function ejecutador()
         }
     }
 
-    // GetAllFiles(almacen, categoria)
     else if ($metodo === 'getAllFiles' && $permiso === 'obtener_archivos') {
-
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
 
@@ -136,9 +157,7 @@ function ejecutador()
         }
     }
 
-    // GetFileById(almacen, categoria, identificador, extension)
     else if ($metodo === 'getFileById' && $permiso === 'obtener_archivo') {
-
         $almacen = trim($_POST['almacen'] ?? '');
         $categoria = trim($_POST['categoria'] ?? '');
         $identificador = trim($_POST['identificador'] ?? '');
@@ -154,7 +173,6 @@ function ejecutador()
         }
     }
 
-    // Método no existe
     else {
         echo json_encode([
             'Validacion' => 'Error',
