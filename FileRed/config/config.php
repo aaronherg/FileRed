@@ -63,6 +63,7 @@ $API_KEY_VALIDA = "12345678";
 $PERMISOS = [
     // Archivos
     "agregar_archivo",
+    "actualizar_archivo",
     "eliminar_archivo",
     "obtener_archivos",
     "obtener_archivo",
