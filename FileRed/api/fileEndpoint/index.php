@@ -8,6 +8,19 @@ header('Content-Type: application/json; charset=utf-8');
 
 function ejecutador()
 {
+    // Si el multipart supera post_max_size, PHP descarta por completo $_POST y $_FILES.
+    // Detectarlo aqui evita reportar falsamente que faltan apikey/permiso/metodo.
+    $contentLength = (int) ($_SERVER['CONTENT_LENGTH'] ?? 0);
+    if (empty($_POST) && $contentLength > 0) {
+        echo json_encode([
+            'Validacion' => 'Error',
+            'Respuesta' => [
+                'mensaje' => 'La peticion supera el limite post_max_size de PHP (' . ini_get('post_max_size') . '). Tamano recibido: ' . $contentLength . ' bytes'
+            ]
+        ]);
+        return;
+    }
+
     $apikey = $_POST['apikey'] ?? null;
     $permiso = $_POST['permiso'] ?? null;
     $metodo = $_POST['metodo'] ?? null;
