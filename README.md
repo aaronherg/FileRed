@@ -29,5 +29,5 @@
 
 <div align="center">
   <p><strong>📝 LICENCIA</strong></p>
-  Este proyecto está bajo la licencia MIT.
+  Este proyecto está bajo la licencia AaronDevs.
 </div>
