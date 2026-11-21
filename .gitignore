@@ -14,5 +14,3 @@ target/
 .idea/
 .vscode/
 
-# Configuracion local con credenciales
-/API/FileRed/opt/filered/.env
