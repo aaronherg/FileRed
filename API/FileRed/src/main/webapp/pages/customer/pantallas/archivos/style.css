@@ -1,0 +1,533 @@
+.fs-session {
+    margin-bottom: 16px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: radial-gradient(80% 160% at 100% 0%, var(--accent-soft), transparent 60%), var(--surface);
+}
+
+.fs-crumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 12px;
+    font-size: 13px;
+}
+
+.fs-crumbs button,
+.fs-crumb-actual {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 9px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.fs-crumbs button:hover {
+    background: var(--surface-alt);
+    color: var(--text);
+}
+
+.fs-crumb-actual {
+    color: var(--text);
+    cursor: default;
+}
+
+.fs-crumbs .fr-svg {
+    width: 15px;
+    height: 15px;
+}
+
+.fs-sep {
+    width: 14px !important;
+    height: 14px !important;
+    color: var(--muted);
+}
+
+.fs-session-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+}
+
+.fs-back {
+    transform: rotate(180deg);
+}
+
+.fs-session-icon {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+    box-shadow: 0 0 24px var(--accent-soft);
+}
+
+.fs-session-icon .fr-svg {
+    width: 24px;
+    height: 24px;
+}
+
+.fs-session-head > div:not(.fs-session-stats) {
+    flex: 1 1 240px;
+    min-width: 0;
+}
+
+.fs-session-head h2 {
+    margin: 0;
+    overflow: hidden;
+    font-family: var(--font-display);
+    font-size: 22px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-session-head p {
+    margin: 2px 0 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.fs-session-stats {
+    display: flex;
+    gap: 8px;
+}
+
+.fs-session-stats div {
+    display: grid;
+    min-width: 92px;
+    padding: 8px 12px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--surface-alt);
+    text-align: center;
+}
+
+.fs-session-stats strong {
+    font-family: var(--font-display);
+    font-size: 17px;
+}
+
+.fs-session-stats span {
+    color: var(--muted);
+    font-size: 11.5px;
+}
+
+.fs-size {
+    min-width: 0 !important;
+}
+
+.fs-view-toggle {
+    display: inline-flex;
+    padding: 3px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background: var(--surface);
+}
+
+.fs-view-toggle button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 32px;
+    border: 0;
+    border-radius: 7px;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+}
+
+.fs-view-toggle button.is-active {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+}
+
+.fs-selection {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    padding: 10px 14px;
+    border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+    border-radius: 12px;
+    background: var(--accent-soft);
+}
+
+.fs-selection strong {
+    margin-right: auto;
+}
+
+.fs-panel {
+    position: relative;
+    min-height: 280px;
+}
+
+.fs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 12px;
+    padding: 18px;
+}
+
+.fs-card {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-alt);
+    cursor: pointer;
+    transition: border-color 160ms ease, transform 160ms ease, box-shadow 160ms ease;
+}
+
+.fs-card:hover,
+.fs-card:focus-visible {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--line));
+    transform: translateY(-2px);
+    box-shadow: 0 16px 36px -24px var(--accent-glow);
+}
+
+.fs-card-icon {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    flex: none;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+}
+
+.fs-card-icon.is-almacen {
+    background: linear-gradient(160deg, var(--accent-strong), #6d0a16);
+    color: #ffffff;
+}
+
+.fs-card-body {
+    display: grid;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.fs-card-body strong {
+    overflow: hidden;
+    font-size: 15px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-card-body small {
+    color: var(--text-secondary);
+    font-size: 12.5px;
+}
+
+.fs-card-body .fs-card-date {
+    color: var(--muted);
+    font-size: 11.5px;
+}
+
+.fs-card-actions {
+    display: flex;
+    gap: 2px;
+    opacity: 0;
+    transition: opacity 140ms ease;
+}
+
+.fs-card:hover .fs-card-actions,
+.fs-card:focus-within .fs-card-actions {
+    opacity: 1;
+}
+
+.fs-dropzone {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    width: calc(100% - 36px);
+    margin: 18px;
+    padding: 48px 20px;
+    border: 2px dashed var(--line-strong);
+    border-radius: 16px;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: border-color 160ms ease, background 160ms ease;
+}
+
+.fs-dropzone:hover {
+    border-color: var(--accent-strong);
+    background: var(--accent-soft);
+}
+
+.fs-dropzone .fr-svg {
+    width: 38px;
+    height: 38px;
+    color: var(--accent-strong);
+}
+
+.fs-dropzone strong {
+    color: var(--text);
+    font-size: 16px;
+}
+
+.fs-dropzone span {
+    font-size: 13px;
+}
+
+.fs-drop {
+    position: absolute;
+    inset: 8px;
+    z-index: 5;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    gap: 10px;
+    border: 2px dashed var(--accent-strong);
+    border-radius: 14px;
+    background: color-mix(in srgb, var(--surface) 90%, transparent);
+    text-align: center;
+    pointer-events: none;
+}
+
+.fs-drop .fr-svg {
+    width: 38px;
+    height: 38px;
+    color: var(--accent-strong);
+}
+
+.fs-col-check {
+    width: 1%;
+}
+
+.fs-check {
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.fs-check input {
+    width: 17px;
+    height: 17px;
+    accent-color: var(--accent);
+    cursor: pointer;
+}
+
+.fs-table tr.is-selected {
+    background: var(--accent-soft);
+}
+
+.fs-file {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.fs-file:hover .fr-cell-main {
+    color: var(--accent-strong);
+}
+
+.fs-thumb {
+    width: 42px;
+    height: 42px;
+    flex: none;
+    border-radius: 10px;
+    object-fit: cover;
+    background: var(--surface-alt);
+}
+
+.fs-ext {
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    color: var(--accent-strong);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.fs-thumb.is-large {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    font-size: 20px;
+}
+
+.fs-files-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+    gap: 12px;
+    padding: 18px;
+}
+
+.fs-file-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-alt);
+    overflow: hidden;
+    transition: border-color 160ms ease;
+}
+
+.fs-file-card:hover,
+.fs-file-card.is-selected {
+    border-color: color-mix(in srgb, var(--accent) 55%, var(--line));
+}
+
+.fs-file-card .fs-check {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 2;
+    padding: 4px;
+    border-radius: 7px;
+    background: color-mix(in srgb, var(--surface) 85%, transparent);
+}
+
+.fs-file-preview {
+    display: block;
+    aspect-ratio: 4 / 3;
+    padding: 0;
+    border: 0;
+    background: var(--raised);
+    cursor: pointer;
+}
+
+.fs-file-meta {
+    display: grid;
+    gap: 2px;
+    padding: 10px 12px 4px;
+}
+
+.fs-file-meta strong {
+    overflow: hidden;
+    font-size: 13.5px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.fs-file-meta small {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.fs-file-actions {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 4px 8px 10px;
+}
+
+.fs-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 20px;
+}
+
+.fs-preview {
+    display: grid;
+    place-items: center;
+    min-height: 260px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--surface-alt);
+    overflow: hidden;
+}
+
+.fs-preview img,
+.fs-preview video {
+    max-width: 100%;
+    max-height: 420px;
+    object-fit: contain;
+}
+
+.fs-preview audio {
+    width: 90%;
+}
+
+.fs-preview iframe {
+    width: 100%;
+    height: 420px;
+    border: 0;
+    background: #ffffff;
+}
+
+.fs-preview-none {
+    display: grid;
+    justify-items: center;
+    gap: 10px;
+    color: var(--muted);
+}
+
+.fs-preview-none .fs-thumb {
+    width: 96px;
+    height: 96px;
+    border-radius: 18px;
+}
+
+.fs-detail-kv {
+    grid-template-columns: 1fr;
+    align-content: start;
+}
+
+.fs-kv-full .fr-secret {
+    margin-top: 4px;
+}
+
+.upload-bar {
+    grid-column: 1 / -1;
+    height: 5px;
+    border-radius: 99px;
+    background: var(--surface-alt);
+    overflow: hidden;
+}
+
+.upload-bar span {
+    display: block;
+    width: 0;
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    transition: width 160ms ease;
+}
+
+.upload-queue li.is-error .upload-bar span {
+    background: var(--danger);
+}
+
+@media (max-width: 760px) {
+    .fs-detail {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .fs-session-stats {
+        width: 100%;
+    }
+
+    .fs-session-stats div {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .fs-card-actions {
+        opacity: 1;
+    }
+}

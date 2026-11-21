@@ -1,0 +1,565 @@
+{
+  "messages": {
+    "ÁREA DE CLIENTE": {
+      "en": "CUSTOMER AREA"
+    },
+    "Customer | FileRed": {
+      "en": "Customer | FileRed"
+    },
+    "FileRed Customer": {
+      "en": "FileRed Customer"
+    },
+    "Actividad de la API": {
+      "en": "API activity"
+    },
+    "Solicitudes por día en los últimos 30 días": {
+      "en": "Requests per day over the last 30 days"
+    },
+    "Primeros pasos": {
+      "en": "Getting started"
+    },
+    "Configura tu cuenta en minutos": {
+      "en": "Set up your account in minutes"
+    },
+    "Ten un plan vigente": {
+      "en": "Have an active plan"
+    },
+    "Crea tu primera API key": {
+      "en": "Create your first API key"
+    },
+    "Sube tu primer archivo": {
+      "en": "Upload your first file"
+    },
+    "Invita a tu equipo": {
+      "en": "Invite your team"
+    },
+    "Elige tu plan para empezar": {
+      "en": "Choose your plan to get started"
+    },
+    "Necesitas un plan vigente para crear carpetas y subir archivos.": {
+      "en": "You need an active plan to create folders and upload files."
+    },
+    "Ver planes": {
+      "en": "View plans"
+    },
+    "API keys activas": {
+      "en": "Active API keys"
+    },
+    "Solicitudes API (30 días)": {
+      "en": "API requests (30 days)"
+    },
+    "Descargas (30 días)": {
+      "en": "Downloads (30 days)"
+    },
+    "Saldo pendiente": {
+      "en": "Pending balance"
+    },
+    "Hoy": {
+      "en": "Today"
+    },
+    "usado": {
+      "en": "used"
+    },
+    "Almacenes": {
+      "en": "Stores"
+    },
+    "Almacén": {
+      "en": "Store"
+    },
+    "Carpeta": {
+      "en": "Folder"
+    },
+    "Ubicación": {
+      "en": "Location"
+    },
+    "Nueva carpeta": {
+      "en": "New folder"
+    },
+    "Subir archivos": {
+      "en": "Upload files"
+    },
+    "Archivo": {
+      "en": "File"
+    },
+    "Tamaño": {
+      "en": "Size"
+    },
+    "Subido": {
+      "en": "Uploaded"
+    },
+    "Copiar URL pública": {
+      "en": "Copy public URL"
+    },
+    "Reemplazar": {
+      "en": "Replace"
+    },
+    "Aún no tienes almacenes. Crea una carpeta para empezar a organizar tus archivos.": {
+      "en": "You have no stores yet. Create a folder to start organizing your files."
+    },
+    "Este almacén no tiene carpetas.": {
+      "en": "This store has no folders."
+    },
+    "Esta carpeta está vacía. Arrastra archivos aquí o usa Subir archivos.": {
+      "en": "This folder is empty. Drag files here or use Upload files."
+    },
+    "Crea un almacén y su primera carpeta": {
+      "en": "Create a store and its first folder"
+    },
+    "En el almacén {almacen}": {
+      "en": "In the store {almacen}"
+    },
+    "Por ejemplo, el nombre de tu aplicación.": {
+      "en": "For example, your app's name."
+    },
+    "Letras, números, espacio, punto, guion y guion bajo.": {
+      "en": "Letters, numbers, space, dot, hyphen and underscore."
+    },
+    "El nombre del almacén no es válido.": {
+      "en": "The store name is not valid."
+    },
+    "El nombre de la carpeta no es válido.": {
+      "en": "The folder name is not valid."
+    },
+    "Carpeta creada correctamente": {
+      "en": "Folder created successfully"
+    },
+    "Carpeta eliminada correctamente": {
+      "en": "Folder deleted successfully"
+    },
+    "Se eliminará la carpeta {carpeta} con todos sus archivos. Las URLs públicas dejarán de funcionar.": {
+      "en": "The folder {carpeta} and all its files will be deleted. Public URLs will stop working."
+    },
+    "Eliminar carpeta": {
+      "en": "Delete folder"
+    },
+    "Subiendo…": {
+      "en": "Uploading…"
+    },
+    "{total} archivo(s) subido(s) correctamente": {
+      "en": "{total} file(s) uploaded successfully"
+    },
+    "Archivo reemplazado correctamente": {
+      "en": "File replaced successfully"
+    },
+    "Archivo eliminado correctamente": {
+      "en": "File deleted successfully"
+    },
+    "Suelta tus archivos para subirlos a": {
+      "en": "Drop your files to upload them to"
+    },
+    "Usa tus API keys en": {
+      "en": "Use your API keys at"
+    },
+    ". Cada llave solo puede ejecutar los permisos que le asignes.": {
+      "en": ". Each key can only run the permissions you assign to it."
+    },
+    "Nueva API key": {
+      "en": "New API key"
+    },
+    "Editar API key": {
+      "en": "Edit API key"
+    },
+    "Crear API key": {
+      "en": "Create API key"
+    },
+    "Revocar": {
+      "en": "Revoke"
+    },
+    "Revocar API key": {
+      "en": "Revoke API key"
+    },
+    "Por ejemplo: Producción, App móvil, Integración ERP.": {
+      "en": "For example: Production, Mobile app, ERP integration."
+    },
+    "Suspendida": {
+      "en": "Suspended"
+    },
+    "Crear carpetas": {
+      "en": "Create folders"
+    },
+    "Eliminar carpetas": {
+      "en": "Delete folders"
+    },
+    "Subir archivos ": {
+      "en": "Upload files "
+    },
+    "Reemplazar archivos": {
+      "en": "Replace files"
+    },
+    "Eliminar archivos": {
+      "en": "Delete files"
+    },
+    "Tu nueva API key": {
+      "en": "Your new API key"
+    },
+    "Cópiala ahora y guárdala en un lugar seguro. Por seguridad no se volverá a mostrar.": {
+      "en": "Copy it now and keep it somewhere safe. For security it will not be shown again."
+    },
+    "Ya la guardé": {
+      "en": "I saved it"
+    },
+    "API key creada. Cópiela ahora: no se volverá a mostrar": {
+      "en": "API key created. Copy it now: it will not be shown again"
+    },
+    "API key actualizada correctamente": {
+      "en": "API key updated successfully"
+    },
+    "API key revocada correctamente": {
+      "en": "API key revoked successfully"
+    },
+    "Las aplicaciones que usen {llave} dejarán de funcionar de inmediato. Esta acción no se puede deshacer.": {
+      "en": "Apps using {llave} will stop working immediately. This action cannot be undone."
+    },
+    "Aún no tienes API keys. Crea una para conectar tu aplicación.": {
+      "en": "You have no API keys yet. Create one to connect your app."
+    },
+    "Planes disponibles": {
+      "en": "Available plans"
+    },
+    "Solicita el plan que necesitas. Nuestro equipo lo activará y generará el cargo.": {
+      "en": "Request the plan you need. Our team will activate it and create the charge."
+    },
+    "Mis solicitudes": {
+      "en": "My requests"
+    },
+    "Actual": {
+      "en": "Current"
+    },
+    "Solicitar": {
+      "en": "Request"
+    },
+    "Pospago con renovación automática": {
+      "en": "Postpaid with automatic renewal"
+    },
+    "GB adicionales activos": {
+      "en": "Extra GB enabled"
+    },
+    "Tamaño máximo por archivo": {
+      "en": "Max file size"
+    },
+    "No tienes un plan vigente. Elige uno de los planes disponibles para empezar a almacenar archivos.": {
+      "en": "You have no active plan. Choose one of the available plans to start storing files."
+    },
+    "No hay planes publicados por el momento.": {
+      "en": "There are no published plans at the moment."
+    },
+    "Tienes una solicitud pendiente. Podrás solicitar otro plan cuando sea respondida o si la cancelas.": {
+      "en": "You have a pending request. You can request another plan once it is answered or if you cancel it."
+    },
+    "No has enviado solicitudes.": {
+      "en": "You have not sent any requests."
+    },
+    "Cancelar solicitud": {
+      "en": "Cancel request"
+    },
+    "Modalidad de pago": {
+      "en": "Payment mode"
+    },
+    "Prepago: pago el periodo por adelantado": {
+      "en": "Prepaid: I pay the period in advance"
+    },
+    "Pospago: se renueva automáticamente": {
+      "en": "Postpaid: renews automatically"
+    },
+    "Comentario (opcional)": {
+      "en": "Comment (optional)"
+    },
+    "Enviar solicitud": {
+      "en": "Send request"
+    },
+    "Solicitar plan {plan}": {
+      "en": "Request plan {plan}"
+    },
+    "Solicitud enviada correctamente": {
+      "en": "Request sent successfully"
+    },
+    "Solicitud cancelada correctamente": {
+      "en": "Request cancelled successfully"
+    },
+    "Se cancelará tu solicitud del plan {plan}.": {
+      "en": "Your request for the {plan} plan will be cancelled."
+    },
+    "Todos los cargos": {
+      "en": "All charges"
+    },
+    "Para pagar un cargo, contacta a nuestro equipo con la referencia de tu pago.": {
+      "en": "To pay a charge, contact our team with your payment reference."
+    },
+    "No tienes cargos registrados.": {
+      "en": "You have no charges."
+    },
+    "Información de tu empresa o perfil personal": {
+      "en": "Your company or personal profile information"
+    },
+    "Mi usuario": {
+      "en": "My user"
+    },
+    "Datos de tu sesión": {
+      "en": "Your session details"
+    },
+    "Guardar cambios": {
+      "en": "Save changes"
+    },
+    "Datos actualizados correctamente": {
+      "en": "Details updated successfully"
+    },
+    "Consultar archivos": {
+      "en": "View files"
+    },
+    "Crear y eliminar carpetas": {
+      "en": "Create and delete folders"
+    },
+    "Consultar API keys": {
+      "en": "View API keys"
+    },
+    "Consultar suscripción": {
+      "en": "View subscription"
+    },
+    "Solicitar plan": {
+      "en": "Request plan"
+    },
+    "Consultar perfil": {
+      "en": "View profile"
+    },
+    "Modificar perfil": {
+      "en": "Edit profile"
+    },
+    "Cada almacén agrupa las carpetas de un proyecto o aplicación.": {
+      "en": "Each store groups the folders of a project or app."
+    },
+    "Carpetas del almacén. Entra a una carpeta para gestionar sus archivos.": {
+      "en": "Store folders. Open a folder to manage its files."
+    },
+    "Archivos de {ruta}": {
+      "en": "Files in {ruta}"
+    },
+    "Filtrar almacenes": {
+      "en": "Filter stores"
+    },
+    "Filtrar carpetas": {
+      "en": "Filter folders"
+    },
+    "Nuevo almacén": {
+      "en": "New store"
+    },
+    "Buscar por nombre o extensión": {
+      "en": "Search by name or extension"
+    },
+    "{n} por página": {
+      "en": "{n} per page"
+    },
+    "Lista": {
+      "en": "List"
+    },
+    "Cuadrícula": {
+      "en": "Grid"
+    },
+    "almacenes": {
+      "en": "stores"
+    },
+    "archivos": {
+      "en": "files"
+    },
+    "usados": {
+      "en": "used"
+    },
+    "carpetas": {
+      "en": "folders"
+    },
+    "Crear mi primer almacén": {
+      "en": "Create my first store"
+    },
+    "Aún no tienes almacenes. Crea uno para tu proyecto o aplicación y organiza dentro tus carpetas.": {
+      "en": "You have no stores yet. Create one for your project or app and organize your folders inside."
+    },
+    "Ningún almacén coincide con el filtro.": {
+      "en": "No store matches the filter."
+    },
+    "Ninguna carpeta coincide con el filtro.": {
+      "en": "No folder matches the filter."
+    },
+    "Este almacén no tiene carpetas todavía.": {
+      "en": "This store has no folders yet."
+    },
+    "Crear carpeta": {
+      "en": "Create folder"
+    },
+    "Modificado {fecha}": {
+      "en": "Modified {fecha}"
+    },
+    "{c} carpetas · {a} archivos · {b}": {
+      "en": "{c} folders · {a} files · {b}"
+    },
+    "{a} archivos · {b}": {
+      "en": "{a} files · {b}"
+    },
+    "Ver detalle": {
+      "en": "View details"
+    },
+    "Descargar": {
+      "en": "Download"
+    },
+    "Renombrar": {
+      "en": "Rename"
+    },
+    "Reemplazar contenido": {
+      "en": "Replace content"
+    },
+    "Arrastra tus archivos aquí": {
+      "en": "Drag your files here"
+    },
+    "o haz clic para seleccionarlos desde tu equipo": {
+      "en": "or click to choose them from your computer"
+    },
+    "Ningún archivo coincide con la búsqueda.": {
+      "en": "No file matches your search."
+    },
+    "Esta carpeta está vacía.": {
+      "en": "This folder is empty."
+    },
+    "Tipo": {
+      "en": "Type"
+    },
+    "{n} seleccionado(s)": {
+      "en": "{n} selected"
+    },
+    "Copiar URLs": {
+      "en": "Copy URLs"
+    },
+    "Quitar selección": {
+      "en": "Clear selection"
+    },
+    "Nombre del almacén": {
+      "en": "Store name"
+    },
+    "Crear almacén": {
+      "en": "Create store"
+    },
+    "Por ejemplo, el nombre de tu aplicación o proyecto.": {
+      "en": "For example, your app or project name."
+    },
+    "Nombre de la carpeta": {
+      "en": "Folder name"
+    },
+    "Renombrar almacén": {
+      "en": "Rename store"
+    },
+    "Renombrar carpeta": {
+      "en": "Rename folder"
+    },
+    "Las URLs públicas de sus archivos cambiarán.": {
+      "en": "The public URLs of its files will change."
+    },
+    "Nuevo nombre": {
+      "en": "New name"
+    },
+    "Almacén creado correctamente": {
+      "en": "Store created successfully"
+    },
+    "Almacén renombrado correctamente": {
+      "en": "Store renamed successfully"
+    },
+    "Carpeta renombrada correctamente": {
+      "en": "Folder renamed successfully"
+    },
+    "Almacén eliminado correctamente": {
+      "en": "Store deleted successfully"
+    },
+    "Eliminar almacén": {
+      "en": "Delete store"
+    },
+    "Renombrar archivo": {
+      "en": "Rename file"
+    },
+    "Cambia el nombre visible. La URL pública no cambia.": {
+      "en": "Change the display name. The public URL does not change."
+    },
+    "Archivo renombrado correctamente": {
+      "en": "File renamed successfully"
+    },
+    "{n} archivos eliminados correctamente": {
+      "en": "{n} files deleted successfully"
+    },
+    "Identificador": {
+      "en": "Identifier"
+    },
+    "URL pública": {
+      "en": "Public URL"
+    },
+    "Sin vista previa para este tipo de archivo.": {
+      "en": "No preview for this file type."
+    },
+    "Volver": {
+      "en": "Back"
+    },
+    "El nombre no es válido: usa letras, números, espacio, punto, guion o guion bajo.": {
+      "en": "The name is not valid: use letters, numbers, space, dot, hyphen or underscore."
+    },
+    "Subir, reemplazar y renombrar archivos": {
+      "en": "Upload, replace and rename files"
+    },
+    "Crear, renombrar y eliminar carpetas": {
+      "en": "Create, rename and delete folders"
+    },
+    "Crear, renombrar y eliminar almacenes": {
+      "en": "Create, rename and delete stores"
+    },
+    "Cómo se distribuye el espacio de tu cuenta entre almacenes, carpetas y tipos de archivo.": {
+      "en": "How your account storage is split across stores, folders and file types."
+    },
+    "Espacio usado": {
+      "en": "Used storage"
+    },
+    "Almacenes con archivos": {
+      "en": "Stores with files"
+    },
+    "Carpetas con archivos": {
+      "en": "Folders with files"
+    },
+    "Por almacén": {
+      "en": "By store"
+    },
+    "Espacio ocupado": {
+      "en": "Used space"
+    },
+    "Por tipo de archivo": {
+      "en": "By file type"
+    },
+    "Top 6 extensiones": {
+      "en": "Top 6 extensions"
+    },
+    "Por carpeta": {
+      "en": "By folder"
+    },
+    "Archivos más grandes": {
+      "en": "Largest files"
+    },
+    "Aún no tienes archivos.": {
+      "en": "You have no files yet."
+    },
+    "Sin archivos.": {
+      "en": "No files."
+    },
+    "Sin datos.": {
+      "en": "No data."
+    },
+    "Espacio": {
+      "en": "Space"
+    },
+    "Actividad diaria": {
+      "en": "Daily activity"
+    },
+    "Último uso y archivos subidos": {
+      "en": "Last use and uploaded files"
+    },
+    "No tienes API keys.": {
+      "en": "You have no API keys."
+    },
+    "Detalle por día": {
+      "en": "Daily detail"
+    },
+    "Sin actividad en el periodo seleccionado.": {
+      "en": "No activity in the selected period."
+    }
+  }
+}

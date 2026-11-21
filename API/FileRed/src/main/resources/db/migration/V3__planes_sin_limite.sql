@@ -1,0 +1,2 @@
+ALTER TABLE Planes MODIFY espacioGb DECIMAL(12,2) NULL;
+ALTER TABLE Planes MODIFY tamanoMaximoArchivoMb INT NULL;

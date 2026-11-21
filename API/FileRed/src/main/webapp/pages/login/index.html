@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060607">
+    <link rel="icon" type="image/png" sizes="128x128" href="../files/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../files/img/apple-touch-icon.png">
+    <title>Iniciar sesión | FileRed</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../files/temes/theme.css?v=20261120-6">
+    <link rel="stylesheet" href="../../styles.css?v=20261120-6">
+    <link rel="stylesheet" href="../librerias/aarondeveloper/toastr.min.css?v=20261120-1">
+    <link rel="stylesheet" href="../loading.css?v=20261120-1">
+    <link rel="stylesheet" href="style.css?v=20261120-6">
+    <script src="../files/temes/theme.js?v=20261120-6"></script>
+</head>
+<body class="auth-page">
+    <div class="auth-shell">
+        <aside class="auth-visual" aria-hidden="true">
+            <div class="auth-visual-grid"></div>
+            <div class="auth-visual-glow"></div>
+            <img src="../files/img/logotipo-web.webp" alt="" class="auth-visual-logo">
+            <p class="auth-visual-quote">Almacena, organiza y entrega tus archivos con la seguridad de una red privada.</p>
+        </aside>
+
+        <main class="auth-main">
+            <div class="auth-top">
+                <a class="auth-back" href="../">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m6 6-6-6 6-6"/></svg>
+                    Volver al inicio
+                </a>
+                <div class="auth-tools">
+                    <select class="language-select" data-language-switcher aria-label="Idioma">
+                        <option value="es">ES</option>
+                        <option value="en">EN</option>
+                    </select>
+                    <button class="fr-icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">
+                        <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+                        <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
+                    </button>
+                </div>
+            </div>
+
+            <section class="auth-card">
+                <img src="../files/img/isotipo.png" alt="" class="auth-mark">
+                <h1>Bienvenido de nuevo</h1>
+                <p class="auth-subtitle">Ingresa con tu usuario para continuar a tu área.</p>
+
+                <form class="auth-form" data-login-form novalidate>
+                    <label class="fr-field">
+                        <span>Usuario</span>
+                        <input class="fr-input" name="usuario" autocomplete="username" required maxlength="60" placeholder="tu.usuario">
+                    </label>
+                    <label class="fr-field">
+                        <span>Contraseña</span>
+                        <span class="password-field">
+                            <input class="fr-input" name="contrasena" type="password" autocomplete="current-password" required maxlength="120" placeholder="••••••••">
+                            <button type="button" class="password-toggle" data-password-toggle aria-label="Mostrar contraseña" title="Mostrar contraseña">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
+                            </button>
+                        </span>
+                    </label>
+                    <p class="auth-error" data-login-error role="alert" hidden></p>
+                    <button class="fr-btn fr-btn-primary fr-btn-lg auth-submit" type="submit">Iniciar sesión</button>
+                </form>
+
+                <p class="auth-switch">¿Aún no tienes cuenta? <a href="../registro/">Crear cuenta</a></p>
+            </section>
+        </main>
+    </div>
+
+    <script src="../../services/core/config.js?v=20261120-1"></script>
+    <script src="../librerias/aarondeveloper/toastr.bundle.js?v=20261120-1"></script>
+    <script src="../librerias/aarondeveloper/notificaciones.js?v=20261120-1"></script>
+    <script src="../loading.js?v=20261120-1"></script>
+    <script src="../../services/core/LocalStorageService.js?v=20261120-1"></script>
+    <script src="../../services/core/ApiService.js?v=20261120-1"></script>
+    <script src="../../services/core/AutenticacionService.js?v=20261120-1"></script>
+    <script src="../files/languages/i18n.js?v=20261120-1"></script>
+    <script src="../files/languages/language-switcher.js?v=20261120-1"></script>
+    <script src="script.js?v=20261120-1"></script>
+</body>
+</html>

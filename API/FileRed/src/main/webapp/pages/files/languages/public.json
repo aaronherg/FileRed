@@ -1,0 +1,478 @@
+{
+  "messages": {
+    "FileRed | Almacenamiento seguro de archivos API": {
+      "en": "FileRed | Secure API file storage"
+    },
+    "FileRed: almacenamiento seguro de archivos con API, URLs públicas y planes a la medida.": {
+      "en": "FileRed: secure file storage with an API, public URLs and plans that fit you."
+    },
+    "FileRed, almacenamiento seguro de archivos API": {
+      "en": "FileRed, secure API file storage"
+    },
+    "FileRed, inicio": {
+      "en": "FileRed, home"
+    },
+    "Cargando FileRed": {
+      "en": "Loading FileRed"
+    },
+    "Preparando tu espacio": {
+      "en": "Preparing your space"
+    },
+    "Navegación principal": {
+      "en": "Main navigation"
+    },
+    "Producto": {
+      "en": "Product"
+    },
+    "Planes": {
+      "en": "Plans"
+    },
+    "Preguntas": {
+      "en": "FAQ"
+    },
+    "Iniciar sesión": {
+      "en": "Sign in"
+    },
+    "Crear cuenta": {
+      "en": "Create account"
+    },
+    "Abrir menú": {
+      "en": "Open menu"
+    },
+    "Idioma": {
+      "en": "Language"
+    },
+    "Cambiar tema": {
+      "en": "Toggle theme"
+    },
+    "Cambiar a tema claro": {
+      "en": "Switch to light theme"
+    },
+    "Cambiar a tema oscuro": {
+      "en": "Switch to dark theme"
+    },
+    "ALMACENAMIENTO SEGURO DE ARCHIVOS API": {
+      "en": "SECURE API FILE STORAGE"
+    },
+    "Tus archivos, servidos a la": {
+      "en": "Your files, served at the"
+    },
+    "velocidad de la red": {
+      "en": "speed of the network"
+    },
+    "Sube, organiza y entrega imágenes, documentos y videos desde una API segura. Cada archivo recibe una URL pública al instante y tú controlas quién puede hacer qué con API keys por permiso.": {
+      "en": "Upload, organize and deliver images, documents and videos from a secure API. Every file gets a public URL instantly and you control who can do what with permission-based API keys."
+    },
+    "Comenzar ahora": {
+      "en": "Get started"
+    },
+    "Ver la API": {
+      "en": "See the API"
+    },
+    "Hasta 500 MB por archivo": {
+      "en": "Up to 500 MB per file"
+    },
+    "URLs públicas al instante": {
+      "en": "Instant public URLs"
+    },
+    "Prepago o pospago": {
+      "en": "Prepaid or postpaid"
+    },
+    "API REST": {
+      "en": "REST API"
+    },
+    "multipart y JSON": {
+      "en": "multipart and JSON"
+    },
+    "Llaves cifradas": {
+      "en": "Hashed keys"
+    },
+    "SHA-256, se muestran una sola vez": {
+      "en": "SHA-256, shown only once"
+    },
+    "Cuotas por plan": {
+      "en": "Plan quotas"
+    },
+    "espacio y tamaño máximo": {
+      "en": "storage and max file size"
+    },
+    "Métricas diarias": {
+      "en": "Daily metrics"
+    },
+    "subidas, descargas y solicitudes": {
+      "en": "uploads, downloads and requests"
+    },
+    "PRODUCTO": {
+      "en": "PRODUCT"
+    },
+    "Todo lo que tu aplicación necesita para manejar archivos": {
+      "en": "Everything your app needs to handle files"
+    },
+    "Una plataforma para que equipos y desarrolladores dejen de preocuparse por discos, rutas y permisos.": {
+      "en": "A platform so teams and developers can stop worrying about disks, paths and permissions."
+    },
+    "Subidas simples": {
+      "en": "Simple uploads"
+    },
+    "Envía el archivo por multipart y recibe su identificador, tamaño y URL pública en la misma respuesta.": {
+      "en": "Send the file as multipart and get its identifier, size and public URL in the same response."
+    },
+    "Almacenes y carpetas": {
+      "en": "Stores and folders"
+    },
+    "Organiza por proyecto y categoría. Explora y administra todo desde tu área de cliente.": {
+      "en": "Organize by project and category. Browse and manage everything from your customer area."
+    },
+    "API keys con permisos": {
+      "en": "Permission-based API keys"
+    },
+    "Crea varias llaves y decide qué puede hacer cada una: subir, listar, reemplazar o eliminar.": {
+      "en": "Create several keys and decide what each one can do: upload, list, replace or delete."
+    },
+    "URLs públicas": {
+      "en": "Public URLs"
+    },
+    "Comparte o incrusta tus archivos con enlaces directos, listos para imágenes, PDF y video.": {
+      "en": "Share or embed your files with direct links, ready for images, PDF and video."
+    },
+    "Equipo y roles": {
+      "en": "Team and roles"
+    },
+    "Invita a tu equipo, crea roles a la medida y controla qué ve y qué hace cada usuario.": {
+      "en": "Invite your team, create custom roles and control what each user sees and does."
+    },
+    "Consumo en tiempo real": {
+      "en": "Real-time usage"
+    },
+    "Visualiza espacio usado, archivos, solicitudes a la API y descargas de los últimos 30 días.": {
+      "en": "See used storage, files, API requests and downloads for the last 30 days."
+    },
+    "CÓMO FUNCIONA": {
+      "en": "HOW IT WORKS"
+    },
+    "De cero a tu primer archivo en minutos": {
+      "en": "From zero to your first file in minutes"
+    },
+    "Crea tu cuenta": {
+      "en": "Create your account"
+    },
+    "Registra tu empresa o perfil personal y entra a tu área de cliente.": {
+      "en": "Register your company or personal profile and enter your customer area."
+    },
+    "Elige tu plan": {
+      "en": "Choose your plan"
+    },
+    "Solicita el plan que necesitas en modalidad prepago o pospago.": {
+      "en": "Request the plan you need, prepaid or postpaid."
+    },
+    "Conecta tu aplicación": {
+      "en": "Connect your app"
+    },
+    "Genera una API key con los permisos justos y empieza a subir archivos.": {
+      "en": "Generate an API key with just the right permissions and start uploading files."
+    },
+    "Una sola ruta. Ocho métodos. Cero fricción.": {
+      "en": "One route. Eight methods. Zero friction."
+    },
+    "El endpoint": {
+      "en": "The endpoint"
+    },
+    "recibe tu API key, el permiso y el método. Responde siempre con": {
+      "en": "receives your API key, the permission and the method. It always responds with"
+    },
+    "y": {
+      "en": "and"
+    },
+    ", para que integrar sea predecible.": {
+      "en": ", so integrating is predictable."
+    },
+    "Crear carpeta": {
+      "en": "Create folder"
+    },
+    "Listar carpetas": {
+      "en": "List folders"
+    },
+    "Subir archivo": {
+      "en": "Upload file"
+    },
+    "Reemplazar archivo": {
+      "en": "Replace file"
+    },
+    "Listar archivos": {
+      "en": "List files"
+    },
+    "Consultar archivo": {
+      "en": "Get file"
+    },
+    "Eliminar archivo": {
+      "en": "Delete file"
+    },
+    "Eliminar carpeta": {
+      "en": "Delete folder"
+    },
+    "Lenguaje del ejemplo": {
+      "en": "Example language"
+    },
+    "Copiar": {
+      "en": "Copy"
+    },
+    "Copiado": {
+      "en": "Copied"
+    },
+    "No se pudo copiar": {
+      "en": "Could not copy"
+    },
+    "PLANES": {
+      "en": "PLANS"
+    },
+    "Paga por lo que realmente usas": {
+      "en": "Pay for what you actually use"
+    },
+    "Prepago para pagar por adelantado o pospago con renovación automática y GB adicionales cuando los necesites.": {
+      "en": "Prepaid to pay in advance, or postpaid with automatic renewal and extra GB when you need them."
+    },
+    "Muy pronto publicaremos nuestros planes. Crea tu cuenta y te contactaremos.": {
+      "en": "We will publish our plans very soon. Create your account and we will contact you."
+    },
+    "Más popular": {
+      "en": "Most popular"
+    },
+    "Espacio": {
+      "en": "Storage"
+    },
+    "Por archivo": {
+      "en": "Per file"
+    },
+    "Comenzar con {plan}": {
+      "en": "Start with {plan}"
+    },
+    "GB adicional: {precio}": {
+      "en": "Extra GB: {precio}"
+    },
+    "Prepago": {
+      "en": "Prepaid"
+    },
+    "Pospago": {
+      "en": "Postpaid"
+    },
+    "Pagas el periodo por adelantado y usas tu espacio sin sorpresas.": {
+      "en": "You pay the period in advance and use your storage with no surprises."
+    },
+    "Se renueva automáticamente cada periodo. Si lo activas, los GB extra se cobran al cierre.": {
+      "en": "Renews automatically every period. If enabled, extra GB are billed at the close."
+    },
+    "PREGUNTAS FRECUENTES": {
+      "en": "FREQUENTLY ASKED QUESTIONS"
+    },
+    "Lo que más nos preguntan": {
+      "en": "What people ask us most"
+    },
+    "¿Qué tipos de archivo puedo subir?": {
+      "en": "Which file types can I upload?"
+    },
+    "Imágenes, video, audio, documentos de oficina, PDF, archivos comprimidos y formatos de datos como JSON, XML y CSV.": {
+      "en": "Images, video, audio, office documents, PDF, compressed archives and data formats like JSON, XML and CSV."
+    },
+    "¿Qué pasa si me quedo sin espacio?": {
+      "en": "What happens if I run out of storage?"
+    },
+    "En prepago verás el aviso de espacio insuficiente y podrás solicitar un plan mayor. En pospago con adicionales activos, los GB extra se suman a tu próximo cargo.": {
+      "en": "On prepaid you will see an insufficient storage notice and can request a bigger plan. On postpaid with extras enabled, the extra GB are added to your next charge."
+    },
+    "¿Puedo tener varias API keys?": {
+      "en": "Can I have several API keys?"
+    },
+    "Sí. Crea una llave por aplicación o entorno, con permisos distintos, y revócala cuando quieras sin afectar a las demás.": {
+      "en": "Yes. Create one key per app or environment, with different permissions, and revoke it anytime without affecting the others."
+    },
+    "¿Puedo trabajar con mi equipo?": {
+      "en": "Can I work with my team?"
+    },
+    "Sí. Agrega usuarios a tu cuenta y asígnales roles con las acciones exactas que pueden realizar.": {
+      "en": "Yes. Add users to your account and give them roles with the exact actions they can perform."
+    },
+    "¿Cómo pago mi plan?": {
+      "en": "How do I pay for my plan?"
+    },
+    "Nuestro equipo registra tus pagos y abonos. Puedes consultar en todo momento tus cargos pendientes y tu historial.": {
+      "en": "Our team records your payments and installments. You can check your pending charges and history at any time."
+    },
+    "Empieza a servir tus archivos hoy": {
+      "en": "Start serving your files today"
+    },
+    "Crea tu cuenta gratis y elige el plan cuando estés listo.": {
+      "en": "Create your free account and choose a plan when you are ready."
+    },
+    "Enlaces del pie": {
+      "en": "Footer links"
+    },
+    "AaronDevs. Todos los derechos reservados.": {
+      "en": "AaronDevs. All rights reserved."
+    },
+    "Iniciar sesión | FileRed": {
+      "en": "Sign in | FileRed"
+    },
+    "Crear cuenta | FileRed": {
+      "en": "Create account | FileRed"
+    },
+    "Almacena, organiza y entrega tus archivos con la seguridad de una red privada.": {
+      "en": "Store, organize and deliver your files with the security of a private network."
+    },
+    "Volver al inicio": {
+      "en": "Back to home"
+    },
+    "Bienvenido de nuevo": {
+      "en": "Welcome back"
+    },
+    "Ingresa con tu usuario para continuar a tu área.": {
+      "en": "Sign in with your username to continue to your area."
+    },
+    "Usuario": {
+      "en": "Username"
+    },
+    "Contraseña": {
+      "en": "Password"
+    },
+    "Mostrar contraseña": {
+      "en": "Show password"
+    },
+    "Ocultar contraseña": {
+      "en": "Hide password"
+    },
+    "Ingresa tu usuario y contraseña.": {
+      "en": "Enter your username and password."
+    },
+    "¿Aún no tienes cuenta?": {
+      "en": "Don't have an account yet?"
+    },
+    "¿Ya tienes cuenta?": {
+      "en": "Already have an account?"
+    },
+    "Tu propia área de cliente con equipo y roles": {
+      "en": "Your own customer area with team and roles"
+    },
+    "API keys con permisos por acción": {
+      "en": "API keys with per-action permissions"
+    },
+    "URLs públicas para cada archivo": {
+      "en": "Public URLs for every file"
+    },
+    "Registra tu empresa o perfil personal. Elegirás tu plan desde tu área de cliente.": {
+      "en": "Register your company or personal profile. You will choose your plan from your customer area."
+    },
+    "Plan elegido: {plan}. Podrás solicitarlo al entrar a tu cuenta.": {
+      "en": "Selected plan: {plan}. You can request it once you sign in."
+    },
+    "Datos de la cuenta": {
+      "en": "Account details"
+    },
+    "Tipo de cliente": {
+      "en": "Customer type"
+    },
+    "Empresa": {
+      "en": "Company"
+    },
+    "Persona": {
+      "en": "Individual"
+    },
+    "Nombre comercial": {
+      "en": "Trade name"
+    },
+    "Razón social": {
+      "en": "Legal name"
+    },
+    "Documento (RNC o cédula)": {
+      "en": "Tax ID or national ID"
+    },
+    "Correo": {
+      "en": "Email"
+    },
+    "Teléfono": {
+      "en": "Phone"
+    },
+    "Prefijo": {
+      "en": "Prefix"
+    },
+    "Dirección": {
+      "en": "Address"
+    },
+    "Usuario propietario": {
+      "en": "Owner user"
+    },
+    "Nombres": {
+      "en": "First names"
+    },
+    "Apellidos": {
+      "en": "Last names"
+    },
+    "De 3 a 60 caracteres: letras, números, punto, guion, guion bajo o @": {
+      "en": "3 to 60 characters: letters, numbers, dot, hyphen, underscore or @"
+    },
+    "Confirmar contraseña": {
+      "en": "Confirm password"
+    },
+    "Al menos 8 caracteres": {
+      "en": "At least 8 characters"
+    },
+    "Una letra mayúscula": {
+      "en": "One uppercase letter"
+    },
+    "Una letra minúscula": {
+      "en": "One lowercase letter"
+    },
+    "Un número": {
+      "en": "One number"
+    },
+    "Un carácter especial": {
+      "en": "One special character"
+    },
+    "¡Tu cuenta está lista!": {
+      "en": "Your account is ready!"
+    },
+    "Inicia sesión con tu usuario para elegir tu plan y empezar a subir archivos.": {
+      "en": "Sign in with your username to choose your plan and start uploading files."
+    },
+    "El nombre comercial es obligatorio.": {
+      "en": "The trade name is required."
+    },
+    "Ingresa un correo válido.": {
+      "en": "Enter a valid email."
+    },
+    "Los nombres del propietario son obligatorios.": {
+      "en": "The owner's first names are required."
+    },
+    "El usuario debe tener de 3 a 60 caracteres: letras, números, punto, guion, guion bajo o @": {
+      "en": "The username must be 3 to 60 characters: letters, numbers, dot, hyphen, underscore or @"
+    },
+    "La contraseña no cumple los requisitos.": {
+      "en": "The password does not meet the requirements."
+    },
+    "Las contraseñas no coinciden.": {
+      "en": "Passwords do not match."
+    },
+    "Cuenta creada correctamente. Ya puede iniciar sesión": {
+      "en": "Account created successfully. You can now sign in"
+    },
+    "No fue posible conectar con FileRed.": {
+      "en": "Could not connect to FileRed."
+    },
+    "Usuario o contraseña incorrectos": {
+      "en": "Incorrect username or password"
+    },
+    "mes": {
+      "en": "month"
+    },
+    "2 meses": {
+      "en": "2 months"
+    },
+    "trimestre": {
+      "en": "quarter"
+    },
+    "semestre": {
+      "en": "semester"
+    },
+    "año": {
+      "en": "year"
+    }
+  }
+}

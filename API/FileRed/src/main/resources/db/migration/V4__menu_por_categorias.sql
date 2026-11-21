@@ -1,0 +1,2 @@
+ALTER TABLE ModulosAdministracion ADD COLUMN categoria TEXT NULL AFTER orden, ADD COLUMN categoriaNombre TEXT NULL AFTER categoria, ADD COLUMN categoriaIcono TEXT NULL AFTER categoriaNombre, ADD COLUMN categoriaOrden INT NOT NULL DEFAULT 0 AFTER categoriaIcono;
+ALTER TABLE ModulosClientes ADD COLUMN categoria TEXT NULL AFTER orden, ADD COLUMN categoriaNombre TEXT NULL AFTER categoria, ADD COLUMN categoriaIcono TEXT NULL AFTER categoriaNombre, ADD COLUMN categoriaOrden INT NOT NULL DEFAULT 0 AFTER categoriaIcono;

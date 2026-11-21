@@ -1,0 +1,9 @@
+package com.aarondevs.filered.Parameters.Archivos;
+
+import lombok.Data;
+
+@Data
+public class ArchivoAgregarParameters {
+    private String almacen;
+    private String categoria;
+}

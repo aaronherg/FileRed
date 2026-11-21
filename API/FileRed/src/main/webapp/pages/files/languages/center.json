@@ -1,0 +1,679 @@
+{
+  "messages": {
+    "ADMINISTRACIÓN": {
+      "en": "ADMINISTRATION"
+    },
+    "Center | FileRed": {
+      "en": "Center | FileRed"
+    },
+    "FileRed Center": {
+      "en": "FileRed Center"
+    },
+    "Ingresos": {
+      "en": "Revenue"
+    },
+    "Pagos y abonos registrados en los últimos 6 meses": {
+      "en": "Payments recorded over the last 6 months"
+    },
+    "Planes vigentes": {
+      "en": "Active plans"
+    },
+    "Clientes con cada plan activo": {
+      "en": "Customers on each active plan"
+    },
+    "Últimos pagos": {
+      "en": "Latest payments"
+    },
+    "Abonos registrados recientemente": {
+      "en": "Recently recorded payments"
+    },
+    "Aún no hay pagos registrados.": {
+      "en": "There are no payments yet."
+    },
+    "Clientes activos": {
+      "en": "Active customers"
+    },
+    "{total} suspendidos": {
+      "en": "{total} suspended"
+    },
+    "Suscripciones vigentes": {
+      "en": "Active subscriptions"
+    },
+    "{total} solicitudes pendientes": {
+      "en": "{total} pending requests"
+    },
+    "Por cobrar": {
+      "en": "Receivable"
+    },
+    "{total} cargos pendientes": {
+      "en": "{total} pending charges"
+    },
+    "Ingresos del mes": {
+      "en": "Revenue this month"
+    },
+    "Almacenamiento usado": {
+      "en": "Storage used"
+    },
+    "{total} archivos": {
+      "en": "{total} files"
+    },
+    "Solicitudes API hoy": {
+      "en": "API requests today"
+    },
+    "No hay planes registrados.": {
+      "en": "There are no plans."
+    },
+    "Buscar clientes": {
+      "en": "Search customers"
+    },
+    "Buscar por nombre, documento o correo": {
+      "en": "Search by name, ID or email"
+    },
+    "Todos los estados": {
+      "en": "All statuses"
+    },
+    "Activos": {
+      "en": "Active"
+    },
+    "Suspendidos": {
+      "en": "Suspended"
+    },
+    "Nuevo cliente": {
+      "en": "New customer"
+    },
+    "Cliente": {
+      "en": "Customer"
+    },
+    "Contacto": {
+      "en": "Contact"
+    },
+    "Consumo": {
+      "en": "Usage"
+    },
+    "Sin plan": {
+      "en": "No plan"
+    },
+    "Hasta {fecha}": {
+      "en": "Until {fecha}"
+    },
+    "{usado} de {total} GB": {
+      "en": "{usado} of {total} GB"
+    },
+    "Ver detalle": {
+      "en": "View details"
+    },
+    "No hay clientes que coincidan con la búsqueda.": {
+      "en": "No customers match your search."
+    },
+    "Aún no hay clientes registrados.": {
+      "en": "There are no customers yet."
+    },
+    "Tipo": {
+      "en": "Type"
+    },
+    "Día de corte": {
+      "en": "Billing day"
+    },
+    "Entre 1 y 28. Opcional.": {
+      "en": "Between 1 and 28. Optional."
+    },
+    "Se crea la cuenta, su rol Propietario y el usuario propietario.": {
+      "en": "The account, its Owner role and the owner user are created."
+    },
+    "Crear cliente": {
+      "en": "Create customer"
+    },
+    "Datos del cliente": {
+      "en": "Customer details"
+    },
+    "Editar cliente": {
+      "en": "Edit customer"
+    },
+    "El día de corte debe estar entre 1 y 28.": {
+      "en": "The billing day must be between 1 and 28."
+    },
+    "Cliente creado correctamente": {
+      "en": "Customer created successfully"
+    },
+    "Cliente actualizado correctamente": {
+      "en": "Customer updated successfully"
+    },
+    "Suspender cliente": {
+      "en": "Suspend customer"
+    },
+    "Reactivar cliente": {
+      "en": "Reactivate customer"
+    },
+    "Cliente suspendido": {
+      "en": "Customer suspended"
+    },
+    "Cliente reactivado": {
+      "en": "Customer reactivated"
+    },
+    "{cliente} y todos sus usuarios y API keys dejarán de tener acceso. Sus archivos públicos dejarán de servirse.": {
+      "en": "{cliente} and all its users and API keys will lose access. Its public files will stop being served."
+    },
+    "{cliente} recuperará el acceso a su área y su API.": {
+      "en": "{cliente} will regain access to its area and API."
+    },
+    "Plan vigente": {
+      "en": "Active plan"
+    },
+    "Archivos": {
+      "en": "Files"
+    },
+    "Sin usuarios.": {
+      "en": "No users."
+    },
+    "Sin API keys.": {
+      "en": "No API keys."
+    },
+    "Historial de planes": {
+      "en": "Plan history"
+    },
+    "Último uso": {
+      "en": "Last used"
+    },
+    "Cobro": {
+      "en": "Billing"
+    },
+    "Solicitudes": {
+      "en": "Requests"
+    },
+    "Buscar cliente": {
+      "en": "Search customer"
+    },
+    "Todas": {
+      "en": "All"
+    },
+    "Cambiar plan": {
+      "en": "Change plan"
+    },
+    "Asignar plan": {
+      "en": "Assign plan"
+    },
+    "Cancelar plan": {
+      "en": "Cancel plan"
+    },
+    "Precio": {
+      "en": "Price"
+    },
+    "Tipo de cobro": {
+      "en": "Billing type"
+    },
+    "Pospago (renovación automática)": {
+      "en": "Postpaid (automatic renewal)"
+    },
+    "Permitir GB adicionales": {
+      "en": "Allow extra GB"
+    },
+    "Los GB extra se cobran al cierre del periodo.": {
+      "en": "Extra GB are billed at the end of the period."
+    },
+    "Pago inicial (opcional)": {
+      "en": "Initial payment (optional)"
+    },
+    "Monto recibido": {
+      "en": "Amount received"
+    },
+    "El plan vigente se cerrará hoy y comenzará un nuevo periodo con el plan elegido.": {
+      "en": "The current plan will close today and a new period will start with the selected plan."
+    },
+    "Selecciona un plan.": {
+      "en": "Select a plan."
+    },
+    "El monto debe ser mayor o igual a cero.": {
+      "en": "The amount must be zero or greater."
+    },
+    "Plan asignado correctamente": {
+      "en": "Plan assigned successfully"
+    },
+    "Plan cancelado correctamente": {
+      "en": "Plan cancelled successfully"
+    },
+    "No hay suscripciones para mostrar.": {
+      "en": "No subscriptions to show."
+    },
+    "No hay solicitudes para mostrar.": {
+      "en": "No requests to show."
+    },
+    "Plan solicitado": {
+      "en": "Requested plan"
+    },
+    "Comentario": {
+      "en": "Comment"
+    },
+    "Aprobar": {
+      "en": "Approve"
+    },
+    "Rechazar": {
+      "en": "Reject"
+    },
+    "Aprobar solicitud": {
+      "en": "Approve request"
+    },
+    "Rechazar solicitud": {
+      "en": "Reject request"
+    },
+    "Aprobar y asignar": {
+      "en": "Approve and assign"
+    },
+    "Mensaje para el cliente (opcional)": {
+      "en": "Message for the customer (optional)"
+    },
+    "Motivo del rechazo": {
+      "en": "Rejection reason"
+    },
+    "Se asignará el plan de inmediato y se generará el cargo correspondiente.": {
+      "en": "The plan will be assigned immediately and the corresponding charge will be created."
+    },
+    "Indica el motivo del rechazo.": {
+      "en": "Enter the rejection reason."
+    },
+    "Solicitud aprobada y plan asignado": {
+      "en": "Request approved and plan assigned"
+    },
+    "Solicitud rechazada": {
+      "en": "Request rejected"
+    },
+    "con adicionales": {
+      "en": "with extras"
+    },
+    "renovación automática": {
+      "en": "automatic renewal"
+    },
+    "Buscar pagos": {
+      "en": "Search payments"
+    },
+    "Buscar cliente o plan": {
+      "en": "Search customer or plan"
+    },
+    "Pendientes": {
+      "en": "Pending"
+    },
+    "Pagados": {
+      "en": "Paid"
+    },
+    "Todos": {
+      "en": "All"
+    },
+    "Registrar pago": {
+      "en": "Record payment"
+    },
+    "Pendiente:": {
+      "en": "Pending:"
+    },
+    ". Puedes registrar abonos parciales.": {
+      "en": ". You can record partial payments."
+    },
+    "Observación": {
+      "en": "Note"
+    },
+    "El monto debe ser mayor que cero.": {
+      "en": "The amount must be greater than zero."
+    },
+    "El monto excede el pendiente.": {
+      "en": "The amount exceeds the pending balance."
+    },
+    "El monto admite hasta 2 decimales.": {
+      "en": "The amount allows up to 2 decimals."
+    },
+    "Pago registrado correctamente": {
+      "en": "Payment recorded successfully"
+    },
+    "No hay cargos para mostrar.": {
+      "en": "No charges to show."
+    },
+    "Incluye {gb} GB extra": {
+      "en": "Includes {gb} extra GB"
+    },
+    "Nueva moneda": {
+      "en": "New currency"
+    },
+    "Editar moneda": {
+      "en": "Edit currency"
+    },
+    "Eliminar moneda": {
+      "en": "Delete currency"
+    },
+    "Código": {
+      "en": "Code"
+    },
+    "Código ISO": {
+      "en": "ISO code"
+    },
+    "Tres letras, por ejemplo USD o DOP.": {
+      "en": "Three letters, for example USD or DOP."
+    },
+    "Símbolo": {
+      "en": "Symbol"
+    },
+    "Tasa": {
+      "en": "Rate"
+    },
+    "El código debe tener 3 letras.": {
+      "en": "The code must have 3 letters."
+    },
+    "El símbolo es obligatorio.": {
+      "en": "The symbol is required."
+    },
+    "El nombre es obligatorio.": {
+      "en": "The name is required."
+    },
+    "La tasa debe ser mayor que cero.": {
+      "en": "The rate must be greater than zero."
+    },
+    "Moneda creada correctamente": {
+      "en": "Currency created successfully"
+    },
+    "Moneda actualizada correctamente": {
+      "en": "Currency updated successfully"
+    },
+    "Moneda eliminada correctamente": {
+      "en": "Currency deleted successfully"
+    },
+    "No hay monedas registradas.": {
+      "en": "There are no currencies."
+    },
+    "Se eliminará {moneda}. No es posible si algún plan la utiliza.": {
+      "en": "{moneda} will be deleted. Not possible if any plan uses it."
+    },
+    "Los planes públicos se muestran en el portal y los clientes pueden solicitarlos.": {
+      "en": "Public plans are shown on the portal and customers can request them."
+    },
+    "Nuevo plan": {
+      "en": "New plan"
+    },
+    "Editar plan": {
+      "en": "Edit plan"
+    },
+    "Eliminar plan": {
+      "en": "Delete plan"
+    },
+    "Público": {
+      "en": "Public"
+    },
+    "Privado": {
+      "en": "Private"
+    },
+    "GB adicional": {
+      "en": "Extra GB"
+    },
+    "Modalidad": {
+      "en": "Billing cycle"
+    },
+    "Moneda": {
+      "en": "Currency"
+    },
+    "Precio por periodo": {
+      "en": "Price per period"
+    },
+    "Espacio (GB)": {
+      "en": "Storage (GB)"
+    },
+    "Tamaño máximo por archivo (MB)": {
+      "en": "Max file size (MB)"
+    },
+    "Precio por GB adicional": {
+      "en": "Price per extra GB"
+    },
+    "Solo aplica a pospago con adicionales.": {
+      "en": "Only applies to postpaid with extras."
+    },
+    "Orden en el portal": {
+      "en": "Order on the portal"
+    },
+    "Características": {
+      "en": "Features"
+    },
+    "Una característica por línea.": {
+      "en": "One feature per line."
+    },
+    "Visible en el portal": {
+      "en": "Visible on the portal"
+    },
+    "Selecciona una moneda.": {
+      "en": "Select a currency."
+    },
+    "El precio debe ser mayor o igual a cero.": {
+      "en": "The price must be zero or greater."
+    },
+    "El espacio debe ser mayor que cero.": {
+      "en": "Storage must be greater than zero."
+    },
+    "El tamaño máximo debe ser un entero mayor que cero.": {
+      "en": "The max size must be an integer greater than zero."
+    },
+    "El precio por GB adicional no puede ser negativo.": {
+      "en": "The price per extra GB cannot be negative."
+    },
+    "Plan creado correctamente": {
+      "en": "Plan created successfully"
+    },
+    "Plan actualizado correctamente": {
+      "en": "Plan updated successfully"
+    },
+    "Plan eliminado correctamente": {
+      "en": "Plan deleted successfully"
+    },
+    "Consultar clientes": {
+      "en": "View customers"
+    },
+    "Crear cliente ": {
+      "en": "Create customer "
+    },
+    "Modificar cliente": {
+      "en": "Edit customer"
+    },
+    "Suspender o reactivar cliente": {
+      "en": "Suspend or reactivate customer"
+    },
+    "Consultar suscripciones": {
+      "en": "View subscriptions"
+    },
+    "Asignar o cambiar plan": {
+      "en": "Assign or change plan"
+    },
+    "Cancelar suscripción": {
+      "en": "Cancel subscription"
+    },
+    "Aprobar o rechazar solicitudes": {
+      "en": "Approve or reject requests"
+    },
+    "Consultar pagos": {
+      "en": "View payments"
+    },
+    "Registrar pagos y abonos": {
+      "en": "Record payments and installments"
+    },
+    "Consultar planes": {
+      "en": "View plans"
+    },
+    "Crear plan": {
+      "en": "Create plan"
+    },
+    "Modificar plan": {
+      "en": "Edit plan"
+    },
+    "Activar o desactivar plan": {
+      "en": "Activate or deactivate plan"
+    },
+    "Consultar monedas": {
+      "en": "View currencies"
+    },
+    "Crear moneda": {
+      "en": "Create currency"
+    },
+    "Modificar moneda": {
+      "en": "Edit currency"
+    },
+    "Consultar usuarios": {
+      "en": "View users"
+    },
+    "Crear usuario": {
+      "en": "Create user"
+    },
+    "Modificar usuario": {
+      "en": "Edit user"
+    },
+    "Suspender o reactivar usuario": {
+      "en": "Suspend or reactivate user"
+    },
+    "Consultar roles": {
+      "en": "View roles"
+    },
+    "Crear rol": {
+      "en": "Create role"
+    },
+    "Modificar rol y permisos": {
+      "en": "Edit role and permissions"
+    },
+    "Consultar resumen": {
+      "en": "View overview"
+    },
+    "Portal": {
+      "en": "Portal"
+    },
+    "Visible": {
+      "en": "Visible"
+    },
+    "Oculto": {
+      "en": "Hidden"
+    },
+    "Total cobrado": {
+      "en": "Total collected"
+    },
+    "Pagos registrados": {
+      "en": "Recorded payments"
+    },
+    "Promedio diario": {
+      "en": "Daily average"
+    },
+    "Días del periodo": {
+      "en": "Days in period"
+    },
+    "Ingresos por día": {
+      "en": "Revenue per day"
+    },
+    "Abonos registrados en el periodo": {
+      "en": "Payments recorded in the period"
+    },
+    "Por método": {
+      "en": "By method"
+    },
+    "Distribución del monto cobrado": {
+      "en": "Distribution of collected amount"
+    },
+    "Sin pagos en el periodo.": {
+      "en": "No payments in the period."
+    },
+    "Detalle de pagos": {
+      "en": "Payment details"
+    },
+    "Hasta 1,000 registros del periodo": {
+      "en": "Up to 1,000 records in the period"
+    },
+    "No hay pagos en el periodo seleccionado.": {
+      "en": "No payments in the selected period."
+    },
+    "Cargos pendientes de todos los clientes, agrupados por antigüedad de la deuda.": {
+      "en": "Pending charges from all customers, grouped by debt aging."
+    },
+    "Total por cobrar": {
+      "en": "Total receivable"
+    },
+    "Vencido": {
+      "en": "Overdue"
+    },
+    "Cargos pendientes": {
+      "en": "Pending charges"
+    },
+    "Antigüedad": {
+      "en": "Aging"
+    },
+    "Monto pendiente por tramo": {
+      "en": "Pending amount by bracket"
+    },
+    "Clientes con mayor deuda": {
+      "en": "Customers with highest debt"
+    },
+    "Top 8 por monto pendiente": {
+      "en": "Top 8 by pending amount"
+    },
+    "No hay deudas pendientes.": {
+      "en": "There is no pending debt."
+    },
+    "No hay cargos pendientes.": {
+      "en": "There are no pending charges."
+    },
+    "Por vencer": {
+      "en": "Not yet due"
+    },
+    "1 a 30 días": {
+      "en": "1 to 30 days"
+    },
+    "31 a 60 días": {
+      "en": "31 to 60 days"
+    },
+    "61 a 90 días": {
+      "en": "61 to 90 days"
+    },
+    "Más de 90 días": {
+      "en": "Over 90 days"
+    },
+    "Almacenamiento total": {
+      "en": "Total storage"
+    },
+    "Clientes con más almacenamiento": {
+      "en": "Customers with most storage"
+    },
+    "Top 10 por espacio usado": {
+      "en": "Top 10 by used storage"
+    },
+    "Aún no hay archivos almacenados.": {
+      "en": "No files stored yet."
+    },
+    "Uso": {
+      "en": "Usage"
+    },
+    "API 30 días": {
+      "en": "API 30 days"
+    },
+    "No hay clientes para mostrar.": {
+      "en": "No customers to show."
+    },
+    "Tráfico diario": {
+      "en": "Daily traffic"
+    },
+    "Solicitudes a la API y descargas públicas": {
+      "en": "API requests and public downloads"
+    },
+    "Clientes más activos": {
+      "en": "Most active customers"
+    },
+    "Por solicitudes": {
+      "en": "By requests"
+    },
+    "Sin actividad en el periodo.": {
+      "en": "No activity in the period."
+    },
+    "Uso por cliente": {
+      "en": "Usage by customer"
+    },
+    "No hay actividad en el periodo seleccionado.": {
+      "en": "No activity in the selected period."
+    },
+    "Archivos subidos": {
+      "en": "Uploaded files"
+    },
+    "Archivos eliminados": {
+      "en": "Deleted files"
+    },
+    "Subidos": {
+      "en": "Uploaded"
+    },
+    "Eliminados": {
+      "en": "Deleted"
+    }
+  }
+}

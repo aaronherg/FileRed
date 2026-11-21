@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#060607">
+    <meta name="description" content="FileRed: almacenamiento seguro de archivos con API, URLs públicas y planes a la medida.">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="FileRed">
+    <meta property="og:title" content="FileRed | Almacenamiento seguro de archivos API">
+    <meta property="og:description" content="Sube, organiza y sirve tus archivos desde una API segura.">
+    <meta property="og:image" content="files/img/logotipo-web.webp">
+    <link rel="icon" type="image/png" sizes="128x128" href="files/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="files/img/apple-touch-icon.png">
+    <title>FileRed | Almacenamiento seguro de archivos API</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="files/temes/theme.css?v=20261120-6">
+    <link rel="stylesheet" href="../styles.css?v=20261120-6">
+    <script src="files/temes/theme.js?v=20261120-6"></script>
+</head>
+<body class="portal-page">
+    <div class="portal-backdrop" aria-hidden="true">
+        <div class="portal-grid"></div>
+        <div class="portal-orb portal-orb-one"></div>
+        <div class="portal-orb portal-orb-two"></div>
+    </div>
+
+    <header class="site-header" data-site-header>
+        <a class="brand" href="#inicio" aria-label="FileRed, inicio">
+            <img src="files/img/isotipo.png" alt="" class="brand-logo">
+            <span class="brand-name"><span class="silver-text">File</span><span class="red-text">Red</span></span>
+        </a>
+        <nav class="main-nav" aria-label="Navegación principal" data-main-nav>
+            <a href="#producto">Producto</a>
+            <a href="#api">API</a>
+            <a href="#planes">Planes</a>
+            <a href="#preguntas">Preguntas</a>
+            <div class="main-nav-actions">
+                <a class="fr-btn fr-btn-ghost" href="login/">Iniciar sesión</a>
+                <a class="fr-btn fr-btn-primary" href="registro/">Crear cuenta</a>
+            </div>
+        </nav>
+        <div class="header-actions">
+            <select class="language-select" data-language-switcher aria-label="Idioma">
+                <option value="es">ES</option>
+                <option value="en">EN</option>
+            </select>
+            <button class="fr-icon-btn" type="button" data-theme-toggle aria-label="Cambiar tema" title="Cambiar tema">
+                <svg class="theme-icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+                <svg class="theme-icon-moon" viewBox="0 0 24 24"><path d="M20.2 15.2A8.5 8.5 0 0 1 8.8 3.8 8.5 8.5 0 1 0 20.2 15.2Z"/></svg>
+            </button>
+            <a class="fr-btn fr-btn-ghost header-login" href="login/">Iniciar sesión</a>
+            <a class="fr-btn fr-btn-primary header-signup" href="registro/">Crear cuenta</a>
+            <button class="fr-icon-btn menu-toggle" type="button" data-menu-toggle aria-expanded="false" aria-label="Abrir menú">
+                <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+        </div>
+    </header>
+
+    <main id="inicio">
+        <section class="hero">
+            <div class="hero-copy" data-reveal>
+                <p class="eyebrow"><span class="eyebrow-dot"></span>ALMACENAMIENTO SEGURO DE ARCHIVOS API</p>
+                <h1 class="hero-title">Tus archivos, servidos a la <span class="red-text">velocidad de la red</span>.</h1>
+                <p class="hero-lead">Sube, organiza y entrega imágenes, documentos y videos desde una API segura. Cada archivo recibe una URL pública al instante y tú controlas quién puede hacer qué con API keys por permiso.</p>
+                <div class="hero-actions">
+                    <a class="fr-btn fr-btn-primary fr-btn-lg" href="registro/">Comenzar ahora
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+                    </a>
+                    <a class="fr-btn fr-btn-lg" href="#api">Ver la API</a>
+                </div>
+                <ul class="hero-points">
+                    <li>Hasta 500 MB por archivo</li>
+                    <li>URLs públicas al instante</li>
+                    <li>Prepago o pospago</li>
+                </ul>
+            </div>
+
+            <div class="hero-visual" data-reveal>
+                <div class="hero-ring hero-ring-one" aria-hidden="true"></div>
+                <div class="hero-ring hero-ring-two" aria-hidden="true"></div>
+                <img class="hero-logo" src="files/img/logotipo-web.webp" alt="FileRed, almacenamiento seguro de archivos API">
+                <div class="float-card float-upload" aria-hidden="true">
+                    <div class="float-card-head">
+                        <span class="file-chip">PNG</span>
+                        <div>
+                            <strong>portada-campana.png</strong>
+                            <small>2.4 MB · Marketing / Banners</small>
+                        </div>
+                    </div>
+                    <div class="float-progress"><span></span></div>
+                </div>
+                <div class="float-card float-url" aria-hidden="true">
+                    <span class="status-dot"></span>
+                    <code>/f/8c1e…/Marketing/Banners/a91f.png</code>
+                </div>
+                <div class="float-card float-key" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3m-3 3 3 3m-6 0 2 2"/></svg>
+                    <span>fr_3a9c… · 3 permisos</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="trust-strip" data-reveal>
+            <div><strong>API REST</strong><span>multipart y JSON</span></div>
+            <div><strong>Llaves cifradas</strong><span>SHA-256, se muestran una sola vez</span></div>
+            <div><strong>Cuotas por plan</strong><span>espacio y tamaño máximo</span></div>
+            <div><strong>Métricas diarias</strong><span>subidas, descargas y solicitudes</span></div>
+        </section>
+
+        <section class="portal-section" id="producto">
+            <header class="section-head" data-reveal>
+                <p class="eyebrow">PRODUCTO</p>
+                <h2>Todo lo que tu aplicación necesita para manejar archivos</h2>
+                <p>Una plataforma para que equipos y desarrolladores dejen de preocuparse por discos, rutas y permisos.</p>
+            </header>
+            <div class="feature-grid">
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 20h16"/></svg></span>
+                    <h3>Subidas simples</h3>
+                    <p>Envía el archivo por multipart y recibe su identificador, tamaño y URL pública en la misma respuesta.</p>
+                </article>
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></span>
+                    <h3>Almacenes y carpetas</h3>
+                    <p>Organiza por proyecto y categoría. Explora y administra todo desde tu área de cliente.</p>
+                </article>
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3m-3 3 3 3m-6 0 2 2"/></svg></span>
+                    <h3>API keys con permisos</h3>
+                    <p>Crea varias llaves y decide qué puede hacer cada una: subir, listar, reemplazar o eliminar.</p>
+                </article>
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></span>
+                    <h3>URLs públicas</h3>
+                    <p>Comparte o incrusta tus archivos con enlaces directos, listos para imágenes, PDF y video.</p>
+                </article>
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg></span>
+                    <h3>Equipo y roles</h3>
+                    <p>Invita a tu equipo, crea roles a la medida y controla qué ve y qué hace cada usuario.</p>
+                </article>
+                <article class="feature-card" data-reveal>
+                    <span class="feature-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-6"/></svg></span>
+                    <h3>Consumo en tiempo real</h3>
+                    <p>Visualiza espacio usado, archivos, solicitudes a la API y descargas de los últimos 30 días.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="portal-section steps-section">
+            <header class="section-head" data-reveal>
+                <p class="eyebrow">CÓMO FUNCIONA</p>
+                <h2>De cero a tu primer archivo en minutos</h2>
+            </header>
+            <ol class="steps">
+                <li data-reveal><span class="step-number">01</span><h3>Crea tu cuenta</h3><p>Registra tu empresa o perfil personal y entra a tu área de cliente.</p></li>
+                <li data-reveal><span class="step-number">02</span><h3>Elige tu plan</h3><p>Solicita el plan que necesitas en modalidad prepago o pospago.</p></li>
+                <li data-reveal><span class="step-number">03</span><h3>Conecta tu aplicación</h3><p>Genera una API key con los permisos justos y empieza a subir archivos.</p></li>
+            </ol>
+        </section>
+
+        <section class="portal-section api-section" id="api">
+            <div class="api-copy" data-reveal>
+                <p class="eyebrow">API</p>
+                <h2>Una API clara para cada acción</h2>
+                <p>Envía tu API key en el encabezado <code>X-Api-Key</code>. Cada recurso tiene sus propios endpoints y todas las respuestas usan el mismo formato: <code>validation</code>, <code>status</code>, <code>data</code> y <code>mensage</code>.</p>
+                <ul class="method-list">
+                    <li><code>GET /api/fileRed/cuenta/getById</code><span>Plan, consumo y permisos</span></li>
+                    <li><code>GET /api/fileRed/almacenes/getAll</code><span>Listar almacenes</span></li>
+                    <li><code>POST /api/fileRed/almacenes/add</code><span>Crear almacén</span></li>
+                    <li><code>PUT /api/fileRed/almacenes/update</code><span>Renombrar almacén</span></li>
+                    <li><code>DELETE /api/fileRed/almacenes/delete</code><span>Eliminar almacén</span></li>
+                    <li><code>POST /api/fileRed/carpetas/getAll</code><span>Listar carpetas</span></li>
+                    <li><code>POST /api/fileRed/carpetas/add</code><span>Crear carpeta</span></li>
+                    <li><code>PUT /api/fileRed/carpetas/update</code><span>Renombrar carpeta</span></li>
+                    <li><code>DELETE /api/fileRed/carpetas/delete</code><span>Eliminar carpeta</span></li>
+                    <li><code>POST /api/fileRed/archivos/getAllPages</code><span>Listar archivos paginados</span></li>
+                    <li><code>POST /api/fileRed/archivos/getById</code><span>Consultar archivo</span></li>
+                    <li><code>POST /api/fileRed/archivos/add</code><span>Subir archivo</span></li>
+                    <li><code>PUT /api/fileRed/archivos/update</code><span>Reemplazar archivo</span></li>
+                    <li><code>PUT /api/fileRed/archivos/updateNombre</code><span>Renombrar archivo</span></li>
+                    <li><code>DELETE /api/fileRed/archivos/delete</code><span>Eliminar archivo</span></li>
+                </ul>
+            </div>
+            <div class="code-window" data-reveal>
+                <div class="code-window-bar">
+                    <span class="code-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+                    <div class="code-tabs" role="tablist" aria-label="Lenguaje del ejemplo">
+                        <button type="button" role="tab" class="is-active" data-code-tab="curl" aria-selected="true">cURL</button>
+                        <button type="button" role="tab" data-code-tab="js" aria-selected="false">JavaScript</button>
+                        <button type="button" role="tab" data-code-tab="php" aria-selected="false">PHP</button>
+                    </div>
+                    <button class="code-copy" type="button" data-code-copy>Copiar</button>
+                </div>
+                <pre data-i18n-skip data-code-panel="curl"><code>curl -X POST https://tu-dominio/api/fileRed/archivos/add   -H "X-Api-Key: fr_xxxxxxxxxxxxxxxx"   -F "almacen=MiApp"   -F "categoria=Avatares"   -F "file=@avatar.png"</code></pre>
+                <pre data-i18n-skip data-code-panel="js" hidden><code>const datos = new FormData();
+datos.append("almacen", "MiApp");
+datos.append("categoria", "Avatares");
+datos.append("file", archivo);
+
+const respuesta = await fetch("/api/fileRed/archivos/add", {
+  method: "POST",
+  headers: { "X-Api-Key": "fr_xxxxxxxxxxxxxxxx" },
+  body: datos
+}).then(r =&gt; r.json());</code></pre>
+                <pre data-i18n-skip data-code-panel="php" hidden><code>$curl = curl_init("https://tu-dominio/api/fileRed/archivos/add");
+curl_setopt_array($curl, [
+  CURLOPT_POST =&gt; true,
+  CURLOPT_RETURNTRANSFER =&gt; true,
+  CURLOPT_HTTPHEADER =&gt; ["X-Api-Key: fr_xxxxxxxxxxxxxxxx"],
+  CURLOPT_POSTFIELDS =&gt; [
+    "almacen" =&gt; "MiApp",
+    "categoria" =&gt; "Avatares",
+    "file" =&gt; new CURLFile("avatar.png")
+  ]
+]);
+$respuesta = json_decode(curl_exec($curl), true);</code></pre>
+                <div class="code-response" data-i18n-skip>
+                    <span class="code-response-label">201 Created</span>
+<pre><code>{
+  "validation": "Success",
+  "status": 201,
+  "data": {
+    "identificador": "a91f3c…",
+    "extension": "png",
+    "size": 48213,
+    "url": "/f/8c1e…/MiApp/Avatares/a91f3c….png"
+  },
+  "mensage": "Archivo subido correctamente"
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section" id="planes">
+            <header class="section-head" data-reveal>
+                <p class="eyebrow">PLANES</p>
+                <h2>Paga por lo que realmente usas</h2>
+                <p>Prepago para pagar por adelantado o pospago con renovación automática y GB adicionales cuando los necesites.</p>
+            </header>
+            <div class="plans-grid" data-plans>
+                <article class="plan-card is-loading" aria-hidden="true"></article>
+                <article class="plan-card is-loading" aria-hidden="true"></article>
+                <article class="plan-card is-loading" aria-hidden="true"></article>
+            </div>
+            <p class="plans-empty" data-plans-empty hidden>Muy pronto publicaremos nuestros planes. Crea tu cuenta y te contactaremos.</p>
+            <div class="billing-modes" data-reveal>
+                <div>
+                    <h3>Prepago</h3>
+                    <p>Pagas el periodo por adelantado y usas tu espacio sin sorpresas.</p>
+                </div>
+                <div>
+                    <h3>Pospago</h3>
+                    <p>Se renueva automáticamente cada periodo. Si lo activas, los GB extra se cobran al cierre.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="portal-section faq-section" id="preguntas">
+            <header class="section-head" data-reveal>
+                <p class="eyebrow">PREGUNTAS FRECUENTES</p>
+                <h2>Lo que más nos preguntan</h2>
+            </header>
+            <div class="faq-list">
+                <details data-reveal>
+                    <summary>¿Qué tipos de archivo puedo subir?</summary>
+                    <p>Imágenes, video, audio, documentos de oficina, PDF, archivos comprimidos y formatos de datos como JSON, XML y CSV.</p>
+                </details>
+                <details data-reveal>
+                    <summary>¿Qué pasa si me quedo sin espacio?</summary>
+                    <p>En prepago verás el aviso de espacio insuficiente y podrás solicitar un plan mayor. En pospago con adicionales activos, los GB extra se suman a tu próximo cargo.</p>
+                </details>
+                <details data-reveal>
+                    <summary>¿Puedo tener varias API keys?</summary>
+                    <p>Sí. Crea una llave por aplicación o entorno, con permisos distintos, y revócala cuando quieras sin afectar a las demás.</p>
+                </details>
+                <details data-reveal>
+                    <summary>¿Puedo trabajar con mi equipo?</summary>
+                    <p>Sí. Agrega usuarios a tu cuenta y asígnales roles con las acciones exactas que pueden realizar.</p>
+                </details>
+                <details data-reveal>
+                    <summary>¿Cómo pago mi plan?</summary>
+                    <p>Nuestro equipo registra tus pagos y abonos. Puedes consultar en todo momento tus cargos pendientes y tu historial.</p>
+                </details>
+            </div>
+        </section>
+
+        <section class="cta-band" data-reveal>
+            <div>
+                <h2>Empieza a servir tus archivos hoy</h2>
+                <p>Crea tu cuenta gratis y elige el plan cuando estés listo.</p>
+            </div>
+            <a class="fr-btn fr-btn-primary fr-btn-lg" href="registro/">Crear cuenta</a>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-brand">
+            <img src="files/img/isotipo.png" alt="" class="brand-logo">
+            <span><span class="silver-text">File</span><span class="red-text">Red</span></span>
+        </div>
+        <p>© <span data-year></span> AaronDevs. Todos los derechos reservados.</p>
+        <nav aria-label="Enlaces del pie">
+            <a href="login/">Iniciar sesión</a>
+            <a href="registro/">Crear cuenta</a>
+            <a href="#planes">Planes</a>
+        </nav>
+    </footer>
+
+    <script src="../services/core/config.js?v=20261120-1"></script>
+    <script src="../services/core/LocalStorageService.js?v=20261120-1"></script>
+    <script src="../services/core/ApiService.js?v=20261120-1"></script>
+    <script src="../services/administracion/PlanService.js?v=20261120-1"></script>
+    <script src="files/languages/i18n.js?v=20261120-1"></script>
+    <script src="files/languages/language-switcher.js?v=20261120-1"></script>
+    <script src="script.js?v=20261120-3"></script>
+</body>
+</html>

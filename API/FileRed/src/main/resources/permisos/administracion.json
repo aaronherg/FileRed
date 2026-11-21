@@ -1,0 +1,269 @@
+{
+  "categorias": [
+    {
+      "clave": "dashboard",
+      "nombre": "Dashboard",
+      "icono": "layout-dashboard",
+      "sola": true,
+      "opciones": [
+        {
+          "clave": "inicio",
+          "nombre": "Dashboard",
+          "descripcion": "Resumen general de la plataforma.",
+          "icono": "layout-dashboard",
+          "acciones": [
+            {
+              "clave": "consultar",
+              "nombre": "Consultar resumen"
+            }
+          ],
+          "orden": 1
+        }
+      ],
+      "orden": 1
+    },
+    {
+      "clave": "gestion",
+      "nombre": "Gestión",
+      "icono": "building-2",
+      "opciones": [
+        {
+          "clave": "clientes",
+          "nombre": "Clientes",
+          "descripcion": "Clientes que rentan alojamiento.",
+          "icono": "building-2",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar clientes"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear cliente"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Modificar cliente"
+            },
+            {
+              "clave": "cambiar_estado",
+              "nombre": "Suspender o reactivar cliente"
+            }
+          ],
+          "orden": 1
+        },
+        {
+          "clave": "suscripciones",
+          "nombre": "Suscripciones",
+          "descripcion": "Planes asignados y solicitudes de los clientes.",
+          "icono": "calendar-check",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar suscripciones"
+            },
+            {
+              "clave": "asignar",
+              "nombre": "Asignar o cambiar plan"
+            },
+            {
+              "clave": "cancelar",
+              "nombre": "Cancelar suscripción"
+            },
+            {
+              "clave": "gestionar_solicitudes",
+              "nombre": "Aprobar o rechazar solicitudes"
+            }
+          ],
+          "orden": 2
+        },
+        {
+          "clave": "pagos",
+          "nombre": "Pagos",
+          "descripcion": "Cuentas pendientes, abonos e historial.",
+          "icono": "wallet",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar pagos"
+            },
+            {
+              "clave": "registrar",
+              "nombre": "Registrar pagos y abonos"
+            }
+          ],
+          "orden": 3
+        }
+      ],
+      "orden": 2
+    },
+    {
+      "clave": "reportes",
+      "nombre": "Reportes",
+      "icono": "bar-chart",
+      "opciones": [
+        {
+          "clave": "reporte_ingresos",
+          "nombre": "Ingresos",
+          "descripcion": "Pagos y abonos recibidos por periodo.",
+          "icono": "dollar",
+          "acciones": [
+            {
+              "clave": "consultar",
+              "nombre": "Consultar reporte de ingresos"
+            }
+          ],
+          "orden": 1
+        },
+        {
+          "clave": "reporte_cobros",
+          "nombre": "Cuentas por cobrar",
+          "descripcion": "Cargos pendientes y antigüedad de la deuda.",
+          "icono": "wallet",
+          "acciones": [
+            {
+              "clave": "consultar",
+              "nombre": "Consultar cuentas por cobrar"
+            }
+          ],
+          "orden": 2
+        },
+        {
+          "clave": "reporte_consumo",
+          "nombre": "Consumo por cliente",
+          "descripcion": "Espacio, archivos y plan de cada cliente.",
+          "icono": "hard",
+          "acciones": [
+            {
+              "clave": "consultar",
+              "nombre": "Consultar consumo por cliente"
+            }
+          ],
+          "orden": 3
+        },
+        {
+          "clave": "reporte_api",
+          "nombre": "Uso de la API",
+          "descripcion": "Solicitudes, subidas y descargas por cliente.",
+          "icono": "activity",
+          "acciones": [
+            {
+              "clave": "consultar",
+              "nombre": "Consultar uso de la API"
+            }
+          ],
+          "orden": 4
+        }
+      ],
+      "orden": 3
+    },
+    {
+      "clave": "configuracion",
+      "nombre": "Configuración",
+      "icono": "settings",
+      "opciones": [
+        {
+          "clave": "planes",
+          "nombre": "Planes",
+          "descripcion": "Catálogo de planes de alojamiento.",
+          "icono": "layers",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar planes"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear plan"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Modificar plan"
+            },
+            {
+              "clave": "cambiar_estado",
+              "nombre": "Activar o desactivar plan"
+            }
+          ],
+          "orden": 1
+        },
+        {
+          "clave": "monedas",
+          "nombre": "Monedas",
+          "descripcion": "Monedas y tasas.",
+          "icono": "coins",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar monedas"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear moneda"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Modificar moneda"
+            }
+          ],
+          "orden": 2
+        },
+        {
+          "clave": "usuarios",
+          "nombre": "Usuarios",
+          "descripcion": "Usuarios del área administrativa.",
+          "icono": "users",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar usuarios"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear usuario"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Modificar usuario"
+            },
+            {
+              "clave": "cambiar_estado",
+              "nombre": "Suspender o reactivar usuario"
+            },
+            {
+              "clave": "restablecer_contrasena",
+              "nombre": "Restablecer contraseña"
+            }
+          ],
+          "orden": 3
+        },
+        {
+          "clave": "roles",
+          "nombre": "Roles",
+          "descripcion": "Roles y permisos administrativos.",
+          "icono": "shield-check",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar roles"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear rol"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Modificar rol y permisos"
+            },
+            {
+              "clave": "eliminar",
+              "nombre": "Eliminar rol"
+            }
+          ],
+          "orden": 4
+        }
+      ],
+      "orden": 4
+    }
+  ]
+}
