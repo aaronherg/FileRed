@@ -159,5 +159,6 @@ export function reset() {
 }
 
 export function skeleton() {
-    return window.FileRedSk.lista({ filtros: 0, columnas: 4 });
+    const b = (css) => `<div class="fr-skeleton" style="${css}"></div>`;
+    return `<div class="fr-toolbar">${b("height:40px;width:min(60%,420px);border-radius:12px")}<span class="fr-toolbar-spacer"></span>${b("height:40px;width:150px;border-radius:12px")}</div>${window.FileRedSk.b ? "" : ""}<section class="fr-panel">${window.FileRedSk.tabla({ columnas: 4, filas: 6 })}</section>`;
 }

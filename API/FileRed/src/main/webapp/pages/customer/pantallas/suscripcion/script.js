@@ -191,5 +191,10 @@ export function reset() {
 }
 
 export function skeleton() {
-    return window.FileRedSk.dividido(window.FileRedSk.formulario({ campos: 6 }), window.FileRedSk.formulario({ campos: 3 }));
+    const b = (css) => `<div class="fr-skeleton" style="${css}"></div>`;
+    const plan = `<div style="border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:12px;background:var(--surface)">${b("height:15px;width:55%")}${b("height:32px;width:70%")}${b("height:11px;width:90%")}${b("height:11px;width:80%")}${b("height:40px;border-radius:12px;margin-top:6px")}</div>`;
+    const panel = (t) => `<section class="fr-panel"><header class="fr-panel-head"><div style="display:grid;gap:6px">${b("height:16px;width:"+t+"px")}</div></header><div class="fr-panel-body" style="display:grid;gap:10px">${b("height:12px;width:90%")}${b("height:12px;width:75%")}${b("height:12px;width:85%")}</div></section>`;
+    return `<section class="fr-panel" style="padding:22px;display:grid;gap:14px">${b("height:14px;width:160px")}<div style="display:flex;gap:16px;flex-wrap:wrap">${b("height:60px;width:200px;border-radius:14px")}${b("height:60px;width:200px;border-radius:14px")}${b("height:60px;width:200px;border-radius:14px")}</div></section>
+        <section class="fr-panel"><header class="fr-panel-head"><div style="display:grid;gap:6px">${b("height:16px;width:180px")}${b("height:10px;width:280px")}</div></header><div class="fr-panel-body"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px">${plan}${plan}${plan}</div></div></section>
+        <div class="fr-grid-2">${panel(140)}${panel(160)}</div>`;
 }

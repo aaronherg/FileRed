@@ -107,5 +107,5 @@ export function reset() {
 }
 
 export function skeleton() {
-    return window.FileRedSk.lista({ filtros: 2, columnas: 5 });
+    return window.FileRedSk.lista({ filtros: 1, columnas: 5, accion: false });
 }

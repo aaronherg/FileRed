@@ -97,5 +97,10 @@ export function reset() {
 }
 
 export function skeleton() {
-    return window.FileRedSk.tablero({ tarjetas: 4, columnas: 4 });
+    const b = (css) => `<div class="fr-skeleton" style="${css}"></div>`;
+    const stat = `<article class="fr-stat" style="display:grid;gap:10px;padding:18px;border:1px solid var(--line);border-radius:16px;background:var(--surface)">${b("height:30px;width:30px;border-radius:9px")}${b("height:24px;width:60%")}${b("height:11px;width:80%")}</article>`;
+    const panel = (span, h) => `<section class="fr-panel ${span}"><header class="fr-panel-head"><div style="display:grid;gap:6px">${b("height:16px;width:160px")}${b("height:10px;width:220px")}</div></header><div class="fr-panel-body">${b("height:"+h+"px;border-radius:14px")}</div></section>`;
+    return `<section class="fr-panel consumo-hero" style="padding:22px;display:grid;gap:14px">${b("height:16px;width:220px")}${b("height:12px;border-radius:999px")}<div style="display:flex;justify-content:space-between;gap:12px">${b("height:12px;width:120px")}${b("height:12px;width:120px")}</div></section>
+        <div class="fr-stats">${Array(4).fill(stat).join("")}</div>
+        <div class="fr-bento">${panel("span-8",240)}${panel("span-4",240)}</div>`;
 }

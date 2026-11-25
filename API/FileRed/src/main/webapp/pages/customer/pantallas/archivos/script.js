@@ -778,5 +778,9 @@ export function reset() {
 }
 
 export function skeleton() {
-    return window.FileRedSk.lista({ filtros: 1, columnas: 5 });
+    const b = (css) => `<div class="fr-skeleton" style="${css}"></div>`;
+    const card = `<div style="border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:10px;background:var(--surface)">${b("height:40px;width:40px;border-radius:10px")}${b("height:13px;width:75%")}${b("height:10px;width:50%")}</div>`;
+    return `<section class="fr-panel" style="padding:18px;display:flex;gap:16px;align-items:center">${b("height:44px;width:44px;border-radius:12px;flex:none")}<div style="flex:1;display:grid;gap:8px">${b("height:14px;width:30%")}${b("height:10px;width:50%")}</div>${b("height:10px;width:170px;border-radius:999px;flex:none")}</section>
+        <div class="fr-toolbar">${b("height:40px;width:min(320px,55%);border-radius:12px")}${b("height:40px;width:130px;border-radius:12px")}<span class="fr-toolbar-spacer"></span>${b("height:40px;width:140px;border-radius:12px")}</div>
+        <section class="fr-panel" style="padding:18px"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px">${Array(10).fill(card).join("")}</div></section>`;
 }
