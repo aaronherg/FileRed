@@ -1,5 +1,5 @@
 (() => {
-    const version = "20261120-8";
+    const version = "20261120-9";
     FileRedPanel.iniciar({
         tipo: "Cliente",
         version,
@@ -11,7 +11,6 @@
             pagos: "./pantallas/pagos/script.js",
             usuarios: "./pantallas/usuarios/script.js",
             roles: "./pantallas/roles/script.js",
-            perfil: "./pantallas/perfil/script.js",
             __perfil: "./pantallas/perfilusuario/script.js",
             reporte_consumo: "./pantallas/reporte-consumo/script.js",
             reporte_actividad: "./pantallas/reporte-actividad/script.js"

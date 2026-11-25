@@ -1,5 +1,5 @@
 (() => {
-    const version = "20261120-8";
+    const version = "20261120-9";
     FileRedPanel.iniciar({
         tipo: "Administracion",
         version,
