@@ -189,3 +189,7 @@ export function reset() {
     planes = [];
     solicitudes = [];
 }
+
+export function skeleton() {
+    return window.FileRedSk.dividido(window.FileRedSk.formulario({ campos: 6 }), window.FileRedSk.formulario({ campos: 3 }));
+}

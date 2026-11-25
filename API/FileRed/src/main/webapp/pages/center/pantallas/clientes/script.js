@@ -275,3 +275,7 @@ export function reset() {
     estadoFiltro = "";
     window.clearTimeout(temporizador);
 }
+
+export function skeleton() {
+    return window.FileRedSk.lista({ filtros: 2, columnas: 5 });
+}

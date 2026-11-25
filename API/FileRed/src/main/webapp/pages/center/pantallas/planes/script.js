@@ -162,3 +162,7 @@ export async function bind(stage, api) {
 export function reset() {
     planes = [];
 }
+
+export function skeleton() {
+    return window.FileRedSk.lista({ filtros: 1, columnas: 5 });
+}

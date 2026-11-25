@@ -776,3 +776,7 @@ export function reset() {
     window.clearTimeout(temporizador);
     seleccion = new Set();
 }
+
+export function skeleton() {
+    return window.FileRedSk.lista({ filtros: 1, columnas: 5 });
+}

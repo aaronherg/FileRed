@@ -89,3 +89,7 @@ export function reset() {
     window.clearTimeout(temporizador);
     datos = null;
 }
+
+export function skeleton() {
+    return window.FileRedSk.tablero({ tarjetas: 4, columnas: 5, filtros: true });
+}

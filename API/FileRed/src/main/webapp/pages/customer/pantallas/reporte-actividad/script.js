@@ -92,3 +92,7 @@ export function reset() {
     datos = null;
     filas = [];
 }
+
+export function skeleton() {
+    return window.FileRedSk.tablero({ tarjetas: 4, columnas: 5, filtros: true });
+}
