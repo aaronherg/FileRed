@@ -7,6 +7,7 @@ import com.aarondevs.filered.Parameters.Response.PaginationResponse;
 import com.aarondevs.filered.Services.Suscripciones.SuscripcionService;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -27,6 +28,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriUtils;
 
 @Service
 public class ArchivoServiceImpl implements ArchivoService {
@@ -485,7 +487,12 @@ public class ArchivoServiceImpl implements ArchivoService {
     }
 
     private String url(Long clienteId, String almacen, String categoria, String identificador, String extension) {
-        return urlBase + "f/" + datos.clienteUuid(clienteId) + "/" + almacen + "/" + categoria + "/" + identificador + "." + extension;
+        return urlBase + "f/" + segmento(datos.clienteUuid(clienteId)) + "/" + segmento(almacen) + "/" + segmento(categoria) + "/"
+                + segmento(identificador + "." + extension);
+    }
+
+    private String segmento(String valor) {
+        return UriUtils.encodePathSegment(valor, StandardCharsets.UTF_8);
     }
 
     private String nombreOriginal(MultipartFile archivo) {

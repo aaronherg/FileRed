@@ -1,4 +1,4 @@
-import { area, activarTooltips, diasEntre, enlazarFiltros, exportarCsv, fechaCorta, filtrosFecha, hoyIso } from "../../../comunes/graficos.js?v=20261120-6";
+import { area, activarTooltips, diasEntre, enlazarFiltros, exportarCsv, fechaCorta, filtrosFecha, hoyIso } from "../../../comunes/graficos.js?v=20261120-7";
 
 let ui;
 let raiz;

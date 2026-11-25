@@ -422,6 +422,13 @@
             )
             .join("");
         navegacion.addEventListener("click", event => {
+            const item = event.target.closest("[data-nav]");
+            if (item) {
+                event.preventDefault();
+                document.body.classList.remove("nav-open");
+                abrir(item.dataset.nav);
+                return;
+            }
             const cabecera = event.target.closest(".panel-group-head");
             if (!cabecera) return;
             const grupo = cabecera.closest("[data-grupo]");
@@ -440,6 +447,8 @@
 
         let pantallaActual = null;
         let carga = 0;
+        const RUTA_KEY = "filered.ruta";
+        let rutaActual = null;
 
         async function abrir(clave) {
             const modulo = modulos.find(m => m.clave === clave) || modulos[0];
@@ -447,7 +456,8 @@
                 escenario.innerHTML = `<div class="fr-empty">${icono("lock")}<p>Tu usuario no tiene módulos asignados. Contacta al administrador.</p></div>`;
                 return;
             }
-            if (location.hash !== `#/${modulo.clave}`) history.replaceState(null, "", `#/${modulo.clave}`);
+            rutaActual = modulo.clave;
+            try { localStorage.setItem(RUTA_KEY, modulo.clave); } catch (e) { }
             navegacion.querySelectorAll("[data-nav]").forEach(e => e.classList.toggle("is-active", e.dataset.nav === modulo.clave));
             const grupoActivo = navegacion.querySelector(`[data-nav="${modulo.clave}"]`)?.closest("[data-grupo]");
             navegacion.querySelectorAll("[data-grupo]").forEach(g => g.classList.toggle("has-active", g === grupoActivo));
@@ -499,12 +509,11 @@
             correoValido,
             usuarioValido,
             MENSAJE_CONTRASENA,
-            recargar: () => abrir(location.hash.replace("#/", "")),
+            recargar: () => abrir(rutaActual),
             abrir
         };
         window.FileRedPanelApi = api;
 
-        window.addEventListener("hashchange", () => abrir(location.hash.replace("#/", "")));
         document.querySelector("[data-nav-toggle]")?.addEventListener("click", () => document.body.classList.toggle("nav-open"));
         document.querySelector("[data-nav-scrim]")?.addEventListener("click", () => document.body.classList.remove("nav-open"));
         document.querySelector("[data-change-password]")?.addEventListener("click", () => cambiarContrasena(false));
@@ -540,7 +549,7 @@
                 const destino = event.target.closest("[data-palette-ir]");
                 if (!destino) return;
                 cerrar();
-                location.hash = `#/${destino.dataset.paletteIr}`;
+                abrir(destino.dataset.paletteIr);
             });
             window.setTimeout(() => entrada.focus(), 50);
         }
@@ -558,7 +567,10 @@
         marcarHora();
         window.setInterval(marcarHora, 30000);
         document.body.classList.remove("is-booting");
-        await abrir(location.hash.replace("#/", ""));
+        let rutaInicial = "";
+        try { rutaInicial = localStorage.getItem(RUTA_KEY) || ""; } catch (e) { }
+        if (location.hash) { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) { } }
+        await abrir(rutaInicial);
         if (sesion.debeCambiarContrasena) cambiarContrasena(true);
     }
 
