@@ -4,6 +4,7 @@ import com.aarondevs.filered.DAO.Administracion.UsuarioAdministracionDataSet;
 import com.aarondevs.filered.Models.Administracion.UsuarioAdministracion;
 import com.aarondevs.filered.Parameters.Administracion.UsuarioAdministracionActualizarParameters;
 import com.aarondevs.filered.Parameters.Administracion.UsuarioAdministracionAgregarParameters;
+import com.aarondevs.filered.Parameters.Administracion.UsuarioAdministracionPerfilParameters;
 import com.aarondevs.filered.Services.Seguridad.ContrasenaService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -43,6 +44,17 @@ public class UsuarioAdministracionServiceImpl implements UsuarioAdministracionSe
         UsuarioAdministracion actual = datos.findByUuid(parametro.getUsuarioAdministracionUuid());
         if (actual == null) return null;
         return datos.update(parametro, actor);
+    }
+
+    @Override
+    @Transactional
+    public UsuarioAdministracion actualizarPerfil(Long usuarioAdministracionId, UsuarioAdministracionPerfilParameters parametro, String actor) {
+        if (parametro == null || parametro.getNombres() == null || parametro.getNombres().isBlank()
+                || parametro.getCorreo() == null || !parametro.getCorreo().trim().matches("[^@\\s]+@[^@\\s]+\\.[^@\\s]+")) {
+            throw new IllegalArgumentException("nombres y un correo válido son requeridos");
+        }
+        if (datos.findById(usuarioAdministracionId) == null) throw new IllegalArgumentException("Usuario no encontrado");
+        return datos.actualizarPerfil(usuarioAdministracionId, parametro, actor);
     }
 
     @Override

@@ -385,6 +385,25 @@ kbd {
     box-shadow: 0 0 8px var(--success);
 }
 
+.panel-user-open {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: opacity .15s var(--ease-out, ease);
+}
+
+.panel-user-open:hover { opacity: .78; }
+
 .panel-user-copy {
     min-width: 0;
     flex: 1;
