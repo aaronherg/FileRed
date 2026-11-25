@@ -11,6 +11,7 @@
     --bg-elevated: #08080b;
     --surface: rgba(18, 18, 24, 0.62);
     --surface-solid: #0f0f14;
+    --card: var(--surface-solid);
     --surface-alt: rgba(255, 255, 255, 0.035);
     --raised: rgba(255, 255, 255, 0.06);
     --line: rgba(255, 255, 255, 0.07);
@@ -49,6 +50,7 @@
     --bg-elevated: #f7f8fb;
     --surface: rgba(255, 255, 255, 0.72);
     --surface-solid: #ffffff;
+    --card: var(--surface-solid);
     --surface-alt: rgba(15, 18, 30, 0.035);
     --raised: rgba(15, 18, 30, 0.06);
     --line: rgba(15, 18, 30, 0.08);
