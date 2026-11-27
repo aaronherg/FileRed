@@ -1,11 +1,10 @@
-import { crearPantallaRoles } from "../../../comunes/roles.js?v=20261120-7";
+import { crearPantallaRoles } from "../../../comunes/roles.js?v=20261127-6";
 
 const pantalla = crearPantallaRoles({
     servicio: RolAdministracionService,
     modulos: () => ModuloAdministracionService.listar(),
     id: "rolAdministracionId",
     uuid: "rolAdministracionUuid",
-    accionId: "moduloAdministracionAccionId"
 });
 
 export const render = pantalla.render;

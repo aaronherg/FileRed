@@ -1,6 +1,5 @@
 package com.aarondevs.filered.DAO.Administracion;
 
-import com.aarondevs.filered.Models.Administracion.ModuloAdministracion;
 import com.aarondevs.filered.Models.Administracion.RolAdministracion;
 import com.aarondevs.filered.Parameters.Administracion.RolAdministracionActualizarParameters;
 import com.aarondevs.filered.Parameters.Administracion.RolAdministracionAgregarParameters;
@@ -21,9 +20,8 @@ public interface RolAdministracionDataSet {
 
     boolean enUso(Long id);
 
-    void reemplazarAcciones(Long rolAdministracionId, List<Long> accionesIds, String actor);
 
     boolean delete(Long id, String actor);
 
-    List<ModuloAdministracion> modulos();
+    List<java.util.Map<String, Object>> modulos();
 }

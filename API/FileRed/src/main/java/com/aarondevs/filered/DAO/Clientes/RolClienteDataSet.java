@@ -1,6 +1,5 @@
 package com.aarondevs.filered.DAO.Clientes;
 
-import com.aarondevs.filered.Models.Clientes.ModuloCliente;
 import com.aarondevs.filered.Models.Clientes.RolCliente;
 import com.aarondevs.filered.Parameters.Clientes.RolClienteActualizarParameters;
 import com.aarondevs.filered.Parameters.Clientes.RolClienteAgregarParameters;
@@ -21,9 +20,8 @@ public interface RolClienteDataSet {
 
     boolean enUso(Long id);
 
-    void reemplazarAcciones(Long rolClienteId, List<Long> accionesIds, String actor);
 
     boolean delete(Long id, String actor);
 
-    List<ModuloCliente> modulos();
+    List<java.util.Map<String, Object>> modulos();
 }

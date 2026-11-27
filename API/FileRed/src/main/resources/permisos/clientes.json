@@ -1,247 +1,256 @@
 {
-  "categorias": [
+  "modulos": [
     {
-      "clave": "dashboard",
-      "nombre": "Dashboard",
-      "icono": "layout-dashboard",
-      "sola": true,
-      "opciones": [
+      "clave": "principal",
+      "nombre": "Principal",
+      "descripcion": "Almacenamiento, facturación, reportes y configuración del cliente.",
+      "icono": "cloud",
+      "orden": 1,
+      "categorias": [
         {
-          "clave": "inicio",
+          "clave": "dashboard",
           "nombre": "Dashboard",
-          "descripcion": "Resumen de tu almacenamiento.",
           "icono": "layout-dashboard",
-          "acciones": [
+          "sola": true,
+          "opciones": [
             {
-              "clave": "consultar",
-              "nombre": "Consultar resumen"
-            }
-          ],
-          "orden": 1
-        }
-      ],
-      "orden": 1
-    },
-    {
-      "clave": "almacenamiento",
-      "nombre": "Almacenamiento",
-      "icono": "hard",
-      "opciones": [
-        {
-          "clave": "archivos",
-          "nombre": "Explorador de archivos",
-          "descripcion": "Almacenes, carpetas y archivos.",
-          "icono": "folder-open",
-          "acciones": [
-            {
-              "clave": "listar",
-              "nombre": "Consultar archivos"
-            },
-            {
-              "clave": "subir",
-              "nombre": "Subir, reemplazar y renombrar archivos"
-            },
-            {
-              "clave": "eliminar",
-              "nombre": "Eliminar archivos"
-            },
-            {
-              "clave": "gestionar_carpetas",
-              "nombre": "Crear, renombrar y eliminar carpetas"
-            },
-            {
-              "clave": "gestionar_almacenes",
-              "nombre": "Crear, renombrar y eliminar almacenes"
+              "clave": "inicio",
+              "nombre": "Dashboard",
+              "descripcion": "Resumen de tu almacenamiento.",
+              "icono": "layout-dashboard",
+              "acciones": [
+                {
+                  "clave": "consultar",
+                  "nombre": "Consultar resumen"
+                }
+              ],
+              "orden": 1
             }
           ],
           "orden": 1
         },
         {
-          "clave": "nodos",
-          "nombre": "Nodos y respaldos",
-          "descripcion": "Equipos donde se guardan y respaldan tus archivos.",
-          "icono": "server",
-          "acciones": [
-            {
-              "clave": "listar",
-              "nombre": "Consultar nodos"
-            },
-            {
-              "clave": "crear",
-              "nombre": "Crear nodo"
-            },
-            {
-              "clave": "modificar",
-              "nombre": "Renombrar nodo y generar código de vinculación"
-            },
-            {
-              "clave": "predeterminar",
-              "nombre": "Elegir el nodo por defecto"
-            },
-            {
-              "clave": "eliminar",
-              "nombre": "Eliminar nodo"
-            },
-            {
-              "clave": "restaurar",
-              "nombre": "Restaurar archivos desde un respaldo"
-            }
-          ],
-          "orden": 2
-        }
-      ],
-      "orden": 2
-    },
-    {
-      "clave": "facturacion",
-      "nombre": "Facturación",
-      "icono": "receipt",
-      "opciones": [
-        {
-          "clave": "suscripcion",
-          "nombre": "Mi plan",
-          "descripcion": "Plan vigente, consumo y solicitudes.",
-          "icono": "gauge",
-          "acciones": [
-            {
-              "clave": "consultar",
-              "nombre": "Consultar suscripción"
-            },
-            {
-              "clave": "solicitar",
-              "nombre": "Solicitar plan"
-            }
-          ],
-          "orden": 1
-        },
-        {
-          "clave": "pagos",
-          "nombre": "Pagos",
-          "descripcion": "Cargos y abonos de tu cuenta.",
-          "icono": "receipt",
-          "acciones": [
-            {
-              "clave": "listar",
-              "nombre": "Consultar pagos"
-            }
-          ],
-          "orden": 2
-        }
-      ],
-      "orden": 3
-    },
-    {
-      "clave": "reportes",
-      "nombre": "Reportes",
-      "icono": "bar-chart",
-      "opciones": [
-        {
-          "clave": "reporte_consumo",
-          "nombre": "Consumo de almacenamiento",
-          "descripcion": "Espacio y archivos por almacén y carpeta.",
+          "clave": "almacenamiento",
+          "nombre": "Almacenamiento",
           "icono": "hard",
-          "acciones": [
+          "opciones": [
             {
-              "clave": "consultar",
-              "nombre": "Consultar consumo de almacenamiento"
-            }
-          ],
-          "orden": 1
-        },
-        {
-          "clave": "reporte_actividad",
-          "nombre": "Actividad de la API",
-          "descripcion": "Solicitudes, subidas y descargas por día.",
-          "icono": "activity",
-          "acciones": [
-            {
-              "clave": "consultar",
-              "nombre": "Consultar actividad de la API"
-            }
-          ],
-          "orden": 2
-        }
-      ],
-      "orden": 4
-    },
-    {
-      "clave": "configuracion",
-      "nombre": "Configuración",
-      "icono": "settings",
-      "opciones": [
-        {
-          "clave": "apikeys",
-          "nombre": "API keys",
-          "descripcion": "Credenciales de integración.",
-          "icono": "key-round",
-          "acciones": [
-            {
-              "clave": "listar",
-              "nombre": "Consultar API keys"
+              "clave": "archivos",
+              "nombre": "Explorador de archivos",
+              "descripcion": "Almacenes, carpetas y archivos.",
+              "icono": "folder-open",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar archivos"
+                },
+                {
+                  "clave": "subir",
+                  "nombre": "Subir, reemplazar y renombrar archivos"
+                },
+                {
+                  "clave": "eliminar",
+                  "nombre": "Eliminar archivos"
+                },
+                {
+                  "clave": "gestionar_carpetas",
+                  "nombre": "Crear, renombrar y eliminar carpetas"
+                },
+                {
+                  "clave": "gestionar_almacenes",
+                  "nombre": "Crear, renombrar y eliminar almacenes"
+                }
+              ],
+              "orden": 1
             },
             {
-              "clave": "crear",
-              "nombre": "Crear API key"
-            },
-            {
-              "clave": "revocar",
-              "nombre": "Revocar API key"
-            }
-          ],
-          "orden": 1
-        },
-        {
-          "clave": "usuarios",
-          "nombre": "Usuarios",
-          "descripcion": "Usuarios de tu cuenta.",
-          "icono": "users",
-          "acciones": [
-            {
-              "clave": "listar",
-              "nombre": "Consultar usuarios"
-            },
-            {
-              "clave": "crear",
-              "nombre": "Crear usuario"
-            },
-            {
-              "clave": "modificar",
-              "nombre": "Modificar usuario"
-            },
-            {
-              "clave": "cambiar_estado",
-              "nombre": "Suspender o reactivar usuario"
+              "clave": "nodos",
+              "nombre": "Nodos y respaldos",
+              "descripcion": "Equipos donde se guardan y respaldan tus archivos.",
+              "icono": "server",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar nodos"
+                },
+                {
+                  "clave": "crear",
+                  "nombre": "Crear nodo"
+                },
+                {
+                  "clave": "modificar",
+                  "nombre": "Renombrar nodo y generar código de vinculación"
+                },
+                {
+                  "clave": "predeterminar",
+                  "nombre": "Elegir el nodo por defecto"
+                },
+                {
+                  "clave": "eliminar",
+                  "nombre": "Eliminar nodo"
+                },
+                {
+                  "clave": "restaurar",
+                  "nombre": "Restaurar archivos desde un respaldo"
+                }
+              ],
+              "orden": 2
             }
           ],
           "orden": 2
         },
         {
-          "clave": "roles",
-          "nombre": "Roles",
-          "descripcion": "Roles y permisos de tu cuenta.",
-          "icono": "shield-check",
-          "acciones": [
+          "clave": "facturacion",
+          "nombre": "Facturación",
+          "icono": "receipt",
+          "opciones": [
             {
-              "clave": "listar",
-              "nombre": "Consultar roles"
+              "clave": "suscripcion",
+              "nombre": "Mi plan",
+              "descripcion": "Plan vigente, consumo y solicitudes.",
+              "icono": "gauge",
+              "acciones": [
+                {
+                  "clave": "consultar",
+                  "nombre": "Consultar suscripción"
+                },
+                {
+                  "clave": "solicitar",
+                  "nombre": "Solicitar plan"
+                }
+              ],
+              "orden": 1
             },
             {
-              "clave": "crear",
-              "nombre": "Crear rol"
-            },
-            {
-              "clave": "modificar",
-              "nombre": "Modificar rol y permisos"
-            },
-            {
-              "clave": "eliminar",
-              "nombre": "Eliminar rol"
+              "clave": "pagos",
+              "nombre": "Pagos",
+              "descripcion": "Cargos y abonos de tu cuenta.",
+              "icono": "receipt",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar pagos"
+                }
+              ],
+              "orden": 2
             }
           ],
           "orden": 3
+        },
+        {
+          "clave": "reportes",
+          "nombre": "Reportes",
+          "icono": "bar-chart",
+          "opciones": [
+            {
+              "clave": "reporte_consumo",
+              "nombre": "Consumo de almacenamiento",
+              "descripcion": "Espacio y archivos por almacén y carpeta.",
+              "icono": "hard",
+              "acciones": [
+                {
+                  "clave": "consultar",
+                  "nombre": "Consultar consumo de almacenamiento"
+                }
+              ],
+              "orden": 1
+            },
+            {
+              "clave": "reporte_actividad",
+              "nombre": "Actividad de la API",
+              "descripcion": "Solicitudes, subidas y descargas por día.",
+              "icono": "activity",
+              "acciones": [
+                {
+                  "clave": "consultar",
+                  "nombre": "Consultar actividad de la API"
+                }
+              ],
+              "orden": 2
+            }
+          ],
+          "orden": 4
+        },
+        {
+          "clave": "configuracion",
+          "nombre": "Configuración",
+          "icono": "settings",
+          "opciones": [
+            {
+              "clave": "apikeys",
+              "nombre": "API keys",
+              "descripcion": "Credenciales de integración.",
+              "icono": "key-round",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar API keys"
+                },
+                {
+                  "clave": "crear",
+                  "nombre": "Crear API key"
+                },
+                {
+                  "clave": "revocar",
+                  "nombre": "Revocar API key"
+                }
+              ],
+              "orden": 1
+            },
+            {
+              "clave": "usuarios",
+              "nombre": "Usuarios",
+              "descripcion": "Usuarios de tu cuenta.",
+              "icono": "users",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar usuarios"
+                },
+                {
+                  "clave": "crear",
+                  "nombre": "Crear usuario"
+                },
+                {
+                  "clave": "modificar",
+                  "nombre": "Modificar usuario"
+                },
+                {
+                  "clave": "cambiar_estado",
+                  "nombre": "Suspender o reactivar usuario"
+                }
+              ],
+              "orden": 2
+            },
+            {
+              "clave": "roles",
+              "nombre": "Roles",
+              "descripcion": "Roles y permisos de tu cuenta.",
+              "icono": "shield-check",
+              "acciones": [
+                {
+                  "clave": "listar",
+                  "nombre": "Consultar roles"
+                },
+                {
+                  "clave": "crear",
+                  "nombre": "Crear rol"
+                },
+                {
+                  "clave": "modificar",
+                  "nombre": "Modificar rol y permisos"
+                },
+                {
+                  "clave": "eliminar",
+                  "nombre": "Eliminar rol"
+                }
+              ],
+              "orden": 3
+            }
+          ],
+          "orden": 5
         }
-      ],
-      "orden": 5
+      ]
     }
   ]
 }
