@@ -55,6 +55,39 @@
             }
           ],
           "orden": 1
+        },
+        {
+          "clave": "nodos",
+          "nombre": "Nodos y respaldos",
+          "descripcion": "Equipos donde se guardan y respaldan tus archivos.",
+          "icono": "server",
+          "acciones": [
+            {
+              "clave": "listar",
+              "nombre": "Consultar nodos"
+            },
+            {
+              "clave": "crear",
+              "nombre": "Crear nodo"
+            },
+            {
+              "clave": "modificar",
+              "nombre": "Renombrar nodo y generar código de vinculación"
+            },
+            {
+              "clave": "predeterminar",
+              "nombre": "Elegir el nodo por defecto"
+            },
+            {
+              "clave": "eliminar",
+              "nombre": "Eliminar nodo"
+            },
+            {
+              "clave": "restaurar",
+              "nombre": "Restaurar archivos desde un respaldo"
+            }
+          ],
+          "orden": 2
         }
       ],
       "orden": 2

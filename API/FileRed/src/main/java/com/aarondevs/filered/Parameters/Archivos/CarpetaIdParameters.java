@@ -6,4 +6,5 @@ import lombok.Data;
 public class CarpetaIdParameters {
     private String almacen;
     private String categoria;
+    private Long nodoId;
 }

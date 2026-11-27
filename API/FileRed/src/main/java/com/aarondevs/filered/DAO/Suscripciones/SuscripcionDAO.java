@@ -16,7 +16,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SuscripcionDAO implements SuscripcionDataSet {
     private static final String SELECT_DETALLE = "SELECT d.*, p.nombre AS planNombre, p.espacioGb, p.tamanoMaximoArchivoMb, p.precio, "
-            + "p.precioGbAdicional, m.simbolo AS monedaSimbolo FROM DetallesSuscripciones d "
+            + "p.precioGbAdicional, p.permitirNube, p.permitirNodos, p.permitirRespaldos, m.simbolo AS monedaSimbolo FROM DetallesSuscripciones d "
             + "JOIN Suscripciones s ON s.suscripcionId=d.suscripcionId JOIN Planes p ON p.planId=d.planId "
             + "JOIN Monedas m ON m.monedaId=p.monedaId ";
     private static final String SELECT_SUSCRIPCION = "SELECT s.*, c.nombreComercial AS clienteNombre FROM Suscripciones s "
@@ -129,7 +129,7 @@ public class SuscripcionDAO implements SuscripcionDataSet {
 
     @Override
     public long espacioUsadoBytes(Long clienteId) {
-        Long total = jdbc.queryForObject("SELECT COALESCE(SUM(tamano),0) FROM Archivos WHERE clienteId=? AND estado='Activo'", Long.class, clienteId);
+        Long total = jdbc.queryForObject("SELECT COALESCE(SUM(tamano),0) FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND estado='Activo'", Long.class, clienteId);
         return total == null ? 0 : total;
     }
 

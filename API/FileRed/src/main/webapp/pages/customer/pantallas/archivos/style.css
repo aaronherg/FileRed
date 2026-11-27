@@ -531,3 +531,126 @@
         opacity: 1;
     }
 }
+
+.fs-node-grid {
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+}
+
+.fs-node-card {
+    align-items: center;
+    padding: 18px;
+}
+
+.fs-node-card.is-default {
+    border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+    background: radial-gradient(120% 140% at 0% 0%, var(--accent-soft), transparent 60%), var(--surface-alt);
+}
+
+.fs-card-icon.is-cloud {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(160deg, #5ee7ff, #2563eb);
+    color: #ffffff;
+    box-shadow: 0 10px 26px -14px #2563eb;
+}
+
+.fs-card-icon.is-server {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: linear-gradient(160deg, var(--accent-strong), #6d0a16);
+    color: #ffffff;
+    box-shadow: 0 10px 26px -14px var(--accent-glow);
+}
+
+.fs-node-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+}
+
+.fs-node-status,
+.fs-node-default {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--raised);
+    color: var(--text-secondary);
+    font-size: 11.5px;
+    font-weight: 600;
+}
+
+.fs-node-status i {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--muted);
+}
+
+.fs-node-status.is-on i {
+    background: var(--success);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 22%, transparent);
+}
+
+.fs-node-status.is-off i {
+    background: var(--danger);
+}
+
+.fs-node-status.is-wait i {
+    background: var(--warning);
+}
+
+.fs-node-default {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+}
+
+.fs-node-default .fr-svg {
+    width: 12px;
+    height: 12px;
+    fill: currentColor;
+}
+
+.fs-node-go {
+    color: var(--muted);
+    transition: transform 160ms ease, color 160ms ease;
+}
+
+.fs-node-card:hover .fs-node-go {
+    color: var(--accent-strong);
+    transform: translateX(3px);
+}
+
+.fs-node-note {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    border-color: color-mix(in srgb, var(--warning) 40%, transparent);
+    background: color-mix(in srgb, var(--warning) 8%, transparent);
+    color: var(--text);
+}
+
+.fs-node-note .fr-svg {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    color: var(--warning);
+}
+
+.fs-sending {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    color: var(--warning) !important;
+    font-size: 11.5px;
+}
+
+.fs-sending .fr-svg {
+    width: 12px;
+    height: 12px;
+}

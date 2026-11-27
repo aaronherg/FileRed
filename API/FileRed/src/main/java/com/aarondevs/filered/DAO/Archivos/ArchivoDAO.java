@@ -30,7 +30,7 @@ public class ArchivoDAO implements ArchivoDataSet {
 
     @Override
     public List<Archivo> findAll(Long clienteId, String almacen, String categoria) {
-        return jdbc.query("SELECT * FROM Archivos WHERE clienteId=? AND almacen=? AND categoria=? AND estado='Activo' ORDER BY fechaCreacion DESC",
+        return jdbc.query("SELECT * FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND almacen=? AND categoria=? AND estado='Activo' ORDER BY fechaCreacion DESC",
                 new BeanPropertyRowMapper<>(Archivo.class), clienteId, almacen, categoria);
     }
 
@@ -46,19 +46,19 @@ public class ArchivoDAO implements ArchivoDataSet {
 
     @Override
     public void update(Long archivoId, String extension, String nombreOriginal, long tamano, String actor) {
-        jdbc.update("UPDATE Archivos SET extension=?, nombreOriginal=?, tamano=?, fechaModificacion=NOW(3), fechaVersion=NOW(3), "
+        jdbc.update("UPDATE Archivos SET extension=?, nombreOriginal=?, tamano=?, hashSha256=NULL, fechaModificacion=NOW(3), fechaVersion=NOW(3), "
                 + "version=version+1, usuarioModificacionUuid=? WHERE archivoId=?", extension, nombreOriginal, tamano, actor, archivoId);
     }
 
     @Override
     public int delete(Long clienteId, String almacen, String categoria, String identificador) {
-        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND almacen=? AND categoria=? AND identificador=?",
+        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND almacen=? AND categoria=? AND identificador=?",
                 clienteId, almacen, categoria, identificador);
     }
 
     @Override
     public int deleteCategoria(Long clienteId, String almacen, String categoria) {
-        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND almacen=? AND categoria=?", clienteId, almacen, categoria);
+        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND almacen=? AND categoria=?", clienteId, almacen, categoria);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class ArchivoDAO implements ArchivoDataSet {
     public PaginationResponse<Archivo> findAllPages(Long clienteId, String almacen, String categoria, String buscar, Integer page, Integer size) {
         int pagina = page == null || page < 1 ? 1 : page;
         int tamano = size == null || size < 1 ? 25 : Math.min(size, 200);
-        String where = "WHERE clienteId=? AND almacen=? AND categoria=? AND estado='Activo' ";
+        String where = "WHERE clienteId=? AND nodoId IS NULL AND almacen=? AND categoria=? AND estado='Activo' ";
         List<Object> argumentos = new ArrayList<>(List.of(clienteId, almacen, categoria));
         if (buscar != null && !buscar.isBlank()) {
             where += "AND (nombreOriginal LIKE ? OR identificador LIKE ? OR extension LIKE ?) ";
@@ -109,32 +109,32 @@ public class ArchivoDAO implements ArchivoDataSet {
     @Override
     public List<Map<String, Object>> resumenAlmacenes(Long clienteId) {
         return jdbc.queryForList("SELECT almacen, COUNT(DISTINCT categoria) AS carpetas, COUNT(*) AS archivos, COALESCE(SUM(tamano),0) AS bytes, "
-                + "MAX(COALESCE(fechaModificacion, fechaCreacion)) AS ultimaModificacion FROM Archivos WHERE clienteId=? AND estado='Activo' "
+                + "MAX(COALESCE(fechaModificacion, fechaCreacion)) AS ultimaModificacion FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND estado='Activo' "
                 + "GROUP BY almacen", clienteId);
     }
 
     @Override
     public List<Map<String, Object>> resumenCarpetas(Long clienteId, String almacen) {
         return jdbc.queryForList("SELECT categoria, COUNT(*) AS archivos, COALESCE(SUM(tamano),0) AS bytes, "
-                + "MAX(COALESCE(fechaModificacion, fechaCreacion)) AS ultimaModificacion FROM Archivos WHERE clienteId=? AND almacen=? "
+                + "MAX(COALESCE(fechaModificacion, fechaCreacion)) AS ultimaModificacion FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND almacen=? "
                 + "AND estado='Activo' GROUP BY categoria", clienteId, almacen);
     }
 
     @Override
     public int renombrarAlmacen(Long clienteId, String almacen, String nombre, String actor) {
         return jdbc.update("UPDATE Archivos SET almacen=?, fechaModificacion=NOW(3), fechaVersion=NOW(3), version=version+1, "
-                + "usuarioModificacionUuid=? WHERE clienteId=? AND almacen=?", nombre, actor, clienteId, almacen);
+                + "usuarioModificacionUuid=? WHERE clienteId=? AND nodoId IS NULL AND almacen=?", nombre, actor, clienteId, almacen);
     }
 
     @Override
     public int renombrarCategoria(Long clienteId, String almacen, String categoria, String nombre, String actor) {
         return jdbc.update("UPDATE Archivos SET categoria=?, fechaModificacion=NOW(3), fechaVersion=NOW(3), version=version+1, "
-                + "usuarioModificacionUuid=? WHERE clienteId=? AND almacen=? AND categoria=?", nombre, actor, clienteId, almacen, categoria);
+                + "usuarioModificacionUuid=? WHERE clienteId=? AND nodoId IS NULL AND almacen=? AND categoria=?", nombre, actor, clienteId, almacen, categoria);
     }
 
     @Override
     public int deleteAlmacen(Long clienteId, String almacen) {
-        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND almacen=?", clienteId, almacen);
+        return jdbc.update("DELETE FROM Archivos WHERE clienteId=? AND nodoId IS NULL AND almacen=?", clienteId, almacen);
     }
 
     @Override

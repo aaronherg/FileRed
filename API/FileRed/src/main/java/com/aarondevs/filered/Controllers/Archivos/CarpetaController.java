@@ -6,6 +6,7 @@ import com.aarondevs.filered.Parameters.Archivos.CarpetaBuscarParameters;
 import com.aarondevs.filered.Parameters.Archivos.CarpetaIdParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import com.aarondevs.filered.Services.Seguridad.ContextoAutenticacionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/archivos/carpetas")
 public class CarpetaController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final ContextoAutenticacionService contextoService;
 
-    public CarpetaController(ArchivoService service, ContextoAutenticacionService contextoService) {
-        this.service = service;
+    public CarpetaController(DestinoArchivoService destinos, ContextoAutenticacionService contextoService) {
+        this.destinos = destinos;
         this.contextoService = contextoService;
     }
 
@@ -33,6 +34,7 @@ public class CarpetaController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_carpetas");
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.status(201).body(ApiResponse.success(201, service.crearCarpeta(contexto.clienteId(),
                     texto(parametro.getAlmacen()), texto(parametro.getCategoria())), "Carpeta creada correctamente"));
         } catch (Exception error) {
@@ -46,6 +48,7 @@ public class CarpetaController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_carpetas");
             if (parametro == null) throw new IllegalArgumentException("almacen, categoria y nombre son requeridos");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarCarpeta(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria()), texto(parametro.getNombre()), contexto.usuarioUuid()), "Carpeta renombrada correctamente"));
         } catch (Exception error) {
@@ -61,6 +64,7 @@ public class CarpetaController {
             if (parametro == null) throw new IllegalArgumentException("almacen es requerido");
             Long clienteId = contextoService.clienteDeContexto(contexto, parametro.getClienteId());
             if (clienteId == null) throw new IllegalArgumentException("clienteId es requerido");
+            ArchivoService service = destinos.seleccionado(clienteId, parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.carpetas(clienteId, texto(parametro.getAlmacen())),
                     "Carpetas obtenidas correctamente"));
         } catch (Exception error) {
@@ -74,6 +78,7 @@ public class CarpetaController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_carpetas");
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.eliminarCarpeta(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria())), "Carpeta eliminada correctamente"));
         } catch (Exception error) {

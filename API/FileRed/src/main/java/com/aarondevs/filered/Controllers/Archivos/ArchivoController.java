@@ -6,6 +6,7 @@ import com.aarondevs.filered.Parameters.Archivos.ArchivoIdParameters;
 import com.aarondevs.filered.Parameters.Archivos.ArchivoNombreParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import com.aarondevs.filered.Services.Seguridad.ContextoAutenticacionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -22,11 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/archivos")
 public class ArchivoController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final ContextoAutenticacionService contextoService;
 
-    public ArchivoController(ArchivoService service, ContextoAutenticacionService contextoService) {
-        this.service = service;
+    public ArchivoController(DestinoArchivoService destinos, ContextoAutenticacionService contextoService) {
+        this.destinos = destinos;
         this.contextoService = contextoService;
     }
 
@@ -37,6 +38,7 @@ public class ArchivoController {
         try {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "subir");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.status(201).body(ApiResponse.success(201, service.subir(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria()), file, null, contexto.usuarioUuid(), false), "Archivo subido correctamente"));
         } catch (Exception error) {
@@ -51,6 +53,7 @@ public class ArchivoController {
         try {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "subir");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.reemplazar(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria()), texto(parametro.getIdentificador()), texto(parametro.getExtension()), file,
                     contexto.usuarioUuid(), false), "Archivo reemplazado correctamente"));
@@ -67,6 +70,7 @@ public class ArchivoController {
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
             Long clienteId = contextoService.clienteDeContexto(contexto, parametro.getClienteId());
             if (clienteId == null) throw new IllegalArgumentException("clienteId es requerido");
+            ArchivoService service = destinos.seleccionado(clienteId, parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.paginas(clienteId, texto(parametro.getAlmacen()), texto(parametro.getCategoria()),
                     parametro.getBuscar(), parametro.getPage(), parametro.getSize()), "Archivos obtenidos correctamente"));
         } catch (Exception error) {
@@ -80,6 +84,7 @@ public class ArchivoController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "subir");
             if (parametro == null) throw new IllegalArgumentException("Indique el archivo a renombrar");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarArchivo(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria()), texto(parametro.getIdentificador()), parametro.getNombre(), contexto.usuarioUuid()),
                     "Archivo renombrado correctamente"));
@@ -94,6 +99,7 @@ public class ArchivoController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "eliminar");
             if (parametro == null) throw new IllegalArgumentException("Indique el archivo a eliminar");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.eliminar(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getCategoria()), texto(parametro.getIdentificador()), texto(parametro.getExtension())),
                     "Archivo eliminado correctamente"));

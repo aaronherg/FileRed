@@ -6,6 +6,7 @@ import com.aarondevs.filered.Parameters.Archivos.ArchivoNombreParameters;
 import com.aarondevs.filered.Parameters.Archivos.FileRedArchivoIdParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import java.util.Map;
@@ -22,11 +23,11 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/fileRed/archivos")
 public class FileRedArchivoController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final FileRedApiSupport support;
 
-    public FileRedArchivoController(ArchivoService service, FileRedApiSupport support) {
-        this.service = service;
+    public FileRedArchivoController(DestinoArchivoService destinos, FileRedApiSupport support) {
+        this.destinos = destinos;
         this.support = support;
     }
 
@@ -38,6 +39,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "agregar_archivo");
             if (file == null) throw new IllegalArgumentException("Envíe el archivo en el campo file");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.status(201).body(ApiResponse.success(201, service.subir(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria()), file, llave.getApiKeyId(), support.actor(llave), Boolean.TRUE.equals(base64)),
                     "Archivo subido correctamente"));
@@ -53,6 +55,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "actualizar_archivo");
             if (file == null) throw new IllegalArgumentException("Envíe el archivo nuevo en el campo file");
+            ArchivoService service = destinos.deArchivo(llave.getClienteId(), support.texto(parametro.getAlmacen()), support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador()));
             String almacen = support.texto(parametro.getAlmacen());
             String categoria = support.texto(parametro.getCategoria());
             String identificador = support.texto(parametro.getIdentificador());
@@ -69,6 +72,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "renombrar_archivo");
             if (parametro == null) throw new IllegalArgumentException("almacen, categoria, identificador y nombre son requeridos");
+            ArchivoService service = destinos.deArchivo(llave.getClienteId(), support.texto(parametro.getAlmacen()), support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador()));
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarArchivo(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador()), parametro.getNombre(), support.actor(llave)),
                     "Archivo renombrado correctamente"));
@@ -82,6 +86,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "obtener_archivos");
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.paginas(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria()), parametro.getBuscar(), parametro.getPage(), parametro.getSize()),
                     "Archivos obtenidos correctamente"));
@@ -95,6 +100,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "obtener_archivo");
             if (parametro == null) throw new IllegalArgumentException("almacen, categoria e identificador son requeridos");
+            ArchivoService service = destinos.deArchivo(llave.getClienteId(), support.texto(parametro.getAlmacen()), support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador()));
             return ResponseEntity.ok(ApiResponse.success(200, service.archivoPorId(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador())), "Archivo obtenido correctamente"));
         } catch (Exception error) {
@@ -107,6 +113,7 @@ public class FileRedArchivoController {
         try {
             var llave = support.autenticar(request, "eliminar_archivo");
             if (parametro == null) throw new IllegalArgumentException("almacen, categoria e identificador son requeridos");
+            ArchivoService service = destinos.deArchivo(llave.getClienteId(), support.texto(parametro.getAlmacen()), support.texto(parametro.getCategoria()), support.texto(parametro.getIdentificador()));
             String almacen = support.texto(parametro.getAlmacen());
             String categoria = support.texto(parametro.getCategoria());
             String identificador = support.texto(parametro.getIdentificador());

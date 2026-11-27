@@ -5,4 +5,5 @@ import lombok.Data;
 @Data
 public class AlmacenIdParameters {
     private String almacen;
+    private Long nodoId;
 }

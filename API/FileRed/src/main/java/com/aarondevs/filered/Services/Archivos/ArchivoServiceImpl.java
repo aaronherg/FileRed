@@ -73,6 +73,7 @@ public class ArchivoServiceImpl implements ArchivoService {
     private final Path base;
     private final long tamanoMaximo;
     private final String urlBase;
+    private RespaldoService respaldos;
 
     public ArchivoServiceImpl(ArchivoDataSet datos, SuscripcionService suscripciones,
                               @Value("${app.filered.storage-path}") String rutaAlmacenamiento,
@@ -86,10 +87,41 @@ public class ArchivoServiceImpl implements ArchivoService {
         Files.createDirectories(this.base);
     }
 
+    @org.springframework.beans.factory.annotation.Autowired(required = false)
+    public void setRespaldos(@org.springframework.context.annotation.Lazy RespaldoService respaldos) {
+        this.respaldos = respaldos;
+    }
+
+    private void exigirNube(Long clienteId) {
+        if (respaldos != null && !respaldos.permiteNube(clienteId)) {
+            throw new IllegalArgumentException("Tu plan no incluye almacenamiento en la Nube: tus archivos de la Nube están en solo lectura");
+        }
+    }
+
+    public int eliminarNubeCompleta(Long clienteId) {
+        Path raiz = raiz(clienteId);
+        if (!Files.isDirectory(raiz)) return 0;
+        int total = 0;
+        try (Stream<Path> contenido = Files.list(raiz)) {
+            for (Path almacen : contenido.filter(Files::isDirectory).toList()) {
+                eliminarAlmacenSinValidar(clienteId, almacen.getFileName().toString());
+                total++;
+            }
+        } catch (IOException error) {
+            throw new IllegalStateException("No se pudo eliminar el almacenamiento en la Nube");
+        }
+        return total;
+    }
+
+    private void respaldar(java.util.function.Consumer<RespaldoService> accion) {
+        if (respaldos != null) accion.accept(respaldos);
+    }
+
     @Override
     public Map<String, Object> crearAlmacen(Long clienteId, String almacen) {
         validarNombres(almacen);
         vigente(clienteId);
+        exigirNube(clienteId);
         Path ruta = raiz(clienteId).resolve(almacen);
         if (Files.exists(ruta)) throw new IllegalArgumentException("Ya existe un almacén con ese nombre");
         try {
@@ -97,22 +129,30 @@ public class ArchivoServiceImpl implements ArchivoService {
         } catch (IOException error) {
             throw new IllegalStateException("No se pudo crear el almacén");
         }
+        respaldar(r -> r.alCrearDirectorio(clienteId, null, almacen));
         return datos("mensaje", "Almacén creado correctamente", "almacen", almacen);
     }
 
     @Override
     public Map<String, Object> renombrarAlmacen(Long clienteId, String almacen, String nombre, String actor) {
         validarNombres(almacen, nombre);
+        exigirNube(clienteId);
         Path origen = raiz(clienteId).resolve(almacen);
         Path destino = raiz(clienteId).resolve(nombre);
         renombrarDirectorio(origen, destino, "El almacén no existe", "Ya existe un almacén con ese nombre");
         datos.renombrarAlmacen(clienteId, almacen, nombre, actor);
+        if (!almacen.equals(nombre)) respaldar(r -> r.alMoverDirectorio(clienteId, null, almacen, nombre));
         return datos("mensaje", "Almacén renombrado correctamente", "almacen", nombre);
     }
 
     @Override
     public Map<String, Object> eliminarAlmacen(Long clienteId, String almacen) {
         validarNombres(almacen);
+        exigirNube(clienteId);
+        return eliminarAlmacenSinValidar(clienteId, almacen);
+    }
+
+    private Map<String, Object> eliminarAlmacenSinValidar(Long clienteId, String almacen) {
         Path ruta = raiz(clienteId).resolve(almacen);
         if (!Files.exists(ruta)) throw new IllegalArgumentException("El almacén no existe");
         long eliminados;
@@ -124,6 +164,7 @@ public class ArchivoServiceImpl implements ArchivoService {
             throw new IllegalStateException("No se pudo eliminar el almacén");
         }
         datos.deleteAlmacen(clienteId, almacen);
+        respaldar(r -> r.alEliminarDirectorio(clienteId, null, almacen));
         if (eliminados > 0) datos.sumarMetrica(clienteId, "archivosEliminados", eliminados);
         return datos("mensaje", "Almacén eliminado correctamente");
     }
@@ -131,15 +172,18 @@ public class ArchivoServiceImpl implements ArchivoService {
     @Override
     public Map<String, Object> renombrarCarpeta(Long clienteId, String almacen, String categoria, String nombre, String actor) {
         validarNombres(almacen, categoria, nombre);
+        exigirNube(clienteId);
         renombrarDirectorio(carpeta(clienteId, almacen, categoria), carpeta(clienteId, almacen, nombre),
                 "La carpeta no existe", "Ya existe una carpeta con ese nombre");
         datos.renombrarCategoria(clienteId, almacen, categoria, nombre, actor);
+        if (!categoria.equals(nombre)) respaldar(r -> r.alMoverDirectorio(clienteId, null, almacen + "/" + categoria, almacen + "/" + nombre));
         return datos("mensaje", "Carpeta renombrada correctamente", "almacen", almacen, "categoria", nombre);
     }
 
     @Override
     public Map<String, Object> renombrarArchivo(Long clienteId, String almacen, String categoria, String identificador, String nombre, String actor) {
         validarNombres(almacen, categoria, identificador);
+        exigirNube(clienteId);
         String limpio = nombre == null ? "" : nombre.trim();
         if (limpio.isEmpty()) throw new IllegalArgumentException("El nombre del archivo es obligatorio");
         if (limpio.length() > 200) throw new IllegalArgumentException("El nombre admite hasta 200 caracteres");
@@ -175,6 +219,7 @@ public class ArchivoServiceImpl implements ArchivoService {
     public Map<String, Object> crearCarpeta(Long clienteId, String almacen, String categoria) {
         validarNombres(almacen, categoria);
         vigente(clienteId);
+        exigirNube(clienteId);
         Path ruta = carpeta(clienteId, almacen, categoria);
         if (Files.exists(ruta)) throw new IllegalArgumentException("La carpeta ya existe");
         try {
@@ -182,12 +227,14 @@ public class ArchivoServiceImpl implements ArchivoService {
         } catch (IOException error) {
             throw new IllegalStateException("No se pudo crear la carpeta");
         }
+        respaldar(r -> r.alCrearDirectorio(clienteId, null, almacen + "/" + categoria));
         return datos("mensaje", "Carpeta creada correctamente", "almacen", almacen, "categoria", categoria);
     }
 
     @Override
     public Map<String, Object> eliminarCarpeta(Long clienteId, String almacen, String categoria) {
         validarNombres(almacen, categoria);
+        exigirNube(clienteId);
         Path ruta = carpeta(clienteId, almacen, categoria);
         if (!Files.exists(ruta)) throw new IllegalArgumentException("La carpeta no existe");
         long eliminados;
@@ -200,6 +247,7 @@ public class ArchivoServiceImpl implements ArchivoService {
             throw new IllegalStateException("No se pudo eliminar la carpeta");
         }
         datos.deleteCategoria(clienteId, almacen, categoria);
+        respaldar(r -> r.alEliminarDirectorio(clienteId, null, almacen + "/" + categoria));
         if (eliminados > 0) datos.sumarMetrica(clienteId, "archivosEliminados", eliminados);
         return datos("mensaje", "Carpeta y archivos eliminados correctamente");
     }
@@ -251,12 +299,17 @@ public class ArchivoServiceImpl implements ArchivoService {
         validarNombres(almacen, categoria);
         String extension = extension(archivo == null ? null : archivo.getOriginalFilename());
         validarArchivo(clienteId, archivo, extension, 0);
+        exigirNube(clienteId);
         Path ruta = carpeta(clienteId, almacen, categoria);
         if (!Files.exists(ruta)) throw new IllegalArgumentException("La carpeta no existe, créela primero con addDirectory");
         String identificador = nuevoIdentificador();
         Path destino = ruta.resolve(identificador + "." + extension);
         guardar(archivo, destino);
         datos.create(clienteId, almacen, categoria, identificador, extension, nombreOriginal(archivo), archivo.getSize(), apiKeyId, actor);
+        respaldar(r -> {
+            Archivo creado = datos.findByRuta(clienteId, almacen, categoria, identificador);
+            if (creado != null) r.alSubir(clienteId, null, creado.getArchivoId());
+        });
         datos.sumarMetrica(clienteId, "archivosSubidos", 1);
         datos.sumarMetrica(clienteId, "bytesSubidos", archivo.getSize());
         Map<String, Object> resultado = datos("identificador", identificador, "extension", extension, "size", archivo.getSize(),
@@ -270,6 +323,7 @@ public class ArchivoServiceImpl implements ArchivoService {
                                           MultipartFile archivo, String actor, boolean incluirBase64) {
         String actual = extensionLimpia(extensionActual);
         validarNombres(almacen, categoria, identificador, actual);
+        exigirNube(clienteId);
         Path ruta = carpeta(clienteId, almacen, categoria);
         Path rutaActual = ruta.resolve(identificador + "." + actual);
         if (!Files.exists(ruta)) throw new IllegalArgumentException("La carpeta no existe");
@@ -295,6 +349,7 @@ public class ArchivoServiceImpl implements ArchivoService {
             datos.create(clienteId, almacen, categoria, identificador, nueva, nombreOriginal(archivo), archivo.getSize(), null, actor);
         } else {
             datos.update(registro.getArchivoId(), nueva, nombreOriginal(archivo), archivo.getSize(), actor);
+            respaldar(r -> r.alReemplazar(clienteId, null, registro, nueva));
         }
         datos.sumarMetrica(clienteId, "bytesSubidos", archivo.getSize());
         Map<String, Object> resultado = datos("mensaje", "Archivo actualizado correctamente", "identificador", identificador,
@@ -307,14 +362,17 @@ public class ArchivoServiceImpl implements ArchivoService {
     public Map<String, Object> eliminar(Long clienteId, String almacen, String categoria, String identificador, String extension) {
         String ext = extensionLimpia(extension);
         validarNombres(almacen, categoria, identificador, ext);
+        exigirNube(clienteId);
         Path ruta = carpeta(clienteId, almacen, categoria).resolve(identificador + "." + ext);
         if (!Files.exists(ruta)) throw new IllegalArgumentException("Archivo no encontrado");
+        Archivo eliminado = datos.findByRuta(clienteId, almacen, categoria, identificador);
         try {
             Files.delete(ruta);
         } catch (IOException error) {
             throw new IllegalStateException("No se pudo eliminar el archivo");
         }
         datos.delete(clienteId, almacen, categoria, identificador);
+        if (eliminado != null) respaldar(r -> r.alEliminarArchivo(clienteId, null, eliminado));
         datos.sumarMetrica(clienteId, "archivosEliminados", 1);
         return datos("mensaje", "Archivo eliminado correctamente");
     }
@@ -393,7 +451,11 @@ public class ArchivoServiceImpl implements ArchivoService {
         return MIME.getOrDefault(extensionLimpia(extension), "application/octet-stream");
     }
 
-    private DetalleSuscripcion vigente(Long clienteId) {
+    public Path base() {
+        return base;
+    }
+
+    public DetalleSuscripcion vigente(Long clienteId) {
         DetalleSuscripcion vigente = suscripciones.vigente(clienteId);
         if (vigente == null) {
             throw new IllegalArgumentException("No tiene un plan vigente. Contrate o renueve un plan para usar el almacenamiento");
@@ -402,6 +464,14 @@ public class ArchivoServiceImpl implements ArchivoService {
     }
 
     private void validarArchivo(Long clienteId, MultipartFile archivo, String extension, long tamanoLiberado) {
+        validarArchivo(clienteId, archivo, extension, tamanoLiberado, true);
+    }
+
+    public void validarArchivoNodo(Long clienteId, MultipartFile archivo, String extension) {
+        validarArchivo(clienteId, archivo, extension, 0, false);
+    }
+
+    private void validarArchivo(Long clienteId, MultipartFile archivo, String extension, long tamanoLiberado, boolean cuota) {
         if (archivo == null || archivo.isEmpty() || archivo.getSize() == 0) {
             throw new IllegalArgumentException("El archivo está vacío o no fue enviado correctamente");
         }
@@ -415,7 +485,7 @@ public class ArchivoServiceImpl implements ArchivoService {
             throw new IllegalArgumentException("El archivo supera el tamaño máximo de " + (maximo / BYTES_POR_MB) + "MB "
                     + (plan.getTamanoMaximoArchivoMb() == null ? "permitido por archivo" : "de su plan"));
         }
-        if (plan.getEspacioGb() != null && !Boolean.TRUE.equals(plan.getPermitirAdicionales())) {
+        if (cuota && plan.getEspacioGb() != null && !Boolean.TRUE.equals(plan.getPermitirAdicionales())) {
             long usado = suscripciones.espacioUsado(clienteId) - tamanoLiberado;
             if (usado + archivo.getSize() > SuscripcionService.limiteBytes(plan.getEspacioGb())) {
                 throw new IllegalArgumentException("Espacio insuficiente: su plan " + plan.getPlanNombre() + " incluye "
@@ -432,13 +502,13 @@ public class ArchivoServiceImpl implements ArchivoService {
         }
     }
 
-    private void validarNombres(String... nombres) {
+    public void validarNombres(String... nombres) {
         for (String nombre : nombres) {
             if (!nombresValidos(nombre)) throw new IllegalArgumentException("Nombre no válido: " + (nombre == null ? "" : nombre));
         }
     }
 
-    private boolean nombresValidos(String... nombres) {
+    public boolean nombresValidos(String... nombres) {
         for (String nombre : nombres) {
             if (nombre == null || nombre.contains("..") || !NOMBRE_VALIDO.matcher(nombre).matches()) return false;
         }
@@ -486,7 +556,7 @@ public class ArchivoServiceImpl implements ArchivoService {
         }
     }
 
-    private String url(Long clienteId, String almacen, String categoria, String identificador, String extension) {
+    public String url(Long clienteId, String almacen, String categoria, String identificador, String extension) {
         return urlBase + "f/" + segmento(datos.clienteUuid(clienteId)) + "/" + segmento(almacen) + "/" + segmento(categoria) + "/"
                 + segmento(identificador + "." + extension);
     }
@@ -495,25 +565,25 @@ public class ArchivoServiceImpl implements ArchivoService {
         return UriUtils.encodePathSegment(valor, StandardCharsets.UTF_8);
     }
 
-    private String nombreOriginal(MultipartFile archivo) {
+    public String nombreOriginal(MultipartFile archivo) {
         String nombre = StringUtils.getFilename(archivo.getOriginalFilename());
         if (nombre == null || nombre.isBlank()) return null;
         return nombre.length() > 200 ? nombre.substring(0, 200) : nombre;
     }
 
-    private String extension(String nombre) {
+    public String extension(String nombre) {
         String extension = StringUtils.getFilenameExtension(nombre == null ? "" : nombre);
         return extension == null ? "" : extension.toLowerCase(Locale.ROOT);
     }
 
-    private String extensionLimpia(String extension) {
+    public String extensionLimpia(String extension) {
         if (extension == null) return "";
         String limpia = extension.trim();
         while (limpia.startsWith(".")) limpia = limpia.substring(1);
         return limpia.toLowerCase(Locale.ROOT);
     }
 
-    private String nuevoIdentificador() {
+    public String nuevoIdentificador() {
         byte[] bytes = new byte[16];
         ALEATORIO.nextBytes(bytes);
         return HexFormat.of().formatHex(bytes);
@@ -527,7 +597,7 @@ public class ArchivoServiceImpl implements ArchivoService {
         }
     }
 
-    private String base64SiEsImagen(Path ruta, String extension) {
+    public String base64SiEsImagen(Path ruta, String extension) {
         String tipo = mime(extension);
         if (!tipo.startsWith("image/")) return null;
         try {

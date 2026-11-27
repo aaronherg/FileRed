@@ -8,4 +8,5 @@ public class ArchivoNombreParameters {
     private String categoria;
     private String identificador;
     private String nombre;
+    private Long nodoId;
 }

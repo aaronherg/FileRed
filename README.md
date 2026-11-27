@@ -5,7 +5,7 @@
 
   <p><strong>FileRed</strong></p>
   <p>Servicio de alquiler de almacenamiento de archivos con API, área de administración y área de cliente.</p>
-  <p><code>v1.0.1</code></p>
+  <p><code>v1.0.2</code></p>
 
 </div>
 
@@ -97,12 +97,57 @@ Errores: `401` sin key o key inválida, `403` sin el permiso, `404` recurso inex
 
 Los archivos se sirven en `GET /f/{clienteUuid}/{almacen}/{categoria}/{identificador}.{extension}` (solo clientes activos).
 
+## Nodos
+
+Cada cliente puede guardar sus archivos en la **Nube** (el disco del servidor, siempre presente, no se edita ni se elimina) o en **equipos propios** con el programa FileRed instalado (Windows, macOS o Linux).
+
+- **Customer → Almacenamiento → Nodos**: cards de cada nodo, código de vinculación (12 caracteres, 24 h, se muestra una sola vez) y el nodo **Por defecto**. Todo lo que llega por la API `/api/fileRed/**` se guarda en el nodo por defecto; las operaciones sobre un archivo existente se resuelven en el nodo donde está.
+- **Explorador de archivos**: primero se elige el nodo; después almacenes, carpetas y archivos funcionan igual.
+- **Flujo**: el archivo entra a una bandeja temporal (`FILERED_STORAGE_PATH/_nodos/{nodoUuid}`), el equipo lo descarga, verifica el SHA-256 y confirma; en ese momento se borra la copia del servidor. Las descargas públicas de un archivo en un equipo se piden al equipo en vivo; si está desconectado se responde `503`.
+- **Protocolo del equipo** (`/api/nodo/**`, encabezado `X-Nodo-Token`, conexión siempre saliente desde el equipo, sin abrir puertos): `vincular`, `estado`, `ordenes` (espera larga de 25 s), `contenido/{tarea}`, `confirmar/{tarea}`, `entregar/{solicitud}`, `desvincular`.
+- El espacio del plan solo cuenta lo guardado en la Nube.
+- **Planes**: cada plan define en Center → Planes si incluye *Nodos* (`permitirNodos`), *Almacenamiento en la Nube* (`permitirNube`, activada por defecto) y *Servidores de respaldo* (`permitirRespaldos`). Sin Nube, Nodos es obligatorio: todo va directo al equipo Por defecto y, si está desconectado, la subida se rechaza (el servidor nunca guarda nada). Sin la función, el cliente no puede crear ese tipo de nodo y los que ya tiene quedan en **solo lectura** (ver, descargar, reconectar el mismo equipo, restaurar en la Nube y eliminar); la API vuelve a la Nube y los respaldos dejan de copiar. Si en `NODOS_DIAS_SIN_PLAN` días (30 por defecto) el plan no los cubre, una tarea programada los elimina (`app.filered.nodos.cron-limpieza`, por defecto cada hora en el minuto 15).
+
+### Servidores de respaldo
+
+- Un respaldo es un nodo con rol `Respaldo` (mismo programa FileRed). No se explora, no puede ser Por defecto y elige qué nodos respalda (la Nube y/o equipos).
+- En el equipo de respaldo cada origen tiene su carpeta: `Nube/…` y `{Nombre del equipo} ({id})/…`.
+- Al agregar un origen se copia todo lo que ya tiene; cada subida, reemplazo, renombrado o eliminación se replica (lo eliminado se elimina también del respaldo). Al quitar un origen se borra su carpeta del respaldo.
+- La copia temporal del servidor se borra en cuanto el nodo principal confirma; el respaldo toma el archivo de la Nube o se lo pide al equipo de origen a través de FileRed (si está apagado, se reintenta).
+- Si el equipo de origen está apagado, las URLs públicas se sirven desde un respaldo conectado.
+- **Restaurar en la Nube**: mueve todos los archivos de un equipo a la Nube copiándolos desde sus respaldos (las URLs no cambian).
+- Tablas: `RespaldosOrigenes`, `ArchivosRespaldos` (V9).
+
+### Programa FileRed (`APP/FileRed`)
+
+Programa de escritorio en Java 17 sin dependencias (Swing). Ventana pequeña para vincular el equipo y ver el estado; queda en la bandeja del sistema y puede iniciar con el equipo.
+
+```bash
+cd APP/FileRed
+./mvnw clean package
+java -jar target/FileRed.jar
+```
+
+En servidores sin pantalla:
+
+```bash
+java -jar FileRed.jar --servidor https://tu-filered.com --codigo XXXX-XXXX-XXXX --carpeta /ruta/archivos
+java -jar FileRed.jar --consola
+java -jar FileRed.jar --desvincular
+java -jar FileRed.jar --datos /ruta/config-2 --consola
+```
+
+`--datos` permite correr varias instancias (por ejemplo un equipo y un respaldo) en la misma máquina.
+
+El `FileRed.jar` compilado se publica en `API/FileRed/src/main/webapp/pages/files/descargas/FileRed.jar` para el botón **Descargar FileRed** del Customer; al cambiar el programa hay que volver a copiarlo ahí.
+
 ## Despliegue
 
 1. MariaDB con una base vacía (`utf8mb4`) y la carpeta de `FILERED_STORAGE_PATH` con permisos de escritura.
 2. `.env` en `/opt/filered/.env` (la app lo busca en `./opt/filered/.env` relativo a la carpeta desde donde arranca Tomcat).
 3. `.\mvnw.cmd clean package` y copiar `target/filered-<versión>.war` como `filered.war` a `webapps` de **Tomcat 11** (Java 17+).
 4. Entrar con el usuario administrador del `.env` y cambiar su contraseña.
+5. Si el `.env` del servidor define `JWT_PUBLIC_PATHS`, incluir `/api/nodo/**` (el filtro la agrega igualmente). Detrás de Caddy/Nginx, permitir peticiones de al menos 60 s para la espera larga de `/api/nodo/ordenes`.
 
 <hr>
 

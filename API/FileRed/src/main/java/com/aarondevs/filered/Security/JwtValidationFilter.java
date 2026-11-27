@@ -30,7 +30,9 @@ public class JwtValidationFilter extends OncePerRequestFilter {
             List<String> publicPaths
     ) {
         this.jwtService = jwtService;
-        this.publicPaths = List.copyOf(publicPaths);
+        List<String> rutas = new java.util.ArrayList<>(publicPaths);
+        if (!rutas.contains("/api/nodo/**")) rutas.add("/api/nodo/**");
+        this.publicPaths = List.copyOf(rutas);
     }
 
     @Override

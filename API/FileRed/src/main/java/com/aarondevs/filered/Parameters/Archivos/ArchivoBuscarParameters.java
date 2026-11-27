@@ -10,4 +10,5 @@ public class ArchivoBuscarParameters {
     private String buscar;
     private Integer page;
     private Integer size;
+    private Long nodoId;
 }

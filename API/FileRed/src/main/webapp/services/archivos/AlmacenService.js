@@ -1,6 +1,6 @@
 window.AlmacenService = {
-    listar: (clienteId = null) => FileRedApi.post("/api/archivos/almacenes/getAll", { clienteId }),
-    agregar: almacen => FileRedApi.post("/api/archivos/almacenes/add", { almacen }),
-    renombrar: (almacen, nombre) => FileRedApi.put("/api/archivos/almacenes/update", { almacen, nombre }),
-    eliminar: almacen => FileRedApi.delete("/api/archivos/almacenes/delete", { almacen })
+    listar: (clienteId = null, nodoId = 0) => FileRedApi.post("/api/archivos/almacenes/getAll", { clienteId, nodoId }),
+    agregar: (almacen, nodoId = 0) => FileRedApi.post("/api/archivos/almacenes/add", { almacen, nodoId }),
+    renombrar: (almacen, nombre, nodoId = 0) => FileRedApi.put("/api/archivos/almacenes/update", { almacen, nombre, nodoId }),
+    eliminar: (almacen, nodoId = 0) => FileRedApi.delete("/api/archivos/almacenes/delete", { almacen, nodoId })
 };

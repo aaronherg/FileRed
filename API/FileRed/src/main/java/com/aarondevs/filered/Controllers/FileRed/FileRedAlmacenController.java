@@ -5,6 +5,7 @@ import com.aarondevs.filered.Parameters.Archivos.AlmacenAgregarParameters;
 import com.aarondevs.filered.Parameters.Archivos.AlmacenIdParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/fileRed/almacenes")
 public class FileRedAlmacenController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final FileRedApiSupport support;
 
-    public FileRedAlmacenController(ArchivoService service, FileRedApiSupport support) {
-        this.service = service;
+    public FileRedAlmacenController(DestinoArchivoService destinos, FileRedApiSupport support) {
+        this.destinos = destinos;
         this.support = support;
     }
 
@@ -31,6 +32,7 @@ public class FileRedAlmacenController {
         try {
             var llave = support.autenticar(request, "agregar_almacen");
             if (parametro == null) throw new IllegalArgumentException("almacen es requerido");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.status(201).body(ApiResponse.success(201,
                     service.crearAlmacen(llave.getClienteId(), support.texto(parametro.getAlmacen())), "Almacén creado correctamente"));
         } catch (Exception error) {
@@ -43,6 +45,7 @@ public class FileRedAlmacenController {
         try {
             var llave = support.autenticar(request, "actualizar_almacen");
             if (parametro == null) throw new IllegalArgumentException("almacen y nombre son requeridos");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarAlmacen(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getNombre()), support.actor(llave)), "Almacén renombrado correctamente"));
         } catch (Exception error) {
@@ -54,6 +57,7 @@ public class FileRedAlmacenController {
     public ResponseEntity<ApiResponse<?>> getAll(HttpServletRequest request) {
         try {
             var llave = support.autenticar(request, "obtener_almacenes");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.almacenes(llave.getClienteId()), "Almacenes obtenidos correctamente"));
         } catch (Exception error) {
             return support.error(error);
@@ -65,6 +69,7 @@ public class FileRedAlmacenController {
         try {
             var llave = support.autenticar(request, "eliminar_almacen");
             if (parametro == null) throw new IllegalArgumentException("almacen es requerido");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.eliminarAlmacen(llave.getClienteId(), support.texto(parametro.getAlmacen())),
                     "Almacén eliminado correctamente"));
         } catch (Exception error) {

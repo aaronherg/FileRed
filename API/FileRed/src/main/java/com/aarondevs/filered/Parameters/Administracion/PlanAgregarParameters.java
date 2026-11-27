@@ -17,4 +17,7 @@ public class PlanAgregarParameters {
     private Boolean destacado;
     private Boolean publico;
     private Integer orden;
+    private Boolean permitirNube;
+    private Boolean permitirNodos;
+    private Boolean permitirRespaldos;
 }

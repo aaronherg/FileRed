@@ -25,12 +25,13 @@ public class PlanDAO implements PlanDataSet {
         String uuid = UUID.randomUUID().toString();
         String monedaUuid = jdbc.queryForObject("SELECT monedaUuid FROM Monedas WHERE monedaId=?", String.class, parametro.getMonedaId());
         jdbc.update("INSERT INTO Planes (planUuid, monedaId, monedaUuid, nombre, descripcion, modalidad, espacioGb, tamanoMaximoArchivoMb, "
-                        + "precio, precioGbAdicional, caracteristicas, destacado, publico, orden, usuarioCreacionUuid) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                        + "precio, precioGbAdicional, caracteristicas, destacado, publico, orden, permitirNube, permitirNodos, permitirRespaldos, usuarioCreacionUuid) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 uuid, parametro.getMonedaId(), monedaUuid, parametro.getNombre().trim(), parametro.getDescripcion(), parametro.getModalidad(),
                 parametro.getEspacioGb(), parametro.getTamanoMaximoArchivoMb(), parametro.getPrecio(), parametro.getPrecioGbAdicional(),
                 parametro.getCaracteristicas(), Boolean.TRUE.equals(parametro.getDestacado()), !Boolean.FALSE.equals(parametro.getPublico()),
-                parametro.getOrden() == null ? 0 : parametro.getOrden(), actor);
+                parametro.getOrden() == null ? 0 : parametro.getOrden(), nube(parametro), nodos(parametro),
+                Boolean.TRUE.equals(parametro.getPermitirRespaldos()), actor);
         return findByUuid(uuid);
     }
 
@@ -39,12 +40,14 @@ public class PlanDAO implements PlanDataSet {
         String monedaUuid = jdbc.queryForObject("SELECT monedaUuid FROM Monedas WHERE monedaId=?", String.class, parametro.getMonedaId());
         int actualizados = jdbc.update("UPDATE Planes SET monedaId=?, monedaUuid=?, nombre=?, descripcion=?, modalidad=?, espacioGb=?, "
                         + "tamanoMaximoArchivoMb=?, precio=?, precioGbAdicional=?, caracteristicas=?, destacado=?, publico=?, orden=?, "
+                        + "permitirNube=?, permitirNodos=?, permitirRespaldos=?, "
                         + "estado=COALESCE(NULLIF(?,''),estado), fechaModificacion=NOW(3), fechaVersion=NOW(3), version=version+1, "
                         + "usuarioModificacionUuid=? WHERE planUuid=? AND estado<>'Eliminado'",
                 parametro.getMonedaId(), monedaUuid, parametro.getNombre().trim(), parametro.getDescripcion(), parametro.getModalidad(),
                 parametro.getEspacioGb(), parametro.getTamanoMaximoArchivoMb(), parametro.getPrecio(), parametro.getPrecioGbAdicional(),
                 parametro.getCaracteristicas(), Boolean.TRUE.equals(parametro.getDestacado()), !Boolean.FALSE.equals(parametro.getPublico()),
-                parametro.getOrden() == null ? 0 : parametro.getOrden(), parametro.getEstado(), actor, parametro.getPlanUuid());
+                parametro.getOrden() == null ? 0 : parametro.getOrden(), nube(parametro), nodos(parametro),
+                Boolean.TRUE.equals(parametro.getPermitirRespaldos()), parametro.getEstado(), actor, parametro.getPlanUuid());
         return actualizados == 0 ? null : findByUuid(parametro.getPlanUuid());
     }
 
@@ -86,5 +89,13 @@ public class PlanDAO implements PlanDataSet {
     public boolean delete(Long id, String actor) {
         return jdbc.update("UPDATE Planes SET estado='Eliminado', fechaModificacion=NOW(3), fechaVersion=NOW(3), version=version+1, "
                 + "usuarioModificacionUuid=? WHERE planId=? AND estado<>'Eliminado'", actor, id) > 0;
+    }
+
+    private static boolean nube(PlanAgregarParameters parametro) {
+        return !Boolean.FALSE.equals(parametro.getPermitirNube());
+    }
+
+    private static boolean nodos(PlanAgregarParameters parametro) {
+        return Boolean.TRUE.equals(parametro.getPermitirNodos()) || !nube(parametro);
     }
 }

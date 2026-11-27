@@ -39,8 +39,8 @@ export function loadStyles() {
 .sg-2fa small { display: block; margin-top: 3px; color: var(--muted); font-size: .8rem; }
 .sg-switch { position: relative; flex: none; width: 46px; height: 26px; }
 .sg-switch input { position: absolute; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
-.sg-switch span { position: absolute; inset: 0; border-radius: 999px; background: var(--surface-alt); border: 1px solid var(--line); transition: background .15s; }
-.sg-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--text-secondary); transition: transform .15s, background .15s; }
+.sg-switch span { position: absolute; inset: 0; border-radius: 999px; background: color-mix(in srgb, var(--muted) 32%, transparent); border: 1px solid var(--line-strong); transition: background .2s, border-color .2s; }
+.sg-switch span::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; box-shadow: 0 2px 5px rgba(0,0,0,.3); transition: transform .22s cubic-bezier(.3, 1.4, .5, 1); }
 .sg-switch input:checked + span { background: var(--accent); border-color: var(--accent); }
 .sg-switch input:checked + span::after { transform: translateX(20px); background: #fff; }
 .sg-switch input:disabled { cursor: default; }

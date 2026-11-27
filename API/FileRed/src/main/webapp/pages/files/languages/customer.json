@@ -560,6 +560,303 @@
     },
     "Sin actividad en el periodo seleccionado.": {
       "en": "No activity in the selected period."
+    },
+    "Nodos": {
+      "en": "Nodes"
+    },
+    "Equipos donde se guardan tus archivos.": {
+      "en": "Devices where your files are stored."
+    },
+    "Tus nodos de almacenamiento": {
+      "en": "Your storage nodes"
+    },
+    "Descargar FileRed": {
+      "en": "Download FileRed"
+    },
+    "Nuevo nodo": {
+      "en": "New node"
+    },
+    "Nube": {
+      "en": "Cloud"
+    },
+    "Servidor de FileRed": {
+      "en": "FileRed server"
+    },
+    "Integrado": {
+      "en": "Built-in"
+    },
+    "En línea": {
+      "en": "Online"
+    },
+    "Conectado": {
+      "en": "Connected"
+    },
+    "Desconectado": {
+      "en": "Disconnected"
+    },
+    "Sin vincular": {
+      "en": "Not linked"
+    },
+    "Esperando vinculación": {
+      "en": "Waiting for link"
+    },
+    "Por defecto": {
+      "en": "Default"
+    },
+    "Usar por defecto": {
+      "en": "Use as default"
+    },
+    "guardados": {
+      "en": "stored"
+    },
+    "Equipo": {
+      "en": "Device"
+    },
+    "Última conexión": {
+      "en": "Last connection"
+    },
+    "Disco del equipo": {
+      "en": "Device disk"
+    },
+    "Equipo propio": {
+      "en": "Own device"
+    },
+    "enviándose": {
+      "en": "sending"
+    },
+    "Siempre disponible. Es el almacenamiento propio del servidor y no se puede editar ni eliminar.": {
+      "en": "Always available. It is the server's own storage and cannot be edited or deleted."
+    },
+    "Agregar nodo": {
+      "en": "Add node"
+    },
+    "Guarda tus archivos en un equipo de tu casa, oficina o servidor propio.": {
+      "en": "Store your files on a device at home, at the office or on your own server."
+    },
+    "Generar código": {
+      "en": "Generate code"
+    },
+    "Nuevo código": {
+      "en": "New code"
+    },
+    "Vincular otro equipo": {
+      "en": "Link another device"
+    },
+    "Generar código de vinculación": {
+      "en": "Generate link code"
+    },
+    "Código de vinculación": {
+      "en": "Link code"
+    },
+    "Eliminar": {
+      "en": "Delete"
+    },
+    "Vincula tu equipo": {
+      "en": "Link your device"
+    },
+    "Servidor": {
+      "en": "Server"
+    },
+    "Descarga FileRed": {
+      "en": "Download FileRed"
+    },
+    "Funciona en Windows, macOS y Linux con Java 17 o superior.": {
+      "en": "Works on Windows, macOS and Linux with Java 17 or later."
+    },
+    "Ábrelo en el equipo": {
+      "en": "Open it on the device"
+    },
+    "Escribe el servidor y el código de vinculación, y elige la carpeta donde se guardarán los archivos.": {
+      "en": "Enter the server and the link code, and choose the folder where files will be stored."
+    },
+    "Listo": {
+      "en": "Done"
+    },
+    "¡Equipo vinculado!": {
+      "en": "Device linked!"
+    },
+    "Nombre del nodo": {
+      "en": "Node name"
+    },
+    "Crear nodo": {
+      "en": "Create node"
+    },
+    "Renombrar nodo": {
+      "en": "Rename node"
+    },
+    "Guardar": {
+      "en": "Save"
+    },
+    "Eliminar nodo": {
+      "en": "Delete node"
+    },
+    "Nodo actualizado correctamente": {
+      "en": "Node updated successfully"
+    },
+    "Nodo eliminado correctamente": {
+      "en": "Node deleted successfully"
+    },
+    "Nodo por defecto actualizado": {
+      "en": "Default node updated"
+    },
+    "Por ejemplo: Servidor de la oficina, PC de la casa, NAS.": {
+      "en": "For example: Office server, Home PC, NAS."
+    },
+    "Elige un nodo": {
+      "en": "Choose a node"
+    },
+    "Selecciona dónde quieres explorar tus archivos: la Nube o uno de tus equipos.": {
+      "en": "Choose where you want to browse your files: the Cloud or one of your devices."
+    },
+    "Administrar nodos": {
+      "en": "Manage nodes"
+    },
+    "nodos": {
+      "en": "nodes"
+    },
+    "Enviando al equipo": {
+      "en": "Sending to device"
+    },
+    "Lo que llega por la API se guarda en el nodo marcado como": {
+      "en": "What arrives through the API is stored in the node marked as"
+    },
+    "Instala FileRed en el equipo y escribe el código que generaste. Vence:": {
+      "en": "Install FileRed on the device and enter the code you generated. Expires:"
+    },
+    "Genera un código de vinculación e instala FileRed en el equipo donde quieres guardar los archivos.": {
+      "en": "Generate a link code and install FileRed on the device where you want to store your files."
+    },
+    "Esperando a que el equipo se vincule… Este código solo se muestra una vez. Vence:": {
+      "en": "Waiting for the device to link… This code is shown only once. Expires:"
+    },
+    "Equipos donde se guardan tus archivos": {
+      "en": "Devices where your files are stored"
+    },
+    "Consultar nodos": {
+      "en": "View nodes"
+    },
+    "Elegir el nodo por defecto": {
+      "en": "Choose the default node"
+    },
+    "Renombrar nodo y generar código de vinculación": {
+      "en": "Rename node and generate link code"
+    },
+    "Nodos y respaldos": {
+      "en": "Nodes and backups"
+    },
+    "Equipos donde se guardan y respaldan tus archivos.": {
+      "en": "Devices where your files are stored and backed up."
+    },
+    "Almacenamiento": {
+      "en": "Storage"
+    },
+    "Dónde viven tus archivos.": {
+      "en": "Where your files live."
+    },
+    "Servidores de respaldo": {
+      "en": "Backup servers"
+    },
+    "Copias exactas de los nodos que elijas. Si un equipo se apaga, tus archivos se siguen entregando desde el respaldo.": {
+      "en": "Exact copies of the nodes you choose. If a device goes offline, your files keep being served from the backup."
+    },
+    "Sincronizado": {
+      "en": "Synced"
+    },
+    "Respalda": {
+      "en": "Backs up"
+    },
+    "Ningún nodo elegido": {
+      "en": "No node selected"
+    },
+    "Última copia": {
+      "en": "Last copy"
+    },
+    "Servidor de respaldo": {
+      "en": "Backup server"
+    },
+    "en cola": {
+      "en": "queued"
+    },
+    "Agregar servidor de respaldo": {
+      "en": "Add backup server"
+    },
+    "Un servidor tuyo que guarda una copia exacta de los nodos que elijas.": {
+      "en": "A server of yours that keeps an exact copy of the nodes you choose."
+    },
+    "Respaldos no incluidos": {
+      "en": "Backups not included"
+    },
+    "Nodos propios no incluidos": {
+      "en": "Own nodes not included"
+    },
+    "Tu plan actual no incluye servidores de respaldo.": {
+      "en": "Your current plan does not include backup servers."
+    },
+    "Tu plan actual solo usa la Nube.": {
+      "en": "Your current plan only uses the Cloud."
+    },
+    "Mejora tu plan para activarlo.": {
+      "en": "Upgrade your plan to enable it."
+    },
+    "Nuevo servidor de respaldo": {
+      "en": "New backup server"
+    },
+    "Guarda una copia exacta de los nodos que elijas, incluyendo lo que ya tienen.": {
+      "en": "Keeps an exact copy of the nodes you choose, including what they already have."
+    },
+    "Nombre del respaldo": {
+      "en": "Backup name"
+    },
+    "Por ejemplo: Respaldo oficina, Servidor NAS.": {
+      "en": "For example: Office backup, NAS server."
+    },
+    "Nodos que respaldará": {
+      "en": "Nodes to back up"
+    },
+    "Crear respaldo": {
+      "en": "Create backup"
+    },
+    "Nodos que respalda": {
+      "en": "Backed-up nodes"
+    },
+    "Elegir nodos a respaldar": {
+      "en": "Choose nodes to back up"
+    },
+    "Al agregar un nodo se copia todo lo que ya tiene. Al quitarlo, su copia se elimina de este respaldo.": {
+      "en": "Adding a node copies everything it already has. Removing it deletes its copy from this backup."
+    },
+    "Restaurar en la Nube": {
+      "en": "Restore to the Cloud"
+    },
+    "Restaurar en la Nube desde el respaldo": {
+      "en": "Restore to the Cloud from the backup"
+    },
+    "Restaurar": {
+      "en": "Restore"
+    },
+    "Restauración iniciada": {
+      "en": "Restore started"
+    },
+    "Nodos respaldados actualizados": {
+      "en": "Backed-up nodes updated"
+    },
+    "Instala FileRed en el servidor de respaldo y escribe el código que generaste. Vence:": {
+      "en": "Install FileRed on the backup server and enter the code you generated. Expires:"
+    },
+    "Genera un código de vinculación e instala FileRed en el servidor de respaldo.": {
+      "en": "Generate a link code and install FileRed on the backup server."
+    },
+    "Restaurar archivos desde un respaldo": {
+      "en": "Restore files from a backup"
+    },
+    "Equipos donde se guardan y respaldan tus archivos": {
+      "en": "Devices where your files are stored and backed up"
+    },
+    "almacenamiento en la Nube": {
+      "en": "cloud storage"
+    },
+    "Tu plan no incluye almacenamiento en la Nube: lo que llega por la API va directo a tu equipo Por defecto y, si está desconectado, no se guarda.": {
+      "en": "Your plan does not include cloud storage: what arrives through the API goes straight to your Default device and, if it is offline, it is not stored."
     }
   }
 }

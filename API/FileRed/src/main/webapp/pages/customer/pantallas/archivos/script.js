@@ -1,5 +1,7 @@
 let ui;
 let raiz;
+let nodo = null;
+let nodos = [];
 let almacen = "";
 let categoria = "";
 let almacenes = [];
@@ -14,7 +16,7 @@ let vista = "lista";
 let seleccion = new Set();
 let temporizador = 0;
 
-const VERSION = "20261120-5";
+const VERSION = "20261127-3";
 const NOMBRE_VALIDO = /^[\p{L}\p{N}][\p{L}\p{N} ._-]{0,127}$/u;
 const IMAGENES = new Set(["jpg", "jpeg", "png", "gif", "webp", "bmp", "svg", "ico"]);
 const VIDEOS = new Set(["mp4", "webm", "m4v", "mov"]);
@@ -52,8 +54,31 @@ function nombreArchivo(a) {
     return a.nombreOriginal || `${a.identificador}.${a.extension}`;
 }
 
+function puede(modulo, accion) {
+    if (!ui.puede(modulo, accion)) return false;
+    return !(modulo === "archivos" && accion !== "listar" && nodo?.soloLectura);
+}
+
 function nivel() {
-    return categoria ? "archivos" : almacen ? "carpetas" : "almacenes";
+    return !nodo ? "nodos" : categoria ? "archivos" : almacen ? "carpetas" : "almacenes";
+}
+
+function nodoId() {
+    return nodo ? Number(nodo.nodoId) || 0 : 0;
+}
+
+function esNube(n) {
+    return !n || Number(n.nodoId) === 0;
+}
+
+function iconoNodo(n) {
+    return esNube(n) ? "cloud" : "server";
+}
+
+function estadoNodo(n) {
+    if (esNube(n)) return '<span class="fs-node-status is-on"><i></i>En línea</span>';
+    if (!n.vinculado) return '<span class="fs-node-status is-wait"><i></i>Sin vincular</span>';
+    return n.conectado ? '<span class="fs-node-status is-on"><i></i>Conectado</span>' : '<span class="fs-node-status is-off"><i></i>Desconectado</span>';
 }
 
 function nombreValido(valor) {
@@ -66,10 +91,12 @@ function vacio(icono, mensaje, accion = "") {
 
 function pintarSesion() {
     const n = nivel();
-    const migas = [`<button type="button" data-ir="raiz">${ui.icono("hard")}<span>Almacenes</span></button>`];
+    const migas = [`<button type="button" data-ir="nodos">${ui.icono("server")}<span>Nodos</span></button>`];
+    if (nodo) migas.push(`<button type="button" data-ir="raiz" data-i18n-skip>${ui.icono(iconoNodo(nodo))}<span>${ui.escapar(nodo.nombre)}</span></button>`);
     if (almacen) migas.push(`<button type="button" data-ir="almacen" data-i18n-skip>${ui.icono("folder-open")}<span>${ui.escapar(almacen)}</span></button>`);
     if (categoria) migas.push(`<span class="fs-crumb-actual" data-i18n-skip>${ui.icono("folder")}<span>${ui.escapar(categoria)}</span></span>`);
     const titulos = {
+        nodos: ["Elige un nodo", "Selecciona dónde quieres explorar tus archivos: la Nube o uno de tus equipos."],
         almacenes: ["Almacenes", "Cada almacén agrupa las carpetas de un proyecto o aplicación."],
         carpetas: [almacen, "Carpetas del almacén. Entra a una carpeta para gestionar sus archivos."],
         archivos: [categoria, `Archivos de ${almacen} / ${categoria}`]
@@ -78,31 +105,39 @@ function pintarSesion() {
     raiz.querySelector("[data-sesion]").innerHTML = `
         <nav class="fs-crumbs" aria-label="Ubicación">${migas.join(ui.icono("chevron-right", "fs-sep"))}</nav>
         <div class="fs-session-head">
-            ${n !== "almacenes" ? `<button class="fr-icon-btn" type="button" data-atras title="Volver" aria-label="Volver">${ui.icono("chevron-right", "fs-back")}</button>` : ""}
-            <span class="fs-session-icon">${ui.icono(n === "almacenes" ? "hard" : n === "carpetas" ? "folder-open" : "folder")}</span>
+            ${n !== "nodos" ? `<button class="fr-icon-btn" type="button" data-atras title="Volver" aria-label="Volver">${ui.icono("chevron-right", "fs-back")}</button>` : ""}
+            <span class="fs-session-icon">${ui.icono(n === "nodos" ? "server" : n === "almacenes" ? iconoNodo(nodo) : n === "carpetas" ? "folder-open" : "folder")}</span>
             <div>
-                <h2 ${n === "almacenes" ? "" : "data-i18n-skip"}>${ui.escapar(titulo)}</h2>
+                <h2 ${n === "almacenes" || n === "nodos" ? "" : "data-i18n-skip"}>${ui.escapar(titulo)}</h2>
                 <p>${ui.escapar(descripcion)}</p>
             </div>
             <div class="fs-session-stats" data-estadisticas></div>
-        </div>`;
+        </div>
+        ${n !== "nodos" && nodo?.soloLectura ? `<p class="fr-note fs-node-note">${ui.icono("lock")}<span>${ui.escapar(esNube(nodo) ? "La Nube" : nodo.nombre)} está en solo lectura porque tu plan no incluye ${esNube(nodo) ? "almacenamiento en la Nube" : "nodos propios"}. Puedes ver y descargar tus archivos${nodo.eliminacion ? `; se eliminará el ${ui.formato.fecha(nodo.eliminacion)} si tu plan no lo cubre` : ""}.</span></p>` : ""}
+        ${n !== "nodos" && nodo && !esNube(nodo) && !nodo.conectado ? `<p class="fr-note fs-node-note">${ui.icono("wifi-off")}<span>${ui.escapar(nodo.nombre)} está desconectado. Puedes ver y organizar tus archivos, pero no abrirlos ni descargarlos hasta que el equipo vuelva a conectarse.</span></p>` : ""}`;
 }
 
 function pintarToolbar() {
     const n = nivel();
     let html = "";
-    if (n === "almacenes") {
+    if (n === "nodos") {
+        html = `
+            <p class="fr-toolbar-text">Lo que llega por la API se guarda en el nodo marcado como <strong>Por defecto</strong>.</p>
+            <span class="fr-toolbar-spacer"></span>
+            <button class="fr-btn" type="button" data-recargar>${ui.icono("refresh")}<span>Actualizar</span></button>
+            ${ui.puede("nodos", "listar") ? `<button class="fr-btn fr-btn-primary" type="button" data-administrar-nodos>${ui.icono("settings")}<span>Administrar nodos</span></button>` : ""}`;
+    } else if (n === "almacenes") {
         html = `
             <label class="fr-search">${ui.icono("search")}<input class="fr-input" type="search" placeholder="Filtrar almacenes" value="${ui.escapar(filtroLocal)}" data-filtro-local aria-label="Filtrar almacenes"></label>
             <span class="fr-toolbar-spacer"></span>
             <button class="fr-btn" type="button" data-recargar>${ui.icono("refresh")}<span>Actualizar</span></button>
-            ${ui.puede("archivos", "gestionar_almacenes") ? `<button class="fr-btn fr-btn-primary" type="button" data-nuevo-almacen>${ui.icono("plus")}<span>Nuevo almacén</span></button>` : ""}`;
+            ${puede("archivos", "gestionar_almacenes") ? `<button class="fr-btn fr-btn-primary" type="button" data-nuevo-almacen>${ui.icono("plus")}<span>Nuevo almacén</span></button>` : ""}`;
     } else if (n === "carpetas") {
         html = `
             <label class="fr-search">${ui.icono("search")}<input class="fr-input" type="search" placeholder="Filtrar carpetas" value="${ui.escapar(filtroLocal)}" data-filtro-local aria-label="Filtrar carpetas"></label>
             <span class="fr-toolbar-spacer"></span>
             <button class="fr-btn" type="button" data-recargar>${ui.icono("refresh")}<span>Actualizar</span></button>
-            ${ui.puede("archivos", "gestionar_carpetas") ? `<button class="fr-btn fr-btn-primary" type="button" data-nueva-carpeta>${ui.icono("plus")}<span>Nueva carpeta</span></button>` : ""}`;
+            ${puede("archivos", "gestionar_carpetas") ? `<button class="fr-btn fr-btn-primary" type="button" data-nueva-carpeta>${ui.icono("plus")}<span>Nueva carpeta</span></button>` : ""}`;
     } else {
         html = `
             <label class="fr-search">${ui.icono("search")}<input class="fr-input" type="search" placeholder="Buscar por nombre o extensión" value="${ui.escapar(buscarArchivo)}" data-buscar-archivo aria-label="Buscar archivos"></label>
@@ -115,7 +150,7 @@ function pintarToolbar() {
             </div>
             <span class="fr-toolbar-spacer"></span>
             <button class="fr-btn" type="button" data-recargar>${ui.icono("refresh")}<span>Actualizar</span></button>
-            ${ui.puede("archivos", "subir") ? `<button class="fr-btn fr-btn-primary" type="button" data-subir>${ui.icono("upload")}<span>Subir archivos</span></button>` : ""}`;
+            ${puede("archivos", "subir") ? `<button class="fr-btn fr-btn-primary" type="button" data-subir>${ui.icono("upload")}<span>Subir archivos</span></button>` : ""}`;
     }
     raiz.querySelector("[data-toolbar]").innerHTML = html;
 }
@@ -140,8 +175,31 @@ function tarjeta({ tipo, nombre, detalle, fecha, acciones }) {
 }
 
 function accionesTarjeta(permiso) {
-    if (!ui.puede("archivos", permiso)) return "";
+    if (!puede("archivos", permiso)) return "";
     return ui.botonAccion("renombrar", "pencil", "Renombrar") + ui.botonAccion("eliminar", "trash", "Eliminar", "is-danger");
+}
+
+function pintarNodos() {
+    estadisticas([
+        [ui.formato.numero(nodos.length), "nodos"],
+        [ui.formato.numero(nodos.reduce((t, x) => t + Number(x.archivos || 0), 0)), "archivos"],
+        [ui.formato.bytes(nodos.reduce((t, x) => t + Number(x.bytes || 0), 0)), "usados"]
+    ]);
+    raiz.querySelector("[data-contenido]").innerHTML = `<div class="fs-grid fs-node-grid">${nodos
+        .map(
+            n => `
+            <article class="fs-card fs-node-card ${n.predeterminado ? "is-default" : ""}" data-nodo="${ui.escapar(n.nodoId)}" tabindex="0" role="button" aria-label="${ui.escapar(n.nombre)}">
+                <span class="fs-card-icon ${esNube(n) ? "is-cloud" : "is-server"}">${ui.icono(iconoNodo(n))}</span>
+                <div class="fs-card-body">
+                    <strong ${esNube(n) ? "" : "data-i18n-skip"}>${ui.escapar(esNube(n) ? "Nube" : n.nombre)}</strong>
+                    <small>${ui.formato.numero(n.archivos)} archivos · ${ui.formato.bytes(n.bytes)}</small>
+                    <span class="fs-node-tags">${estadoNodo(n)}${n.predeterminado ? `<span class="fs-node-default">${ui.icono("star")}Por defecto</span>` : ""}${n.soloLectura ? `<span class="fs-node-status is-wait"><i></i>Solo lectura</span>` : ""}</span>
+                </div>
+                <span class="fs-node-go">${ui.icono("chevron-right")}</span>
+            </article>`
+        )
+        .join("")}</div>`;
+    raiz.querySelector("[data-paginador]").innerHTML = "";
 }
 
 function pintarAlmacenes() {
@@ -154,7 +212,7 @@ function pintarAlmacenes() {
         [ui.formato.numero(totalArchivos), "archivos"],
         [ui.formato.bytes(totalBytes), "usados"]
     ]);
-    const crear = ui.puede("archivos", "gestionar_almacenes")
+    const crear = puede("archivos", "gestionar_almacenes")
         ? `<button class="fr-btn fr-btn-primary" type="button" data-nuevo-almacen>${ui.icono("plus")}<span>Crear mi primer almacén</span></button>`
         : "";
     raiz.querySelector("[data-contenido]").innerHTML = filas.length
@@ -183,7 +241,7 @@ function pintarCarpetas() {
         [ui.formato.numero(carpetas.reduce((t, c) => t + Number(c.archivos || 0), 0)), "archivos"],
         [ui.formato.bytes(carpetas.reduce((t, c) => t + Number(c.bytes || 0), 0)), "usados"]
     ]);
-    const crear = ui.puede("archivos", "gestionar_carpetas")
+    const crear = puede("archivos", "gestionar_carpetas")
         ? `<button class="fr-btn fr-btn-primary" type="button" data-nueva-carpeta>${ui.icono("plus")}<span>Crear carpeta</span></button>`
         : "";
     raiz.querySelector("[data-contenido]").innerHTML = filas.length
@@ -214,9 +272,9 @@ function accionesArchivo() {
         ui.botonAccion("ver", "eye", "Ver detalle"),
         ui.botonAccion("copiar", "link", "Copiar URL pública"),
         ui.botonAccion("descargar", "download", "Descargar"),
-        ui.puede("archivos", "subir") ? ui.botonAccion("renombrar", "pencil", "Renombrar") : "",
-        ui.puede("archivos", "subir") ? ui.botonAccion("reemplazar", "refresh", "Reemplazar contenido") : "",
-        ui.puede("archivos", "eliminar") ? ui.botonAccion("eliminar", "trash", "Eliminar", "is-danger") : ""
+        puede("archivos", "subir") ? ui.botonAccion("renombrar", "pencil", "Renombrar") : "",
+        puede("archivos", "subir") ? ui.botonAccion("reemplazar", "refresh", "Reemplazar contenido") : "",
+        puede("archivos", "eliminar") ? ui.botonAccion("eliminar", "trash", "Eliminar", "is-danger") : ""
     ].join("");
 }
 
@@ -227,7 +285,7 @@ function pintarArchivos() {
         [ui.formato.numero(total), "archivos"],
         [ui.formato.bytes(actual?.bytes || archivos.reduce((t, a) => t + Number(a.size || 0), 0)), "usados"]
     ]);
-    const puedeSubir = ui.puede("archivos", "subir");
+    const puedeSubir = puede("archivos", "subir");
     const contenido = raiz.querySelector("[data-contenido]");
     if (!archivos.length) {
         contenido.innerHTML = buscarArchivo
@@ -262,7 +320,7 @@ function pintarArchivos() {
                         <tr data-row="${ui.escapar(a.identificador)}" class="${seleccion.has(a.identificador) ? "is-selected" : ""}">
                             <td class="fs-col-check"><label class="fs-check"><input type="checkbox" data-seleccionar ${seleccion.has(a.identificador) ? "checked" : ""} aria-label="Seleccionar"></label></td>
                             <td data-label="Archivo"><button type="button" class="fs-file" data-action="ver">${miniatura(a)}<span><span class="fr-cell-main" data-i18n-skip>${ui.escapar(nombreArchivo(a))}</span><span class="fr-cell-sub fr-mono" data-i18n-skip>${ui.escapar(a.identificador)}.${ui.escapar(a.extension)}</span></span></button></td>
-                            <td data-label="Tamaño">${ui.formato.bytes(a.size)}</td>
+                            <td data-label="Tamaño">${ui.formato.bytes(a.size)}${a.estadoNodo === "Pendiente" ? `<span class="fr-cell-sub fs-sending">${ui.icono("clock")}Enviando al equipo</span>` : ""}</td>
                             <td data-label="Tipo"><span class="fr-badge is-plain" data-i18n-skip>${ui.escapar(a.extension.toUpperCase())}</span></td>
                             <td data-label="Subido">${ui.formato.fechaHora(a.fechaCreacion)}</td>
                             <td class="is-actions">${accionesArchivo()}</td>
@@ -286,7 +344,7 @@ function pintarSeleccion() {
     barra.innerHTML = `
         <strong>${ui.formato.numero(seleccion.size)} seleccionado(s)</strong>
         <button class="fr-btn fr-btn-sm" type="button" data-copiar-seleccion>${ui.icono("link")}<span>Copiar URLs</span></button>
-        ${ui.puede("archivos", "eliminar") ? `<button class="fr-btn fr-btn-sm fr-btn-danger" type="button" data-eliminar-seleccion>${ui.icono("trash")}<span>Eliminar</span></button>` : ""}
+        ${puede("archivos", "eliminar") ? `<button class="fr-btn fr-btn-sm fr-btn-danger" type="button" data-eliminar-seleccion>${ui.icono("trash")}<span>Eliminar</span></button>` : ""}
         <button class="fr-btn fr-btn-sm fr-btn-ghost" type="button" data-limpiar-seleccion>Quitar selección</button>`;
 }
 
@@ -294,16 +352,19 @@ async function cargar() {
     pintarSesion();
     pintarToolbar();
     try {
-        if (nivel() === "almacenes") {
-            almacenes = (await AlmacenService.listar()) || [];
+        if (nivel() === "nodos") {
+            nodos = ((await NodoService.listar()) || []).filter(n => n.rol !== "Respaldo");
+            pintarNodos();
+        } else if (nivel() === "almacenes") {
+            almacenes = (await AlmacenService.listar(null, nodoId())) || [];
             pintarAlmacenes();
         } else if (nivel() === "carpetas") {
-            carpetas = (await CarpetaService.listar(almacen)) || [];
+            carpetas = (await CarpetaService.listar(almacen, null, nodoId())) || [];
             pintarCarpetas();
         } else {
             const [respuesta, listaCarpetas] = await Promise.all([
-                ArchivoService.paginar({ almacen, categoria, page: pagina, size: tamanoPagina, buscar: buscarArchivo || null }),
-                CarpetaService.listar(almacen, null)
+                ArchivoService.paginar({ nodoId: nodoId(), almacen, categoria, page: pagina, size: tamanoPagina, buscar: buscarArchivo || null }),
+                CarpetaService.listar(almacen, null, nodoId())
             ]);
             respuestaArchivos = respuesta;
             archivos = respuesta?.records || [];
@@ -317,6 +378,11 @@ async function cargar() {
         raiz.querySelector("[data-paginador]").innerHTML = "";
         ui.notificarError(error);
     }
+}
+
+function elegirNodo(elegido) {
+    nodo = elegido;
+    ir("", "");
 }
 
 function ir(nuevoAlmacen, nuevaCategoria) {
@@ -357,7 +423,7 @@ function nuevoAlmacen() {
         textoGuardar: "Crear almacén",
         ayuda: AYUDA_NOMBRE,
         async alGuardar(nombre) {
-            await AlmacenService.agregar(nombre);
+            await AlmacenService.agregar(nombre, nodoId());
             AppNotifications.success("Almacén creado correctamente");
             ir(nombre, "");
         }
@@ -372,7 +438,7 @@ function nuevaCarpeta() {
         textoGuardar: "Crear carpeta",
         ayuda: AYUDA_NOMBRE,
         async alGuardar(nombre) {
-            await CarpetaService.agregar(almacen, nombre);
+            await CarpetaService.agregar(almacen, nombre, nodoId());
             AppNotifications.success("Carpeta creada correctamente");
             await cargar();
         }
@@ -388,7 +454,7 @@ function renombrarAlmacen(nombre) {
         textoGuardar: "Renombrar",
         ayuda: AYUDA_NOMBRE,
         async alGuardar(nuevo) {
-            await AlmacenService.renombrar(nombre, nuevo);
+            await AlmacenService.renombrar(nombre, nuevo, nodoId());
             AppNotifications.success("Almacén renombrado correctamente");
             await cargar();
         }
@@ -404,7 +470,7 @@ function renombrarCarpeta(nombre) {
         textoGuardar: "Renombrar",
         ayuda: AYUDA_NOMBRE,
         async alGuardar(nuevo) {
-            await CarpetaService.renombrar(almacen, nombre, nuevo);
+            await CarpetaService.renombrar(almacen, nombre, nuevo, nodoId());
             AppNotifications.success("Carpeta renombrada correctamente");
             await cargar();
         }
@@ -420,7 +486,7 @@ async function eliminarAlmacen(nombre) {
     });
     if (!ok) return;
     try {
-        await AlmacenService.eliminar(nombre);
+        await AlmacenService.eliminar(nombre, nodoId());
         AppNotifications.success("Almacén eliminado correctamente");
         await cargar();
     } catch (error) {
@@ -437,7 +503,7 @@ async function eliminarCarpeta(nombre) {
     });
     if (!ok) return;
     try {
-        await CarpetaService.eliminar(almacen, nombre);
+        await CarpetaService.eliminar(almacen, nombre, nodoId());
         AppNotifications.success("Carpeta eliminada correctamente");
         await cargar();
     } catch (error) {
@@ -451,6 +517,7 @@ async function subirArchivos(lista) {
     cola.hidden = false;
     const destinoAlmacen = almacen;
     const destinoCategoria = categoria;
+    const destinoNodo = nodoId();
     let exitosos = 0;
     for (const archivo of lista) {
         const item = document.createElement("li");
@@ -464,7 +531,7 @@ async function subirArchivos(lista) {
         try {
             await ArchivoService.subirConProgreso(destinoAlmacen, destinoCategoria, archivo, porcentaje => {
                 barra.style.width = `${porcentaje}%`;
-            });
+            }, destinoNodo);
             barra.style.width = "100%";
             estado.textContent = "Listo";
             estado.className = "upload-state is-done";
@@ -476,7 +543,7 @@ async function subirArchivos(lista) {
         }
     }
     if (exitosos) AppNotifications.success(`${exitosos} archivo(s) subido(s) correctamente`);
-    if (almacen === destinoAlmacen && categoria === destinoCategoria) {
+    if (almacen === destinoAlmacen && categoria === destinoCategoria && nodoId() === destinoNodo) {
         pagina = 1;
         await cargar();
     }
@@ -506,7 +573,7 @@ function renombrarArchivo(archivo) {
                 ["nombre", "El nombre es obligatorio."],
                 ["nombre", "El nombre no puede contener barras.", v => !/[\\/]/.test(v)]
             ]);
-            await ArchivoService.renombrar(almacen, categoria, archivo.identificador, form.elements.nombre.value.trim());
+            await ArchivoService.renombrar(almacen, categoria, archivo.identificador, form.elements.nombre.value.trim(), nodoId());
             AppNotifications.success("Archivo renombrado correctamente");
             await cargar();
         }
@@ -526,7 +593,7 @@ function reemplazarArchivo(archivo) {
         });
         if (!ok) return;
         try {
-            await ArchivoService.reemplazar(almacen, categoria, archivo.identificador, archivo.extension, nuevo);
+            await ArchivoService.reemplazar(almacen, categoria, archivo.identificador, archivo.extension, nuevo, nodoId());
             AppNotifications.success("Archivo reemplazado correctamente");
             await cargar();
         } catch (error) {
@@ -551,7 +618,7 @@ async function eliminarArchivos(lista) {
     let eliminados = 0;
     for (const archivo of lista) {
         try {
-            await ArchivoService.eliminar({ almacen, categoria, identificador: archivo.identificador, extension: archivo.extension });
+            await ArchivoService.eliminar({ nodoId: nodoId(), almacen, categoria, identificador: archivo.identificador, extension: archivo.extension });
             seleccion.delete(archivo.identificador);
             eliminados++;
         } catch (error) {
@@ -584,11 +651,11 @@ function vistaPrevia(a) {
 }
 
 function verArchivo(archivo) {
-    const puedeSubir = ui.puede("archivos", "subir");
-    const puedeEliminar = ui.puede("archivos", "eliminar");
+    const puedeSubir = puede("archivos", "subir");
+    const puedeEliminar = puede("archivos", "eliminar");
     const { raiz: modal, cerrar } = ui.modal({
         titulo: nombreArchivo(archivo),
-        subtitulo: `${almacen} / ${categoria}`,
+        subtitulo: `${nodo && !esNube(nodo) ? `${nodo.nombre} · ` : ""}${almacen} / ${categoria}`,
         ancho: "lg",
         cuerpo: `
             <div class="fs-detail">
@@ -629,16 +696,18 @@ function enlazarEventos() {
     });
 
     raiz.querySelector("[data-sesion]").addEventListener("click", event => {
-        if (event.target.closest("[data-atras]")) return categoria ? ir(almacen, "") : ir("", "");
+        if (event.target.closest("[data-atras]")) return categoria ? ir(almacen, "") : almacen ? ir("", "") : elegirNodo(null);
         const miga = event.target.closest("[data-ir]");
         if (!miga) return;
-        if (miga.dataset.ir === "raiz") ir("", "");
+        if (miga.dataset.ir === "nodos") elegirNodo(null);
+        else if (miga.dataset.ir === "raiz") ir("", "");
         else ir(almacen, "");
     });
 
     const toolbar = raiz.querySelector("[data-toolbar]");
     toolbar.addEventListener("click", event => {
         if (event.target.closest("[data-recargar]")) return cargar();
+        if (event.target.closest("[data-administrar-nodos]")) return ui.abrir("nodos");
         if (event.target.closest("[data-nuevo-almacen]")) return nuevoAlmacen();
         if (event.target.closest("[data-nueva-carpeta]")) return nuevaCarpeta();
         if (event.target.closest("[data-subir]")) return input.click();
@@ -700,6 +769,8 @@ function enlazarEventos() {
         if (event.target.closest("[data-subir]")) return input.click();
         if (event.target.closest("[data-nuevo-almacen]")) return nuevoAlmacen();
         if (event.target.closest("[data-nueva-carpeta]")) return nuevaCarpeta();
+        const tarjetaNodo = event.target.closest("[data-nodo]");
+        if (tarjetaNodo) return elegirNodo(nodos.find(n => String(n.nodoId) === tarjetaNodo.dataset.nodo) || null);
         const tarjetaCarpeta = event.target.closest("[data-abrir]");
         const boton = event.target.closest("[data-action]");
         if (tarjetaCarpeta) {
@@ -723,7 +794,7 @@ function enlazarEventos() {
         acciones[boton.dataset.action]?.();
     });
     contenido.addEventListener("keydown", event => {
-        const tarjetaCarpeta = event.target.closest("[data-abrir]");
+        const tarjetaCarpeta = event.target.closest("[data-abrir],[data-nodo]");
         if (!tarjetaCarpeta || event.target !== tarjetaCarpeta || (event.key !== "Enter" && event.key !== " ")) return;
         event.preventDefault();
         tarjetaCarpeta.click();
@@ -740,7 +811,7 @@ function enlazarEventos() {
     const zona = raiz.querySelector("[data-zona]");
     const drop = raiz.querySelector("[data-drop]");
     zona.addEventListener("dragover", event => {
-        if (nivel() !== "archivos" || !ui.puede("archivos", "subir")) return;
+        if (nivel() !== "archivos" || !puede("archivos", "subir")) return;
         event.preventDefault();
         raiz.querySelector("[data-drop-destino]").textContent = `${almacen} / ${categoria}`;
         drop.hidden = false;
@@ -775,6 +846,10 @@ export async function bind(stage, api) {
 export function reset() {
     window.clearTimeout(temporizador);
     seleccion = new Set();
+    nodo = null;
+    nodos = [];
+    almacen = "";
+    categoria = "";
 }
 
 export function skeleton() {

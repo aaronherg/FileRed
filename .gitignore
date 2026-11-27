@@ -14,3 +14,5 @@ target/
 .idea/
 .vscode/
 
+
+!API/FileRed/src/main/webapp/pages/files/descargas/*.jar

@@ -27,6 +27,9 @@ public class Plan extends BaseVersionado {
     private Boolean destacado;
     private Boolean publico;
     private Integer orden;
+    private Boolean permitirNube;
+    private Boolean permitirNodos;
+    private Boolean permitirRespaldos;
     private String monedaSimbolo;
     private String monedaCodigo;
 }

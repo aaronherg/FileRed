@@ -6,4 +6,5 @@ import lombok.Data;
 public class AlmacenActualizarParameters {
     private String almacen;
     private String nombre;
+    private Long nodoId;
 }

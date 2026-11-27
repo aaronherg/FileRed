@@ -1,15 +1,17 @@
 window.ArchivoService = {
     paginar: (filtro = {}) => FileRedApi.post("/api/archivos/getAllPages", filtro),
-    subir(almacen, categoria, archivo) {
+    subir(almacen, categoria, archivo, nodoId = 0) {
         const datos = new FormData();
+        datos.append("nodoId", nodoId);
         datos.append("almacen", almacen);
         datos.append("categoria", categoria);
         datos.append("file", archivo);
         return FileRedApi.post("/api/archivos/add", datos, { silent: true });
     },
-    subirConProgreso(almacen, categoria, archivo, alProgresar) {
+    subirConProgreso(almacen, categoria, archivo, alProgresar, nodoId = 0) {
         return new Promise((resolve, reject) => {
             const datos = new FormData();
+            datos.append("nodoId", nodoId);
             datos.append("almacen", almacen);
             datos.append("categoria", categoria);
             datos.append("file", archivo);
@@ -36,8 +38,9 @@ window.ArchivoService = {
             xhr.send(datos);
         });
     },
-    reemplazar(almacen, categoria, identificador, extension, archivo) {
+    reemplazar(almacen, categoria, identificador, extension, archivo, nodoId = 0) {
         const datos = new FormData();
+        datos.append("nodoId", nodoId);
         datos.append("almacen", almacen);
         datos.append("categoria", categoria);
         datos.append("identificador", identificador);
@@ -45,7 +48,7 @@ window.ArchivoService = {
         datos.append("file", archivo);
         return FileRedApi.put("/api/archivos/update", datos);
     },
-    renombrar: (almacen, categoria, identificador, nombre) =>
-        FileRedApi.put("/api/archivos/updateNombre", { almacen, categoria, identificador, nombre }),
+    renombrar: (almacen, categoria, identificador, nombre, nodoId = 0) =>
+        FileRedApi.put("/api/archivos/updateNombre", { almacen, categoria, identificador, nombre, nodoId }),
     eliminar: archivo => FileRedApi.delete("/api/archivos/delete", archivo)
 };

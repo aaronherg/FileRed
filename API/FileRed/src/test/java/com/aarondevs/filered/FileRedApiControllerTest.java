@@ -26,6 +26,9 @@ import com.aarondevs.filered.Parameters.Suscripciones.SuscripcionAsignarParamete
 import com.aarondevs.filered.Services.Archivos.ApiKeyService;
 import com.aarondevs.filered.Services.Archivos.ApiKeyServiceImpl;
 import com.aarondevs.filered.Services.Archivos.ArchivoServiceImpl;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
+import com.aarondevs.filered.Services.Archivos.NodoService;
+import com.aarondevs.filered.DAO.Archivos.NodoDataSet;
 import com.aarondevs.filered.Services.Suscripciones.SuscripcionService;
 import java.math.BigDecimal;
 import java.nio.file.Path;
@@ -59,8 +62,21 @@ class FileRedApiControllerTest {
         ArchivoServiceImpl archivos = new ArchivoServiceImpl(new ArchivosEnMemoria(), new SuscripcionDePrueba(),
                 almacenamiento.toString(), 100L * 1024 * 1024, "/");
         FileRedApiSupport support = new FileRedApiSupport(apiKeys, archivos);
-        mvc = MockMvcBuilders.standaloneSetup(new FileRedAlmacenController(archivos, support), new FileRedCarpetaController(archivos, support),
-                new FileRedArchivoController(archivos, support), new ArchivoPublicoController(archivos)).build();
+        NodoService nodos = vacio(NodoService.class);
+        DestinoArchivoService destinos = new DestinoArchivoService(archivos, vacio(NodoDataSet.class), new ArchivosEnMemoria(), nodos, vacio(com.aarondevs.filered.Services.Archivos.RespaldoService.class));
+        mvc = MockMvcBuilders.standaloneSetup(new FileRedAlmacenController(destinos, support), new FileRedCarpetaController(destinos, support),
+                new FileRedArchivoController(destinos, support), new ArchivoPublicoController(archivos, nodos)).build();
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T> T vacio(Class<T> tipo) {
+        return (T) java.lang.reflect.Proxy.newProxyInstance(tipo.getClassLoader(), new Class<?>[]{tipo}, (proxy, metodo, argumentos) -> {
+            Class<?> r = metodo.getReturnType();
+            if (r == boolean.class) return "permiteNube".equals(metodo.getName());
+            if (r == long.class || r == int.class) return 0;
+            if (List.class.isAssignableFrom(r)) return List.of();
+            return null;
+        });
     }
 
     private static ApiKeyAgregarParameters agregar(List<String> permisos) {

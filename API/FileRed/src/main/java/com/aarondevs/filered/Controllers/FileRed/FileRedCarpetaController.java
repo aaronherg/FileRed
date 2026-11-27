@@ -6,6 +6,7 @@ import com.aarondevs.filered.Parameters.Archivos.CarpetaBuscarParameters;
 import com.aarondevs.filered.Parameters.Archivos.CarpetaIdParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/fileRed/carpetas")
 public class FileRedCarpetaController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final FileRedApiSupport support;
 
-    public FileRedCarpetaController(ArchivoService service, FileRedApiSupport support) {
-        this.service = service;
+    public FileRedCarpetaController(DestinoArchivoService destinos, FileRedApiSupport support) {
+        this.destinos = destinos;
         this.support = support;
     }
 
@@ -31,6 +32,7 @@ public class FileRedCarpetaController {
         try {
             var llave = support.autenticar(request, "agregar_carpeta");
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.status(201).body(ApiResponse.success(201, service.crearCarpeta(llave.getClienteId(),
                     support.texto(parametro.getAlmacen()), support.texto(parametro.getCategoria())), "Carpeta creada correctamente"));
         } catch (Exception error) {
@@ -43,6 +45,7 @@ public class FileRedCarpetaController {
         try {
             var llave = support.autenticar(request, "actualizar_carpeta");
             if (parametro == null) throw new IllegalArgumentException("almacen, categoria y nombre son requeridos");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarCarpeta(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria()), support.texto(parametro.getNombre()), support.actor(llave)),
                     "Carpeta renombrada correctamente"));
@@ -56,6 +59,7 @@ public class FileRedCarpetaController {
         try {
             var llave = support.autenticar(request, "obtener_carpetas");
             if (parametro == null) throw new IllegalArgumentException("almacen es requerido");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.carpetas(llave.getClienteId(), support.texto(parametro.getAlmacen())),
                     "Carpetas obtenidas correctamente"));
         } catch (Exception error) {
@@ -68,6 +72,7 @@ public class FileRedCarpetaController {
         try {
             var llave = support.autenticar(request, "eliminar_carpeta");
             if (parametro == null) throw new IllegalArgumentException("almacen y categoria son requeridos");
+            ArchivoService service = destinos.predeterminado(llave.getClienteId());
             return ResponseEntity.ok(ApiResponse.success(200, service.eliminarCarpeta(llave.getClienteId(), support.texto(parametro.getAlmacen()),
                     support.texto(parametro.getCategoria())), "Carpeta eliminada correctamente"));
         } catch (Exception error) {

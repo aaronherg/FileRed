@@ -30,5 +30,8 @@ public class DetalleSuscripcion extends BaseVersionado {
     private Integer tamanoMaximoArchivoMb;
     private BigDecimal precio;
     private BigDecimal precioGbAdicional;
+    private Boolean permitirNube;
+    private Boolean permitirNodos;
+    private Boolean permitirRespaldos;
     private String monedaSimbolo;
 }

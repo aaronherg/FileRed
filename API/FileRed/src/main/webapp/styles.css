@@ -480,10 +480,55 @@ textarea {
     cursor: pointer;
 }
 
-.fr-check input {
+.fr-check input[type="checkbox"] {
+    position: relative;
+    flex: none;
+    width: 40px;
+    height: 23px;
+    margin: 0;
+    border: 1px solid var(--line-strong);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--muted) 32%, transparent);
+    cursor: pointer;
+    transition: background 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.fr-check input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
     width: 17px;
     height: 17px;
-    accent-color: var(--accent);
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 220ms cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+
+.fr-check input[type="checkbox"]:checked {
+    border-color: var(--accent);
+    background: var(--accent);
+}
+
+.fr-check input[type="checkbox"]:checked::before {
+    transform: translateX(17px);
+}
+
+.fr-check input[type="checkbox"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.fr-check input[type="checkbox"]:disabled {
+    cursor: default;
+    opacity: 0.5;
+}
+
+.fr-check:hover input[type="checkbox"]:not(:checked):not(:disabled) {
+    background: color-mix(in srgb, var(--muted) 45%, transparent);
 }
 
 .fr-card {

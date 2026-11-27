@@ -33,6 +33,10 @@ async function cargar() {
                 { titulo: "Por archivo", valor: p => (p.tamanoMaximoArchivoMb == null ? '<span class="fr-badge is-info is-plain">Sin límite</span>' : `${ui.formato.numero(p.tamanoMaximoArchivoMb)} MB`) },
                 { titulo: "Precio", clase: "is-right", valor: p => `<strong>${ui.formato.moneda(p.precio, p.monedaSimbolo)}</strong>` },
                 { titulo: "GB adicional", clase: "is-right", valor: p => (p.espacioGb == null ? "—" : ui.formato.moneda(p.precioGbAdicional, p.monedaSimbolo)) },
+                {
+                    titulo: "Funciones",
+                    valor: p => [p.permitirNodos ? '<span class="fr-badge is-info is-plain">Nodos</span>' : "", p.permitirNube !== false ? '<span class="fr-badge is-info is-plain">Nube</span>' : "", p.permitirRespaldos ? '<span class="fr-badge is-info is-plain">Respaldos</span>' : ""].filter(Boolean).join(" ")
+                },
                 { titulo: "Portal", valor: p => (p.publico ? '<span class="fr-badge is-success">Visible</span>' : '<span class="fr-badge">Oculto</span>') },
                 { titulo: "Estado", valor: p => ui.estado(p.estado) },
                 {
@@ -76,6 +80,15 @@ function formulario(plan) {
                 ${ui.campo({ nombre: "publico", etiqueta: "Visible en el portal", tipo: "checkbox", valor: nuevo ? true : plan.publico })}
                 ${ui.campo({ nombre: "destacado", etiqueta: "Destacado", tipo: "checkbox", valor: plan?.destacado })}
             </div>
+            <div class="fr-field is-full">
+                <span>Funciones incluidas</span>
+                <div class="fr-checks-inline">
+                    ${ui.campo({ nombre: "permitirNodos", etiqueta: "Nodos: guardar archivos en equipos propios", tipo: "checkbox", valor: plan?.permitirNodos })}
+                    ${ui.campo({ nombre: "permitirNube", etiqueta: "Almacenamiento en la Nube", tipo: "checkbox", valor: nuevo ? true : plan.permitirNube !== false })}
+                    ${ui.campo({ nombre: "permitirRespaldos", etiqueta: "Servidores de respaldo", tipo: "checkbox", valor: plan?.permitirRespaldos })}
+                </div>
+                <small data-ayuda-funciones>El plan siempre debe tener dónde guardar: si no incluye la Nube, incluye Nodos obligatoriamente.</small>
+            </div>
             ${nuevo ? "" : ui.campo({ nombre: "estado", etiqueta: "Estado", tipo: "select", valor: plan.estado, opciones: [{ valor: "Activo", texto: "Activo" }, { valor: "Inactivo", texto: "Inactivo" }] })}`,
         alAbrir(form) {
             const enlazar = (casilla, campo, extra) => {
@@ -92,6 +105,15 @@ function formulario(plan) {
                 aplicar();
             };
             enlazar("espacioIlimitado", "espacioGb", "precioGbAdicional");
+            const nubeCasilla = form.elements.permitirNube;
+            const nodosCasilla = form.elements.permitirNodos;
+            const exigirDestino = () => {
+                if (!nubeCasilla.checked) nodosCasilla.checked = true;
+                nodosCasilla.disabled = !nubeCasilla.checked;
+                nodosCasilla.closest(".fr-check")?.classList.toggle("is-locked", !nubeCasilla.checked);
+            };
+            nubeCasilla.addEventListener("change", exigirDestino);
+            exigirDestino();
             enlazar("archivoIlimitado", "tamanoMaximoArchivoMb");
         },
         async alGuardar(form) {
@@ -106,6 +128,8 @@ function formulario(plan) {
                 ["precioGbAdicional", "El precio por GB adicional no puede ser negativo.", valor => !valor || Number(valor) >= 0]
             ]);
             const datos = ui.valores(form);
+            datos.permitirNube = form.elements.permitirNube.checked;
+            datos.permitirNodos = form.elements.permitirNodos.checked || !datos.permitirNube;
             datos.monedaId = Number(datos.monedaId);
             datos.espacioGb = espacioIlimitado ? null : datos.espacioGb;
             datos.tamanoMaximoArchivoMb = archivoIlimitado ? null : datos.tamanoMaximoArchivoMb;

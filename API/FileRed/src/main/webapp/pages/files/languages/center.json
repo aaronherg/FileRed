@@ -674,6 +674,39 @@
     },
     "Eliminados": {
       "en": "Deleted"
+    },
+    "Funciones": {
+      "en": "Features"
+    },
+    "Funciones incluidas": {
+      "en": "Included features"
+    },
+    "Nodos: guardar archivos en equipos propios": {
+      "en": "Nodes: store files on own devices"
+    },
+    "Servidores de respaldo": {
+      "en": "Backup servers"
+    },
+    "Si el plan no las incluye, el cliente solo usa la Nube.": {
+      "en": "If the plan does not include them, the customer only uses the Cloud."
+    },
+    "Solo Nube": {
+      "en": "Cloud only"
+    },
+    "Nodos": {
+      "en": "Nodes"
+    },
+    "Respaldos": {
+      "en": "Backups"
+    },
+    "Almacenamiento en la Nube": {
+      "en": "Cloud storage"
+    },
+    "El plan siempre debe tener dónde guardar: si no incluye la Nube, incluye Nodos obligatoriamente.": {
+      "en": "A plan must always have somewhere to store files: if it does not include the Cloud, it must include Nodes."
+    },
+    "Nube": {
+      "en": "Cloud"
     }
   }
 }

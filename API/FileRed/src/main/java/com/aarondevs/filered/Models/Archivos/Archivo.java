@@ -23,4 +23,7 @@ public class Archivo extends BaseVersionado {
     private Long tamano;
     private Long apiKeyId;
     private String apiKeyUuid;
+    private Long nodoId;
+    private String estadoNodo;
+    private String hashSha256;
 }

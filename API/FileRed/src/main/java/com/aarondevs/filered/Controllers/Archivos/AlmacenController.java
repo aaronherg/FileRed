@@ -6,6 +6,7 @@ import com.aarondevs.filered.Parameters.Archivos.AlmacenBuscarParameters;
 import com.aarondevs.filered.Parameters.Archivos.AlmacenIdParameters;
 import com.aarondevs.filered.Parameters.Response.ApiResponse;
 import com.aarondevs.filered.Services.Archivos.ArchivoService;
+import com.aarondevs.filered.Services.Archivos.DestinoArchivoService;
 import com.aarondevs.filered.Services.Seguridad.ContextoAutenticacionService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
@@ -19,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/archivos/almacenes")
 public class AlmacenController {
-    private final ArchivoService service;
+    private final DestinoArchivoService destinos;
     private final ContextoAutenticacionService contextoService;
 
-    public AlmacenController(ArchivoService service, ContextoAutenticacionService contextoService) {
-        this.service = service;
+    public AlmacenController(DestinoArchivoService destinos, ContextoAutenticacionService contextoService) {
+        this.destinos = destinos;
         this.contextoService = contextoService;
     }
 
@@ -33,6 +34,7 @@ public class AlmacenController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_almacenes");
             if (parametro == null) throw new IllegalArgumentException("El nombre del almacén es requerido");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.status(201).body(ApiResponse.success(201, service.crearAlmacen(contexto.clienteId(), texto(parametro.getAlmacen())),
                     "Almacén creado correctamente"));
         } catch (Exception error) {
@@ -46,6 +48,7 @@ public class AlmacenController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_almacenes");
             if (parametro == null) throw new IllegalArgumentException("almacen y nombre son requeridos");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.renombrarAlmacen(contexto.clienteId(), texto(parametro.getAlmacen()),
                     texto(parametro.getNombre()), contexto.usuarioUuid()), "Almacén renombrado correctamente"));
         } catch (Exception error) {
@@ -60,6 +63,7 @@ public class AlmacenController {
             contextoService.exigirAccion(contexto, "clientes", "listar", "archivos", "listar");
             Long clienteId = contextoService.clienteDeContexto(contexto, parametro == null ? null : parametro.getClienteId());
             if (clienteId == null) throw new IllegalArgumentException("clienteId es requerido");
+            ArchivoService service = destinos.seleccionado(clienteId, parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.almacenes(clienteId), "Almacenes obtenidos correctamente"));
         } catch (Exception error) {
             return error(error);
@@ -72,6 +76,7 @@ public class AlmacenController {
             var contexto = contextoService.resolver(request);
             contextoService.exigirAccionCliente(contexto, "archivos", "gestionar_almacenes");
             if (parametro == null) throw new IllegalArgumentException("almacen es requerido");
+            ArchivoService service = destinos.seleccionado(contexto.clienteId(), parametro == null ? null : parametro.getNodoId());
             return ResponseEntity.ok(ApiResponse.success(200, service.eliminarAlmacen(contexto.clienteId(), texto(parametro.getAlmacen())),
                     "Almacén eliminado correctamente"));
         } catch (Exception error) {
