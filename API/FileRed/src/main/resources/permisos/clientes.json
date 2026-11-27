@@ -20,6 +20,10 @@
               "icono": "layout-dashboard",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar resumen"
                 }
@@ -40,6 +44,10 @@
               "descripcion": "Almacenes, carpetas y archivos.",
               "icono": "folder-open",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar archivos"
@@ -69,6 +77,10 @@
               "descripcion": "Equipos donde se guardan y respaldan tus archivos.",
               "icono": "server",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar nodos"
@@ -111,6 +123,10 @@
               "icono": "gauge",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar suscripción"
                 },
@@ -127,6 +143,10 @@
               "descripcion": "Cargos y abonos de tu cuenta.",
               "icono": "receipt",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar pagos"
@@ -149,6 +169,10 @@
               "icono": "hard",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar consumo de almacenamiento"
                 }
@@ -161,6 +185,10 @@
               "descripcion": "Solicitudes, subidas y descargas por día.",
               "icono": "activity",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "consultar",
                   "nombre": "Consultar actividad de la API"
@@ -183,6 +211,10 @@
               "icono": "key-round",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "listar",
                   "nombre": "Consultar API keys"
                 },
@@ -203,6 +235,10 @@
               "descripcion": "Usuarios de tu cuenta.",
               "icono": "users",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar usuarios"
@@ -228,6 +264,10 @@
               "descripcion": "Roles y permisos de tu cuenta.",
               "icono": "shield-check",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar roles"

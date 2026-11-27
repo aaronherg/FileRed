@@ -20,6 +20,10 @@
               "icono": "layout-dashboard",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar resumen"
                 }
@@ -40,6 +44,10 @@
               "descripcion": "Clientes que rentan alojamiento.",
               "icono": "building-2",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar clientes"
@@ -66,6 +74,10 @@
               "icono": "calendar-check",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "listar",
                   "nombre": "Consultar suscripciones"
                 },
@@ -90,6 +102,10 @@
               "descripcion": "Cuentas pendientes, abonos e historial.",
               "icono": "wallet",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar pagos"
@@ -116,6 +132,10 @@
               "icono": "dollar",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar reporte de ingresos"
                 }
@@ -128,6 +148,10 @@
               "descripcion": "Cargos pendientes y antigüedad de la deuda.",
               "icono": "wallet",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "consultar",
                   "nombre": "Consultar cuentas por cobrar"
@@ -142,6 +166,10 @@
               "icono": "hard",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "consultar",
                   "nombre": "Consultar consumo por cliente"
                 }
@@ -154,6 +182,10 @@
               "descripcion": "Solicitudes, subidas y descargas por cliente.",
               "icono": "activity",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "consultar",
                   "nombre": "Consultar uso de la API"
@@ -175,6 +207,10 @@
               "descripcion": "Catálogo de planes de alojamiento.",
               "icono": "layers",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar planes"
@@ -201,6 +237,10 @@
               "icono": "coins",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "listar",
                   "nombre": "Consultar monedas"
                 },
@@ -221,6 +261,10 @@
               "descripcion": "Usuarios del área administrativa.",
               "icono": "users",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "listar",
                   "nombre": "Consultar usuarios"
@@ -251,6 +295,10 @@
               "icono": "shield-check",
               "acciones": [
                 {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
+                {
                   "clave": "listar",
                   "nombre": "Consultar roles"
                 },
@@ -275,6 +323,10 @@
               "descripcion": "Llaves de administración para integraciones.",
               "icono": "key-round",
               "acciones": [
+                {
+                  "clave": "ver",
+                  "nombre": "Abrir la pantalla"
+                },
                 {
                   "clave": "consultar",
                   "nombre": "Consultar"
